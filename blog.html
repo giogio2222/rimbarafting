@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog & Artikel - Rimba Rafting</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --primary: #00695C;
+            --primary-light: #4DB6AC;
+            --accent: #FF8F00;
+            --text-dark: #1F2937;
+            --text-gray: #4B5563;
+            --white: #ffffff;
+            --off-white: #F3F4F6;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            list-style: none;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background-color: var(--off-white);
+            overflow-x: hidden;
+        }
+
+        /* --- NAVBAR (SAMA PERSIS DENGAN INDEX) --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 1002;
+            position: relative;
+        }
+
+        nav.scrolled .logo {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links li {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            position: relative;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--text-dark);
+        }
+
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        /* Dropdown */
+        .dropdown-content {
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            z-index: 1001;
+        }
+
+        .dropdown-content::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: transparent;
+        }
+
+        @media (min-width: 769px) {
+            .dropdown:hover .dropdown-content {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .dropdown:hover>a i {
+                transform: rotate(180deg);
+            }
+        }
+
+        .dropdown-content a {
+            color: var(--text-dark) !important;
+            padding: 12px 20px;
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--off-white);
+            color: var(--primary) !important;
+            padding-left: 25px;
+        }
+
+        .btn-booking {
+            background: linear-gradient(45deg, var(--accent), #FF6F00);
+            padding: 10px 28px !important;
+            border-radius: 50px;
+            color: var(--white) !important;
+            box-shadow: 0 4px 15px rgba(255, 111, 0, 0.4);
+            font-weight: 600;
+        }
+
+        .btn-booking:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 111, 0, 0.5);
+        }
+
+        .btn-booking::after {
+            display: none;
+        }
+
+        .hamburger {
+            display: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 2000;
+            position: relative;
+        }
+
+        nav.scrolled .hamburger,
+        .hamburger.active-color {
+            color: var(--text-dark);
+        }
+
+        /* --- BLOG HERO SECTION --- */
+        .blog-hero {
+            height: 50vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=1920&auto=format&fit=crop');
+            /* Gambar Camping/Outdoor */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: 1;
+        }
+
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+            z-index: -1;
+        }
+
+        .blog-hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            color: var(--white);
+            text-transform: uppercase;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-top: 50px;
+        }
+
+        /* --- CONTENT WRAPPER (Floating Overlap Effect) --- */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            margin-top: -80px;
+            background: var(--off-white);
+            border-radius: 60px 60px 0 0;
+            box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.15);
+            padding-top: 4rem;
+            overflow: hidden;
+            min-height: 100vh;
+            padding-bottom: 5rem;
+        }
+
+        .content-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 6px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        /* --- SEARCH SECTION --- */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 4rem;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: var(--white);
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 5px;
+            border: 1px solid transparent;
+            transition: 0.3s;
+        }
+
+        .search-box:focus-within {
+            border-color: var(--primary);
+            box-shadow: 0 15px 35px rgba(0, 105, 92, 0.15);
+        }
+
+        .search-box input {
+            width: 100%;
+            border: none;
+            outline: none;
+            padding: 15px 25px;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background: transparent;
+        }
+
+        .search-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-right: 5px;
+        }
+
+        .search-btn:hover {
+            background: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        /* --- BLOG GRID --- */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            padding: 0 10%;
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 105, 92, 0.15);
+        }
+
+        .blog-img {
+            height: 240px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s ease;
+        }
+
+        .blog-card:hover .blog-img img {
+            transform: scale(1.1);
+        }
+
+        .blog-category {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--accent);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+
+        .blog-content {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-meta {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .blog-meta i {
+            color: var(--primary);
+        }
+
+        .blog-title {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            color: var(--text-dark);
+            transition: 0.3s;
+        }
+
+        .blog-card:hover .blog-title {
+            color: var(--primary);
+        }
+
+        .blog-excerpt {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .read-more-btn {
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            color: var(--primary);
+            transition: 0.3s;
+        }
+
+        .read-more-btn:hover {
+            color: var(--accent);
+            gap: 12px;
+        }
+
+        /* Pesan jika tidak ada hasil */
+        #noResults {
+            display: none;
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-gray);
+        }
+
+        #noResults i {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* --- FOOTER (SAMA DENGAN INDEX) --- */
+        footer {
+            background-color: #111;
+            color: #ccc;
+            padding-top: 5rem;
+            padding-bottom: 2rem;
+        }
+
+        .footer-content {
+            padding: 0 10%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4rem;
+            justify-content: space-between;
+        }
+
+        .footer-logo {
+            color: var(--white);
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul a {
+            color: #999;
+            transition: 0.3s;
+        }
+
+        .footer-col ul a:hover {
+            color: var(--accent);
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .contact-row i {
+            color: var(--primary-light);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 968px) {
+            .blog-hero h1 {
+                font-size: 3rem;
+            }
+
+            .content-wrapper {
+                margin-top: -60px;
+                border-radius: 40px 40px 0 0;
+            }
+
+            .blog-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            /* Navbar Mobile */
+            .nav-links {
+                position: absolute;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 80px;
+                gap: 0;
+                transition: 0.4s ease-in-out;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+                overflow-y: auto;
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+                flex-direction: column;
+                height: auto;
+                border-bottom: 1px solid #eee;
+                align-items: flex-start;
+            }
+
+            .nav-links a {
+                color: var(--text-dark);
+                font-size: 1.1rem;
+                width: 100%;
+                padding: 20px 30px;
+                justify-content: space-between;
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            /* Dropdown Mobile */
+            .dropdown-content {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+                box-shadow: none;
+                width: 100%;
+                background: #f8f9fa;
+                margin-top: 0;
+                padding: 0;
+                border-radius: 0;
+                display: none;
+                opacity: 1;
+                visibility: visible;
+                z-index: 1002;
+            }
+
+            .dropdown-content.show-mobile {
+                display: block;
+                animation: slideDown 0.3s ease;
+            }
+
+            .dropdown-content a {
+                padding-left: 50px;
+                font-size: 0.95rem;
+                color: #555 !important;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            .dropdown.active>a i {
+                transform: rotate(180deg);
+            }
+
+            .btn-booking {
+                margin: 20px 30px;
+                text-align: center;
+                display: inline-block;
+                width: calc(100% - 60px);
+            }
+
+            /* Blog Specific Mobile */
+            .blog-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .content-wrapper {
+                padding-top: 3rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1.5rem;
+            }
+
+            /* 1 Kolom Full */
+            .search-container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="navbar">
+        <div class="logo">RIMBA</div>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="about.html">Tentang</a></li>
+            <li><a href="galeri.html">Galeri</a></li>
+            <li class="dropdown">
+                <a href="#paket" class="dropdown-toggle">
+                    Paket <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="paket-pemula.html">Pemula</a>
+                    <a href="paket-extreme.html">Extrem</a>
+                    <a href="paket-family.html">Family</a>
+                </div>
+            </li>
+            <li><a href="#" class="active">Blog</a></li>
+            <li><a href="booking.html" class="btn-booking">Booking Sekarang</a></li>
+        </ul>
+    </nav>
+
+    <div class="blog-hero">
+        <h1>Jurnal Petualang</h1>
+    </div>
+
+    <div class="content-wrapper">
+
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Cari artikel (misal: Tips, Lokasi, Peralatan)...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+
+        <div class="blog-grid" id="blogGrid">
+
+            <div class="blog-card">
+                <div class="blog-img">
+                    <span class="blog-category">Tips</span>
+                    <img src="https://images.unsplash.com/photo-1544099858-75feeb57f01e?q=80&w=800&auto=format&fit=crop"
+                        alt="Tips Rafting">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> 12 Okt 2024</span>
+                        <span><i class="far fa-user"></i> Admin</span>
+                    </div>
+                    <h3 class="blog-title">5 Tips Keselamatan Rafting untuk Pemula</h3>
+                    <p class="blog-excerpt">Ingin mencoba arung jeram untuk pertama kalinya? Simak panduan lengkap
+                        keselamatan agar petualangan Anda tetap aman dan menyenangkan.</p>
+                    <a href="blog-1.html" class="read-more-btn">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-img">
+                    <span class="blog-category">Peralatan</span>
+                    <img src="https://images.unsplash.com/photo-1625648866164-9b88496464f1?q=80&w=800&auto=format&fit=crop"
+                        alt="Peralatan Rafting">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> 05 Nov 2024</span>
+                        <span><i class="far fa-user"></i> Guide Budi</span>
+                    </div>
+                    <h3 class="blog-title">Mengenal Peralatan Wajib Arung Jeram</h3>
+                    <p class="blog-excerpt">Jangan asal dayung! Kenali fungsi helm, pelampung, dan jenis dayung yang
+                        digunakan dalam rafting standar internasional.</p>
+                    <a href="blog-2.html" class="read-more-btn">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-img">
+                    <span class="blog-category">Kesehatan</span>
+                    <img src="https://images.unsplash.com/photo-1530866495561-507c9faab2ed?q=80&w=800&auto=format&fit=crop"
+                        alt="Kesehatan Rafting">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> 20 Nov 2024</span>
+                        <span><i class="far fa-user"></i> Dr. Tirta</span>
+                    </div>
+                    <h3 class="blog-title">Manfaat Kesehatan Mental dari Rafting</h3>
+                    <p class="blog-excerpt">Ternyata melawan arus sungai bisa mengurangi stres dan meningkatkan hormon
+                        kebahagiaan. Simak penjelasan medisnya.</p>
+                    <a href="blog-3.html" class="read-more-btn">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-img">
+                    <span class="blog-category">Destinasi</span>
+                    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=800&auto=format&fit=crop"
+                        alt="Sungai Terbaik">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> 01 Des 2024</span>
+                        <span><i class="far fa-user"></i> Admin</span>
+                    </div>
+                    <h3 class="blog-title">Sungai Terbaik di Jawa Barat untuk Rafting</h3>
+                    <p class="blog-excerpt">Jawa Barat adalah surga arung jeram. Berikut adalah daftar sungai dengan
+                        grade jeram paling menantang.</p>
+                    <a href="blog-4.html" class="read-more-btn">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-img">
+                    <span class="blog-category">Cuaca</span>
+                    <img src="https://images.unsplash.com/photo-1520063234250-9884e9d36e2f?q=80&w=800&auto=format&fit=crop"
+                        alt="Rafting Hujan">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> 10 Des 2024</span>
+                        <span><i class="far fa-user"></i> Rescue Team</span>
+                    </div>
+                    <h3 class="blog-title">Rafting Saat Hujan? Aman Gak Sih?</h3>
+                    <p class="blog-excerpt">Banyak yang takut rafting saat hujan turun. Padahal, justru saat itulah
+                        debit air sedang seru-serunya. Ini prosedurnya.</p>
+                    <a href="blog-5.html" class="read-more-btn">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-img">
+                    <span class="blog-category">Sejarah</span>
+                    <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=800&auto=format&fit=crop"
+                        alt="Sejarah Rafting">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> 25 Des 2024</span>
+                        <span><i class="far fa-user"></i> Pakar Sejarah</span>
+                    </div>
+                    <h3 class="blog-title">Sejarah Perkembangan Arung Jeram di Indonesia</h3>
+                    <p class="blog-excerpt">Dari ekspedisi militer hingga menjadi olahraga wisata populer. Inilah
+                        perjalanan panjang arung jeram di tanah air.</p>
+                    <a href="blog-6.html" class="read-more-btn">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div id="noResults">
+                <i class="far fa-frown"></i>
+                <h3>Yah, artikel tidak ditemukan.</h3>
+                <p>Coba gunakan kata kunci lain.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col" style="flex: 2; min-width: 300px;">
+                <a href="#" class="footer-logo">RIMBA RAFTING.</a>
+                <p style="line-height: 1.6; max-width: 80%;">Operator wisata arung jeram yang memprioritaskan
+                    keselamatan tanpa mengurangi keseruan. Bergabunglah bersama ribuan petualang lainnya.</p>
+            </div>
+            <div class="footer-col" style="flex: 1;">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="about.html">Tentang</a></li>
+                    <li><a href="galeri.html">Paket</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col" style="flex: 1.2;">
+                <h4>Kontak</h4>
+                <div class="contact-row">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Jl. Raya Hutan Pinus No. 45, Bogor Selatan</span>
+                </div>
+                <div class="contact-row">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+62 812-9988-7766</span>
+                </div>
+                <div class="contact-row">
+                    <i class="fas fa-envelope"></i>
+                    <span>book@rimbarafting.com</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Rimba Rafting Indonesia. Designed with passion.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- NAVBAR SCROLL & MOBILE MENU (SAMA DENGAN INDEX) ---
+        const navbar = document.getElementById('navbar');
+        window.onscroll = () => {
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        };
+
+        const hamburger = document.querySelector('.hamburger');
+        const icon = hamburger.querySelector('i');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', (e) => {
+            navLinks.classList.toggle('active');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars'); icon.classList.add('fa-times');
+                hamburger.classList.add('active-color');
+            } else {
+                icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
+                if (window.scrollY < 50) hamburger.classList.remove('active-color');
+            }
+            e.stopPropagation();
+        });
+
+        document.querySelectorAll('.nav-links a:not(.dropdown-toggle)').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
+                if (window.scrollY < 50) hamburger.classList.remove('active-color');
+            });
+        });
+
+        // Dropdown Logic
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        const dropdownContent = document.querySelector('.dropdown-content');
+        const dropdownParent = document.querySelector('.dropdown');
+
+        dropdownToggle.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                dropdownContent.classList.toggle('show-mobile');
+                dropdownParent.classList.toggle('active');
+            }
+        });
+
+        // --- BLOG SEARCH LOGIC ---
+        const searchInput = document.getElementById('searchInput');
+        const blogCards = document.querySelectorAll('.blog-card');
+        const noResults = document.getElementById('noResults');
+
+        searchInput.addEventListener('keyup', (e) => {
+            const term = e.target.value.toLowerCase();
+            let visibleCount = 0;
+
+            blogCards.forEach(card => {
+                const title = card.querySelector('.blog-title').innerText.toLowerCase();
+                const category = card.querySelector('.blog-category').innerText.toLowerCase();
+
+                // Cari berdasarkan Judul ATAU Kategori
+                if (title.includes(term) || category.includes(term)) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Tampilkan pesan jika tidak ada hasil
+            if (visibleCount === 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manfaat Kesehatan Mental dari Rafting - Rimba Rafting</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- 1. VARIABLES (SAMA PERSIS DENGAN REFERENSI) --- */
+        :root {
+            --primary: #00695C;
+            --primary-light: #4DB6AC;
+            --accent: #FF8F00;
+            --text-dark: #1F2937;
+            --text-gray: #4B5563;
+            --white: #ffffff;
+            --off-white: #F3F4F6;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            list-style: none;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background-color: var(--off-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- 2. NAVBAR (SAMA PERSIS DENGAN REFERENSI) --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 1002;
+            position: relative;
+        }
+
+        nav.scrolled .logo {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links li {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            position: relative;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-links a i {
+            transition: transform 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--text-dark);
+        }
+
+        /* Dropdown */
+        .dropdown-content {
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            z-index: 1001;
+        }
+
+        .dropdown-content::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: transparent;
+        }
+
+        @media (min-width: 769px) {
+            .dropdown:hover .dropdown-content {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .dropdown:hover>a i {
+                transform: rotate(180deg);
+            }
+        }
+
+        .dropdown-content a {
+            color: var(--text-dark) !important;
+            padding: 12px 20px;
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--off-white);
+            color: var(--primary) !important;
+            padding-left: 25px;
+        }
+
+        .dropdown-content a::after {
+            display: none;
+        }
+
+        /* Button Booking */
+        .btn-booking {
+            background: linear-gradient(45deg, var(--accent), #FF6F00);
+            padding: 10px 28px !important;
+            border-radius: 50px;
+            color: var(--white) !important;
+            box-shadow: 0 4px 15px rgba(255, 111, 0, 0.4);
+            font-weight: 600;
+        }
+
+        .btn-booking::after {
+            display: none;
+        }
+
+        .btn-booking:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 111, 0, 0.5);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 2000;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav.scrolled .hamburger,
+        .hamburger.active-color {
+            color: var(--text-dark);
+        }
+
+
+        /* --- 3. HERO BLOG DETAIL --- */
+        .blog-hero {
+            height: 70vh;
+            width: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1544654032-9c1766a5e182?q=80&w=2070&auto=format&fit=crop');
+            /* Gambar Rafting + Air */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            /* Parallax Effect */
+            padding-bottom: 8rem;
+        }
+
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 105, 92, 0.9) 100%);
+        }
+
+        .blog-hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--white);
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .category-badge {
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .blog-hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .blog-meta i {
+            margin-right: 8px;
+            color: var(--accent);
+        }
+
+        /* --- 4. CONTENT WRAPPER --- */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            margin-top: -100px;
+            /* Overlap effect */
+            background: var(--white);
+            border-radius: 60px 60px 0 0;
+            box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.15);
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+            overflow: hidden;
+        }
+
+        .content-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 6px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        /* --- 5. BLOG ARTICLE LAYOUT --- */
+        .article-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: 50px;
+        }
+
+        /* Sticky Share */
+        .sticky-share {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .share-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--off-white);
+            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .share-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-5px);
+        }
+
+        /* Article Typography */
+        .article-body {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        /* Drop Cap */
+        .article-body>p:first-of-type::first-letter {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--primary);
+            float: left;
+            margin-right: 15px;
+            line-height: 0.8;
+        }
+
+        .article-body h2 {
+            font-family: var(--font-heading);
+            color: var(--primary);
+            font-size: 2rem;
+            margin: 3rem 0 1.5rem;
+            position: relative;
+            padding-left: 20px;
+            font-weight: 700;
+        }
+
+        .article-body h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            bottom: 5px;
+            width: 6px;
+            background: var(--accent);
+            border-radius: 5px;
+        }
+
+        .article-body h3 {
+            font-family: var(--font-heading);
+            color: var(--text-dark);
+            margin: 2rem 0 1rem;
+            font-weight: 700;
+        }
+
+        .article-body img {
+            width: 100%;
+            border-radius: 20px;
+            margin: 2rem 0;
+            box-shadow: 20px 20px 0 var(--off-white), 0 0 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Blockquote */
+        blockquote {
+            background: #e0f2f1;
+            border-left: 5px solid var(--primary);
+            margin: 2.5rem 0;
+            padding: 2.5rem;
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--primary);
+            border-radius: 0 20px 20px 0;
+            position: relative;
+        }
+
+        blockquote i {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            font-size: 2rem;
+            color: var(--primary);
+            background: #e0f2f1;
+            padding: 0 10px;
+            border-radius: 50%;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, var(--primary), #004d40);
+            color: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            box-shadow: 0 15px 30px rgba(0, 105, 92, 0.3);
+        }
+
+        .highlight-box h3 {
+            color: var(--accent);
+            margin-top: 0;
+        }
+
+        .highlight-box ul li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: start;
+            gap: 10px;
+        }
+
+        .highlight-box ul li i {
+            margin-top: 5px;
+            color: var(--accent);
+        }
+
+        .highlight-box p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* --- 6. NEXT/PREV NAVIGATION --- */
+        .blog-nav-section {
+            padding: 4rem 10%;
+            background: var(--off-white);
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .nav-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            transition: 0.4s;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 105, 92, 0.15);
+        }
+
+        .nav-card img {
+            width: 140px;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .nav-card-content {
+            padding: 20px;
+            flex: 1;
+        }
+
+        .nav-label {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .nav-title {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .nav-card.prev .nav-card-content {
+            text-align: left;
+        }
+
+        .nav-card.next {
+            flex-direction: row-reverse;
+        }
+
+        .nav-card.next .nav-card-content {
+            text-align: right;
+        }
+
+        /* --- 7. FOOTER (SAMA PERSIS DENGAN REFERENSI) --- */
+        footer {
+            background-color: #111;
+            color: #ccc;
+            padding-top: 80px;
+            padding-bottom: 2rem;
+        }
+
+        .footer-content {
+            padding: 0 10%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4rem;
+            justify-content: space-between;
+        }
+
+        .footer-logo {
+            color: var(--white);
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul a {
+            color: #999;
+            transition: 0.3s;
+        }
+
+        .footer-col ul a:hover {
+            color: var(--accent);
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .contact-row i {
+            color: var(--primary-light);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 968px) {
+            .blog-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .article-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sticky-share {
+                position: static;
+                flex-direction: row;
+                justify-content: center;
+                margin-bottom: 30px;
+            }
+
+            .content-wrapper {
+                margin-top: -60px;
+                border-radius: 40px 40px 0 0;
+            }
+
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-card img {
+                width: 100px;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            /* Mobile Nav Logic */
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 80px;
+                gap: 0;
+                transition: 0.4s ease-in-out;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+                overflow-y: auto;
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+                flex-direction: column;
+                height: auto;
+                border-bottom: 1px solid #eee;
+                align-items: flex-start;
+            }
+
+            .nav-links a {
+                color: var(--text-dark);
+                font-size: 1.1rem;
+                width: 100%;
+                padding: 20px 30px;
+                justify-content: space-between;
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            /* Dropdown Mobile */
+            .dropdown-content {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+                box-shadow: none;
+                width: 100%;
+                background: #f8f9fa;
+                margin-top: 0;
+                padding: 0;
+                border-radius: 0;
+                display: none;
+                opacity: 1;
+                visibility: visible;
+                z-index: 1002;
+            }
+
+            .dropdown-content.show-mobile {
+                display: block;
+                animation: slideDown 0.3s ease;
+            }
+
+            .dropdown-content a {
+                padding-left: 50px;
+                font-size: 0.95rem;
+                color: #555 !important;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            .btn-booking {
+                margin: 20px 30px;
+                text-align: center;
+                display: inline-block;
+                width: calc(100% - 60px);
+            }
+
+            /* Blog Mobile Adjustments */
+            .blog-hero {
+                height: 60vh;
+            }
+
+            .article-body>p:first-of-type::first-letter {
+                font-size: 3rem;
+                margin-right: 10px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="navbar">
+        <div class="logo">RIMBA</div>
+
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html#beranda">Beranda</a></li>
+            <li><a href="index.html#tentang">Tentang</a></li>
+            <li><a href="galeri.html">Galeri</a></li>
+
+            <li class="dropdown">
+                <a href="index.html#paket" class="dropdown-toggle">
+                    Paket <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="paket-pemula.html">Pemula</a>
+                    <a href="paket-extreme.html">Extrem</a>
+                    <a href="paket-family.html">Family</a>
+                </div>
+            </li>
+
+            <li><a href="blog.html" style="color: var(--accent);">Blog</a></li>
+            <li><a href="booking.html" class="btn-booking">Booking Sekarang</a></li>
+        </ul>
+    </nav>
+
+    <header class="blog-hero">
+        <div class="blog-hero-content">
+            <h1>Manfaat Kesehatan Mental dari Rafting</h1>
+            <div class="blog-meta">
+                <span><i class="far fa-calendar"></i> 20 Nov 2024</span>
+                <span><i class="far fa-user"></i> Dr. Tirta</span>
+                <span><i class="far fa-clock"></i> 8 Menit Baca</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="content-wrapper">
+        <main class="article-container">
+
+            <aside class="sticky-share">
+                <a href="#" class="share-btn"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="share-btn"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="share-btn"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="share-btn"><i class="fas fa-link"></i></a>
+            </aside>
+
+            <article class="article-body">
+                <p>Di era modern yang serba cepat ini, stres dan kecemasan telah menjadi "teman akrab" bagi banyak
+                    orang. Tekanan pekerjaan, notifikasi gadget yang tidak pernah berhenti, hingga polusi udara di
+                    perkotaan membuat otak kita bekerja terus-menerus tanpa jeda. Banyak yang mencari pelarian melalui
+                    liburan, namun tidak semua liburan memberikan efek pemulihan yang maksimal. Salah satu aktivitas
+                    yang kini mulai dilirik bukan hanya sebagai olahraga ekstrem, tetapi juga sebagai terapi mental,
+                    adalah arung jeram atau rafting.</p>
+
+                <p>Ternyata, melawan arus sungai tidak hanya membakar kalori fisik, tetapi juga membakar beban pikiran.
+                    Sebagai seorang praktisi kesehatan, saya melihat fenomena ini bukan sekadar tren, melainkan sebuah
+                    kebutuhan biologis dan psikologis tubuh manusia untuk kembali ke alam. Berikut adalah penjelasan
+                    medis dan psikologis mengapa rafting bisa menjadi obat mujarab bagi kesehatan mental Anda.</p>
+
+                <h2>1. Efek "Green & Blue Space" pada Otak</h2>
+                <p>Secara ilmiah, berada di lingkungan yang didominasi warna hijau (pepohonan/hutan) dan biru
+                    (air/sungai) memiliki dampak langsung terhadap penurunan kadar kortisol, yaitu hormon pemicu stres.
+                    Konsep ini sering disebut sebagai *Ecotherapy* atau terapi alam.</p>
+                <p>Saat Anda melakukan rafting, Anda dikelilingi oleh hutan tropis yang rimbun dan suara gemericik air
+                    sungai yang konstan. Suara air ini menghasilkan apa yang disebut <em>Pink Noise</em>, sebuah
+                    frekuensi suara yang terbukti dapat menenangkan gelombang otak dan meningkatkan kualitas tidur di
+                    malam hari setelah beraktivitas. Berbeda dengan suara bising perkotaan yang memicu kewaspadaan
+                    (alertness), suara alam memicu relaksasi parasimpatik.</p>
+
+                <h2>2. Adrenalin Sebagai "Eustress"</h2>
+                <p>Banyak orang menghindari stres, padahal tidak semua stres itu buruk. Dalam dunia medis, kita mengenal
+                    istilah <strong>Eustress</strong> atau stres yang positif. Saat Anda menghadapi jeram yang
+                    menantang, tubuh akan melepaskan adrenalin. Dalam dosis yang tepat dan lingkungan yang terkontrol
+                    (seperti rafting dengan prosedur keamanan yang baik), lonjakan adrenalin ini membuat Anda merasa
+                    lebih hidup, fokus, dan energik.</p>
+
+                <p>Setelah adrenalin mereda pasca menaklukan jeram, otak akan membanjiri tubuh dengan hormon dopamin dan
+                    endorfin. Ini adalah hormon "hadiah" yang memberikan rasa puas, bahagia, dan euforia alami. Perasaan
+                    ini jauh lebih kuat dan tahan lama dibandingkan kepuasan instan yang didapat dari media sosial atau
+                    belanja online.</p>
+
+                <blockquote>
+                    <i class="fas fa-quote-left"></i>
+                    "Melawan arus sungai mengajarkan otak kita bahwa rintangan besar bisa dilalui. Ini adalah latihan
+                    mental terbaik untuk membangun resiliensi di kehidupan nyata."
+                </blockquote>
+
+                <h2>3. Melatih "Mindfulness" Tanpa Usaha</h2>
+                <p>Meditasi seringkali sulit dilakukan bagi pemula karena pikiran cenderung mengembara. Namun, rafting
+                    memaksa Anda untuk berada dalam kondisi *Mindfulness* atau sadar penuh akan momen saat ini secara
+                    otomatis. Ketika Anda berada di atas perahu karet, menghadapi jeram Grade 3 atau 4, otak Anda tidak
+                    memiliki kapasitas untuk memikirkan cicilan rumah, deadline pekerjaan, atau masalah asmara.</p>
+                <p>Fokus Anda sepenuhnya tertuju pada dayungan, instruksi pemandu, dan keseimbangan perahu. Kondisi ini
+                    disebut sebagai <em>Flow State</em>, sebuah keadaan mental di mana seseorang begitu larut dalam
+                    aktivitas sehingga waktu terasa hilang. *Flow state* adalah salah satu cara paling efektif untuk
+                    mengistirahatkan otak dari kecemasan kronis (anxiety) dan *overthinking*.</p>
+
+                <img src="https://images.unsplash.com/photo-1598950854378-028a30598852?q=80&w=2072&auto=format&fit=crop"
+                    alt="Rafting dan Kebahagiaan">
+
+                <h2>4. Membangun Koneksi Sosial (Bonding)</h2>
+                <p>Manusia adalah makhluk sosial, dan isolasi sosial adalah salah satu pemicu depresi terbesar. Rafting
+                    adalah olahraga tim. Anda tidak bisa melakukannya sendirian. Di atas perahu, status sosial, jabatan,
+                    dan latar belakang menjadi tidak relevan. Yang ada hanyalah kerja sama tim untuk menjaga perahu
+                    tetap seimbang.</p>
+                <p>Interaksi intens, tawa saat tercebur air, dan sorakan keberhasilan saat melewati jeram memicu
+                    pelepasan hormon Oksitosin, atau hormon cinta dan kepercayaan. Aktivitas ini sangat efektif untuk
+                    *team building* perusahaan atau mempererat hubungan keluarga yang mulai renggang karena kesibukan
+                    masing-masing.</p>
+
+                <div class="highlight-box">
+                    <h3><i class="fas fa-heartbeat"></i> Fakta Medis Singkat:</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>Detoks Digital:</strong> 2-3 jam tanpa HP di
+                            sungai mengurangi kelelahan mata dan mental.</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Vitamin D:</strong> Paparan sinar matahari pagi
+                            meningkatkan imun dan mood.</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Kepercayaan Diri:</strong> Mengatasi rasa takut
+                            fisik meningkatkan *self-efficacy*.</li>
+                    </ul>
+                </div>
+
+                <h2>5. Mengubah Cara Pandang Terhadap Rasa Takut</h2>
+                <p>Bagi pasien dengan gangguan kecemasan, rasa takut seringkali menjadi penghalang untuk menikmati
+                    hidup. Rafting menyediakan lingkungan yang aman untuk "bermain" dengan rasa takut tersebut. Anda
+                    belajar bahwa jatuh ke air itu dingin dan mengejutkan, tapi Anda bisa naik kembali ke perahu.</p>
+                <p>Pengalaman fisik ini diterjemahkan oleh otak sebagai sebuah keberhasilan bertahan hidup (survival
+                    success). Secara tidak sadar, ini menanamkan pola pikir baru: "Jika saya bisa melewati jeram deras
+                    ini, saya juga bisa melewati masalah berat di kantor." Ini adalah bentuk terapi perilaku kognitif
+                    (CBT) yang dilakukan di alam terbuka.</p>
+
+                <h3>Kesimpulan</h3>
+                <p>Kesehatan bukan hanya soal angka di timbangan atau hasil cek darah di laboratorium. Kesehatan mental
+                    adalah fondasi dari kualitas hidup yang baik. Jika Anda merasa jenuh, stres, atau kehilangan
+                    semangat, mungkin resep yang Anda butuhkan bukanlah obat-obatan, melainkan sebuah dayung, helm, dan
+                    derasnya arus sungai.</p>
+                <p>Di Rimba Rafting, kami tidak hanya memandu Anda menyusuri sungai, tapi kami menemani Anda dalam
+                    perjalanan memulihkan jiwa. Air sungai yang dingin akan membilas kelelahan mental Anda, dan Anda
+                    akan pulang dengan versi diri yang lebih segar dan tangguh. Salam sehat!</p>
+
+                <p><em>Stay Active, Stay Sane!</em></p>
+            </article>
+        </main>
+
+        <section class="blog-nav-section">
+            <div class="nav-grid">
+                <a href="blog-2.html" class="nav-card prev">
+                    <img src="https://images.unsplash.com/photo-1594389028886-3a71b8089201?q=80&w=2070&auto=format&fit=crop"
+                        alt="Peralatan Rafting">
+                    <div class="nav-card-content">
+                        <span class="nav-label"><i class="fas fa-arrow-left"></i> Sebelumnya</span>
+                        <h4 class="nav-title">Mengenal Peralatan Wajib Arung Jeram</h4>
+                    </div>
+                </a>
+
+                <a href="blog-4.html" class="nav-card next">
+                    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop"
+                        alt="Rekomendasi Wisata">
+                    <div class="nav-card-content">
+                        <span class="nav-label">Selanjutnya <i class="fas fa-arrow-right"></i></span>
+                        <h4 class="nav-title">Sungai Terbaik di Jawa Barat untuk Rafting</h4>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col" style="flex: 2; min-width: 300px;">
+                <a href="#" class="footer-logo">RIMBA RAFTING.</a>
+                <p style="line-height: 1.6; max-width: 80%;">Operator wisata arung jeram yang memprioritaskan
+                    keselamatan tanpa mengurangi keseruan. Bergabunglah bersama ribuan petualang lainnya.</p>
+            </div>
+            <div class="footer-col" style="flex: 1;">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="index.html#beranda">Beranda</a></li>
+                <li><a href="about.html">Tentang</a></li>
+                    <li><a href="galeri.html">Galeri</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col" style="flex: 1.2;">
+                <h4>Kontak</h4>
+                <div class="contact-row">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Jl. Raya Hutan Pinus No. 45, Bogor Selatan</span>
+                </div>
+                <div class="contact-row">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+62 812-9988-7766</span>
+                </div>
+                <div class="contact-row">
+                    <i class="fas fa-envelope"></i>
+                    <span>book@rimbarafting.com</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Rimba Rafting Indonesia. Designed with passion.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Script Navbar & Hamburger
+        const navbar = document.getElementById('navbar');
+        window.onscroll = () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        };
+
+        const hamburger = document.querySelector('.hamburger');
+        const icon = hamburger.querySelector('i');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', (e) => {
+            navLinks.classList.toggle('active');
+
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+                hamburger.classList.add('active-color');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                if (window.scrollY < 50) {
+                    hamburger.classList.remove('active-color');
+                }
+            }
+            e.stopPropagation();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    if (window.scrollY < 50) {
+                        hamburger.classList.remove('active-color');
+                    }
+                }
+            }
+        });
+
+        // 2. Script Dropdown Mobile
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        const dropdownContent = document.querySelector('.dropdown-content');
+        const dropdownParent = document.querySelector('.dropdown');
+
+        dropdownToggle.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                dropdownContent.classList.toggle('show-mobile');
+                dropdownParent.classList.toggle('active');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

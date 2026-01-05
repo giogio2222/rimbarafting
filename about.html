@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami - Rimba Rafting</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- 1. VARIABLES & RESET --- */
+        :root {
+            --primary: #00695C;
+            --primary-light: #4DB6AC;
+            --accent: #FF8F00;
+            --text-dark: #1F2937;
+            --text-gray: #4B5563;
+            --white: #ffffff;
+            --off-white: #F3F4F6;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            list-style: none;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background-color: var(--off-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- 2. NAVBAR --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 1002;
+            position: relative;
+        }
+
+        nav.scrolled .logo {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links li {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            position: relative;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-links a i {
+            transition: transform 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--text-dark);
+        }
+
+        /* Dropdown */
+        .dropdown-content {
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            z-index: 1001;
+        }
+
+        .dropdown-content::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: transparent;
+        }
+
+        @media (min-width: 769px) {
+            .dropdown:hover .dropdown-content {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .dropdown:hover>a i {
+                transform: rotate(180deg);
+            }
+        }
+
+        .dropdown-content a {
+            color: var(--text-dark) !important;
+            padding: 12px 20px;
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--off-white);
+            color: var(--primary) !important;
+            padding-left: 25px;
+        }
+
+        .dropdown-content a::after {
+            display: none;
+        }
+
+        /* Button Booking */
+        .btn-booking {
+            background: linear-gradient(45deg, var(--accent), #FF6F00);
+            padding: 10px 28px !important;
+            border-radius: 50px;
+            color: var(--white) !important;
+            box-shadow: 0 4px 15px rgba(255, 111, 0, 0.4);
+            font-weight: 600;
+        }
+
+        .btn-booking::after {
+            display: none;
+        }
+
+        .btn-booking:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 111, 0, 0.5);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 2000;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav.scrolled .hamburger,
+        .hamburger.active-color {
+            color: var(--text-dark);
+        }
+
+        /* --- 3. HERO SECTION (TENTANG KAMI) --- */
+        .hero-section {
+            position: relative;
+            height: 60vh;
+            background-image: url('img/baru/Desaintanpajudul33.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding-bottom: 8rem;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 105, 92, 0.8));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* --- 4. CONTENT WRAPPER DENGAN LENGKUNGAN --- */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            margin-top: -100px;
+            background: var(--white);
+            border-radius: 50px 50px 0 0;
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+            box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* --- 5. ABOUT CONTENT --- */
+        .about-intro {
+            padding: 0 10% 4rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .about-intro p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .visi-misi {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+            text-align: left;
+        }
+
+        .vm-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .vm-card i {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .vm-card ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .vm-card ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .vm-card ul li::before {
+            content: '\f00c';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 0.9rem;
+            top: 4px;
+        }
+
+        /* --- FILOSOFI RIMBA (Section Revisi) --- */
+        .vision-mission {
+            padding: 4rem 10%;
+            background: var(--off-white);
+        }
+
+        .vm-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+
+        .vm-row {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        /* Zigzag Logic Desktop */
+        .vm-row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .vm-row.reverse .vm-content {
+            text-align: right;
+            /* Rata kanan hanya di desktop */
+        }
+
+        .vm-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            flex-shrink: 0;
+        }
+
+        .vm-content h4 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        /* --- 6. TEAM SECTION --- */
+        .team-section {
+            background-color: var(--white);
+            padding: 5rem 10%;
+            text-align: center;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 3rem;
+        }
+
+        .team-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
+            border: 1px solid #eee;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 105, 92, 0.15);
+        }
+
+        .team-img {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .team-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+
+        .team-card:hover .team-img img {
+            transform: scale(1.05);
+        }
+
+        .team-info {
+            padding: 1.5rem;
+        }
+
+        .team-info h4 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .team-role {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+
+        /* --- 7. CTA SECTION --- */
+        .cta-section {
+            background: linear-gradient(rgba(0, 105, 92, 0.9), rgba(0, 77, 64, 0.9)), url('https://images.unsplash.com/photo-1530866495561-507c9faab2ed?q=80&w=2069&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 5rem 10%;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .cta-content h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* --- 8. FOOTER --- */
+        footer {
+            background-color: #111;
+            color: #ccc;
+            padding-top: 80px;
+            padding-bottom: 2rem;
+        }
+
+        .footer-content {
+            padding: 0 10%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4rem;
+            justify-content: space-between;
+        }
+
+        .footer-logo {
+            color: var(--white);
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul a {
+            color: #999;
+            transition: 0.3s;
+        }
+
+        .footer-col ul a:hover {
+            color: var(--accent);
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .contact-row i {
+            color: var(--primary-light);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .visi-misi {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            /* Mobile Nav Logic */
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 80px;
+                gap: 0;
+                transition: 0.4s ease-in-out;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+                overflow-y: auto;
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+                flex-direction: column;
+                height: auto;
+                border-bottom: 1px solid #eee;
+                align-items: flex-start;
+            }
+
+            .nav-links a {
+                color: var(--text-dark);
+                font-size: 1.1rem;
+                width: 100%;
+                padding: 20px 30px;
+                justify-content: space-between;
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            /* Dropdown Mobile */
+            .dropdown-content {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+                box-shadow: none;
+                width: 100%;
+                background: #f8f9fa;
+                margin-top: 0;
+                padding: 0;
+                border-radius: 0;
+                display: none;
+                opacity: 1;
+                visibility: visible;
+                z-index: 1002;
+            }
+
+            .dropdown-content.show-mobile {
+                display: block;
+                animation: slideDown 0.3s ease;
+            }
+
+            .dropdown-content a {
+                padding-left: 50px;
+                font-size: 0.95rem;
+                color: #555 !important;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            .btn-booking {
+                margin: 20px 30px;
+                text-align: center;
+                display: inline-block;
+                width: calc(100% - 60px);
+            }
+
+            /* Hero & Content Responsive */
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .content-wrapper {
+                margin-top: -50px;
+                border-radius: 30px 30px 0 0;
+                padding-top: 3rem;
+            }
+
+            .about-intro {
+                padding: 0 5% 3rem;
+            }
+
+            /* --- FIX: VM Row Mobile Centering --- */
+            .vm-row,
+            .vm-row.reverse {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            /* Memaksa text-align center pada konten, meng-override style desktop */
+            .vm-content,
+            .vm-row.reverse .vm-content {
+                text-align: center;
+            }
+
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="navbar">
+        <div class="logo">RIMBA</div>
+
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html#beranda">Beranda</a></li>
+            <li><a href="index.html#tentang" style="color: var(--accent);">Tentang</a></li>
+            <li><a href="galeri.html">Galeri</a></li>
+
+            <li class="dropdown">
+                <a href="index.html#paket" class="dropdown-toggle">
+                    Paket <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="paket-pemula.html">Pemula</a>
+                    <a href="paket-extreme.html">Extrem</a>
+                    <a href="paket-family.html">Family</a>
+                </div>
+            </li>
+
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="booking.html" class="btn-booking">Booking Sekarang</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Tentang Rimba Rafting</h1>
+            <p class="hero-subtitle">Lebih dari sekadar operator arung jeram, kami adalah partner petualangan Anda.</p>
+        </div>
+    </header>
+
+    <div class="content-wrapper">
+
+        <section class="about-intro">
+            <h2 class="section-title">Siapa Kami?</h2>
+            <p>Rimba Rafting didirikan pada tahun 2015 oleh sekelompok pencinta alam yang memiliki visi untuk
+                memperkenalkan keindahan sungai-sungai di Indonesia melalui kegiatan yang aman, menyenangkan, dan
+                bertanggung jawab. Kami percaya bahwa petualangan adalah cara terbaik untuk kembali terhubung dengan
+                alam dan diri sendiri.</p>
+
+            <div class="visi-misi">
+                <div class="vm-card">
+                    <h3><i class="fas fa-bullseye"></i> Visi Kami</h3>
+                    <p>Menjadi operator wisata petualangan air terdepan di Indonesia yang dikenal akan standar
+                        keselamatan internasional, pelayanan prima, dan komitmen terhadap kelestarian lingkungan.</p>
+                </div>
+                <div class="vm-card">
+                    <h3><i class="fas fa-rocket"></i> Misi Kami</h3>
+                    <ul>
+                        <li>Menyediakan pengalaman arung jeram yang tak terlupakan dengan memprioritaskan keselamatan
+                            (zero accident).</li>
+                        <li>Memberdayakan masyarakat lokal sebagai pemandu dan staf profesional.</li>
+                        <li>Mengedukasi wisatawan tentang pentingnya menjaga kebersihan dan ekosistem sungai.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="vision-mission">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <span class="section-title" style="font-size: 2rem;">Filosofi Rimba</span>
+            </div>
+
+            <div class="vm-grid">
+                <div class="vm-row">
+                    <div class="vm-icon"><i class="fas fa-heartbeat"></i></div>
+                    <div class="vm-content">
+                        <h4>Keselamatan Tanpa Kompromi</h4>
+                        <p style="color: #666; line-height: 1.6;">Kami menerapkan standar keamanan "Grade A"
+                            internasional. Peralatan kami diperbarui secara berkala, dan setiap pemandu dilatih untuk
+                            menangani situasi darurat di arus deras (Swiftwater Rescue).</p>
+                    </div>
+                </div>
+
+                <div class="vm-row reverse">
+                    <div class="vm-icon"><i class="fas fa-leaf"></i></div>
+                    <div class="vm-content">
+                        <h4>Pariwisata Berkelanjutan</h4>
+                        <p style="color: #666; line-height: 1.6;">Kami mencintai sungai ini. Sebagian dari pendapatan
+                            kami disisihkan untuk program pelestarian sungai dan penghijauan bantaran kali agar
+                            keasriannya tetap terjaga untuk generasi mendatang.</p>
+                    </div>
+                </div>
+
+                <div class="vm-row">
+                    <div class="vm-icon"><i class="fas fa-users"></i></div>
+                    <div class="vm-content">
+                        <h4>Pemberdayaan Lokal</h4>
+                        <p style="color: #666; line-height: 1.6;">Seluruh tim kami, mulai dari skipper hingga penyedia
+                            katering, adalah warga lokal. Rimba Rafting tumbuh bersama komunitas sekitar untuk
+                            meningkatkan kesejahteraan ekonomi desa.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <h2 class="section-title">Tim Profesional Kami</h2>
+            <p style="max-width: 700px; margin: 0 auto; color: var(--text-gray);">Keamanan dan keseruan Anda ada di
+                tangan para ahli yang bersertifikat dan berpengalaman.</p>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-img">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop"
+                            alt="Budi Santoso">
+                    </div>
+                    <div class="team-info">
+                        <h4>Budi Santoso</h4>
+                        <span class="team-role">Founder & Lead Guide</span>
+                        <p>Berpengalaman 15+ tahun menaklukan sungai-sungai di Indonesia. Bersertifikat Rescue 3
+                            International.</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-img">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop"
+                            alt="Siti Aminah">
+                    </div>
+                    <div class="team-info">
+                        <h4>Siti Aminah</h4>
+                        <span class="team-role">Operasional Manager</span>
+                        <p>Memastikan setiap perjalanan berjalan lancar dari reservasi hingga selesai. Detail-oriented
+                            dan ramah.</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-img">
+                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=2080&auto=format&fit=crop"
+                            alt="Asep Sunandar">
+                    </div>
+                    <div class="team-info">
+                        <h4>Asep Sunandar</h4>
+                        <span class="team-role">Senior River Guide</span>
+                        <p>Ahli membaca arus dan manuver perahu. Pemandu favorit yang selalu penuh semangat dan humor.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Siap Untuk Petualangan Berikutnya?</h2>
+                <p>Jangan biarkan keraguan menghalangi Anda. Bergabunglah bersama ribuan petualang lain yang telah
+                    merasakan sensasi Rimba Rafting.</p>
+                <a href="booking.html" class="btn-booking" style="display: inline-block; transform: scale(1.1);">Booking
+                    Petualangan Sekarang!</a>
+            </div>
+        </section>
+
+    </div>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col" style="flex: 2; min-width: 300px;">
+                <a href="#" class="footer-logo">RIMBA RAFTING.</a>
+                <p style="line-height: 1.6; max-width: 80%;">Operator wisata arung jeram yang memprioritaskan
+                    keselamatan tanpa mengurangi keseruan. Bergabunglah bersama ribuan petualang lainnya.</p>
+            </div>
+            <div class="footer-col" style="flex: 1;">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="index.html#beranda">Beranda</a></li>
+                    <li><a href="index.html#tentang">Tentang</a></li>
+                    <li><a href="galeri.html">Galeri</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col" style="flex: 1.2;">
+                <h4>Kontak</h4>
+                <div class="contact-row">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Jl. Raya Hutan Pinus No. 45, Bogor Selatan</span>
+                </div>
+                <div class="contact-row">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+62 812-9988-7766</span>
+                </div>
+                <div class="contact-row">
+                    <i class="fas fa-envelope"></i>
+                    <span>book@rimbarafting.com</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Rimba Rafting Indonesia. Designed with passion.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Script Navbar & Hamburger
+        const navbar = document.getElementById('navbar');
+        window.onscroll = () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        };
+
+        const hamburger = document.querySelector('.hamburger');
+        const icon = hamburger.querySelector('i');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', (e) => {
+            navLinks.classList.toggle('active');
+
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+                hamburger.classList.add('active-color');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                if (window.scrollY < 50) {
+                    hamburger.classList.remove('active-color');
+                }
+            }
+            e.stopPropagation();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    if (window.scrollY < 50) {
+                        hamburger.classList.remove('active-color');
+                    }
+                }
+            }
+        });
+
+        // 2. Script Dropdown Mobile
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        const dropdownContent = document.querySelector('.dropdown-content');
+        const dropdownParent = document.querySelector('.dropdown');
+
+        dropdownToggle.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                dropdownContent.classList.toggle('show-mobile');
+                dropdownParent.classList.toggle('active');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

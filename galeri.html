@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri - Rimba Rafting</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --primary: #00695C;
+            --primary-light: #4DB6AC;
+            --accent: #FF8F00;
+            --text-dark: #1F2937;
+            --text-gray: #4B5563;
+            --white: #ffffff;
+            --off-white: #F3F4F6;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            list-style: none;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background-color: var(--off-white);
+            overflow-x: hidden;
+        }
+
+        /* --- NAVBAR (SAMA DENGAN SEBELUMNYA) --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 1002;
+            position: relative;
+        }
+
+        nav.scrolled .logo {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links li {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            position: relative;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--text-dark);
+        }
+
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        /* Dropdown */
+        .dropdown-content {
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            z-index: 1001;
+        }
+
+        .dropdown-content::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: transparent;
+        }
+
+        @media (min-width: 769px) {
+            .dropdown:hover .dropdown-content {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .dropdown:hover>a i {
+                transform: rotate(180deg);
+            }
+        }
+
+        .dropdown-content a {
+            color: var(--text-dark) !important;
+            padding: 12px 20px;
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--off-white);
+            color: var(--primary) !important;
+            padding-left: 25px;
+        }
+
+        .btn-booking {
+            background: linear-gradient(45deg, var(--accent), #FF6F00);
+            padding: 10px 28px !important;
+            border-radius: 50px;
+            color: var(--white) !important;
+            box-shadow: 0 4px 15px rgba(255, 111, 0, 0.4);
+            font-weight: 600;
+        }
+
+        .btn-booking:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 111, 0, 0.5);
+        }
+
+        .btn-booking::after {
+            display: none;
+        }
+
+        .hamburger {
+            display: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 2000;
+            position: relative;
+        }
+
+        nav.scrolled .hamburger,
+        .hamburger.active-color {
+            color: var(--text-dark);
+        }
+
+        /* --- HERO SECTION --- */
+        .gallery-hero {
+            height: 50vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: 1;
+        }
+
+        .gallery-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+            z-index: -1;
+        }
+
+        .gallery-hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            color: var(--white);
+            text-transform: uppercase;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-top: 50px;
+        }
+
+        /* --- CONTENT WRAPPER --- */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            margin-top: -80px;
+            background: var(--off-white);
+            border-radius: 60px 60px 0 0;
+            box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.15);
+            padding-top: 3rem;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        .content-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 6px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        /* --- FILTER BUTTONS --- */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 1rem;
+            margin-bottom: 3rem;
+            position: sticky;
+            top: 100px;
+            z-index: 90;
+            padding: 10px;
+        }
+
+        .filter-menu {
+            background: var(--white);
+            padding: 10px 15px;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            border: none;
+            background: transparent;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            color: var(--text-gray);
+            transition: 0.3s;
+        }
+
+        .filter-btn:hover {
+            color: var(--primary);
+            background: rgba(0, 105, 92, 0.05);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 10px rgba(0, 105, 92, 0.3);
+        }
+
+        /* --- GALLERY GRID (DIREVISI: CENTER ALIGNMENT) --- */
+        .gallery-container {
+            padding: 0 5% 5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            /* TAMBAHAN PENTING: Agar jika item sedikit, posisi di tengah */
+            justify-content: center;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+            /* KUNCI RASIO 4:3 */
+            aspect-ratio: 4/3;
+            width: 100%;
+            /* Opsional: batasi lebar maksimal agar tidak terlalu besar di layar ultra-wide jika cuma 1 gambar */
+            max-width: 500px;
+            margin: auto;
+            /* Center jika max-width aktif */
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            /* Agar gambar mengisi kotak 4:3 tanpa gepeng */
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        /* Overlay Effect */
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 25px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .overlay-text h4 {
+            color: var(--white);
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .overlay-text span {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            transform: translateY(20px);
+            transition: transform 0.3s ease 0.1s;
+            display: block;
+        }
+
+        .gallery-item:hover .overlay-text h4,
+        .gallery-item:hover .overlay-text span {
+            transform: translateY(0);
+        }
+
+        /* Animation for Filtering */
+        .gallery-item.hide {
+            display: none;
+        }
+
+        .gallery-item.show {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* --- LIGHTBOX (MODAL) --- */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 3000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 5px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            object-fit: contain;
+        }
+
+        .lightbox.active .lightbox-content {
+            transform: scale(1);
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: var(--white);
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-lightbox:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 40px;
+            color: var(--white);
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #111;
+            color: #ccc;
+            padding-top: 5rem;
+            padding-bottom: 2rem;
+        }
+
+        .footer-content {
+            padding: 0 10%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4rem;
+            justify-content: space-between;
+        }
+
+        .footer-logo {
+            color: var(--white);
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul a {
+            color: #999;
+            transition: 0.3s;
+        }
+
+        .footer-col ul a:hover {
+            color: var(--accent);
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .contact-row i {
+            color: var(--primary-light);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 968px) {
+            .gallery-hero h1 {
+                font-size: 3rem;
+            }
+
+            .content-wrapper {
+                margin-top: -60px;
+                border-radius: 40px 40px 0 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            /* Navbar Mobile */
+            .nav-links {
+                position: absolute;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 80px;
+                gap: 0;
+                transition: 0.4s ease-in-out;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+                overflow-y: auto;
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+                flex-direction: column;
+                height: auto;
+                border-bottom: 1px solid #eee;
+                align-items: flex-start;
+            }
+
+            .nav-links a {
+                color: var(--text-dark);
+                font-size: 1.1rem;
+                width: 100%;
+                padding: 20px 30px;
+                justify-content: space-between;
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            /* Dropdown Mobile */
+            .dropdown-content {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+                box-shadow: none;
+                width: 100%;
+                background: #f8f9fa;
+                margin-top: 0;
+                padding: 0;
+                border-radius: 0;
+                display: none;
+                opacity: 1;
+                visibility: visible;
+                z-index: 1002;
+            }
+
+            .dropdown-content.show-mobile {
+                display: block;
+                animation: slideDown 0.3s ease;
+            }
+
+            .dropdown-content a {
+                padding-left: 50px;
+                font-size: 0.95rem;
+                color: #555 !important;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            .dropdown.active>a i {
+                transform: rotate(180deg);
+            }
+
+            .btn-booking {
+                margin: 20px 30px;
+                text-align: center;
+                display: inline-block;
+                width: calc(100% - 60px);
+            }
+
+            /* Gallery Responsive */
+            .gallery-container {
+                grid-template-columns: 1fr;
+                /* 1 Kolom di HP */
+                padding: 0 1.5rem 5rem;
+            }
+
+            .gallery-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .filter-container {
+                top: 80px;
+            }
+
+            .filter-menu {
+                width: 100%;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="navbar">
+        <div class="logo">RIMBA</div>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="about.html">Tentang</a></li>
+            <li><a href="#" class="active">Galeri</a></li>
+            <li class="dropdown">
+                <a href="#paket" class="dropdown-toggle">
+                    Paket <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="paket-pemula.html">Pemula</a>
+                    <a href="paket-extreme.html">Extrem</a>
+                    <a href="paket-family.html">Family</a>
+                </div>
+            </li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="booking.html" class="btn-booking">Booking Sekarang</a></li>
+        </ul>
+    </nav>
+
+    <div class="gallery-hero">
+        <h1>Jejak Petualangan</h1>
+    </div>
+
+    <div class="content-wrapper">
+
+        <div class="filter-container">
+            <div class="filter-menu">
+                <button class="filter-btn active" data-filter="all">Semua</button>
+                <button class="filter-btn" data-filter="extreme">Extreme</button>
+                <button class="filter-btn" data-filter="fun">Fun Rafting</button>
+                <button class="filter-btn" data-filter="alam">Pemandangan</button>
+                <button class="filter-btn" data-filter="camp">Camping</button>
+            </div>
+        </div>
+
+        <div class="gallery-container">
+
+            <div class="gallery-item" data-category="extreme">
+                <img src="https://images.unsplash.com/photo-1530866495561-507c9faab2ed?q=80&w=800&auto=format&fit=crop"
+                    alt="Arus Deras">
+                <div class="gallery-overlay">
+                    <div class="overlay-text">
+                        <h4>Jeram Tengkorak</h4>
+                        <span>Extreme</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="fun">
+                <img src="https://images.unsplash.com/photo-1625648866164-9b88496464f1?q=80&w=800&auto=format&fit=crop"
+                    alt="Rafting Santai">
+                <div class="gallery-overlay">
+                    <div class="overlay-text">
+                        <h4>Sungai Elo</h4>
+                        <span>Fun Rafting</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="alam">
+                <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=800&auto=format&fit=crop"
+                    alt="Hutan Pinus">
+                <div class="gallery-overlay">
+                    <div class="overlay-text">
+                        <h4>Lembah Hijau</h4>
+                        <span>Pemandangan</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="extreme">
+                <img src="https://images.unsplash.com/photo-1563299796-b729d0af54a5?q=80&w=800&auto=format&fit=crop"
+                    alt="Tim Pro">
+                <div class="gallery-overlay">
+                    <div class="overlay-text">
+                        <h4>Tim Rescue</h4>
+                        <span>Extreme</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="camp">
+                <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=800&auto=format&fit=crop"
+                    alt="Api Unggun">
+                <div class="gallery-overlay">
+                    <div class="overlay-text">
+                        <h4>Malam Keakraban</h4>
+                        <span>Camping</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="fun">
+                <img src="https://images.unsplash.com/photo-1544099858-75feeb57f01e?q=80&w=800&auto=format&fit=crop"
+                    alt="Foto Tim">
+                <div class="gallery-overlay">
+                    <div class="overlay-text">
+                        <h4>Briefing Pagi</h4>
+                        <span>Fun Rafting</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="alam">
+                <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=800&auto=format&fit=crop"
+                    alt="Air Terjun">
+                <div class="gallery-overlay">
+                    <div class="overlay-text">
+                        <h4>Curug Bidadari</h4>
+                        <span>Pemandangan</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="extreme">
+                <img src="https://images.unsplash.com/photo-1520063234250-9884e9d36e2f?q=80&w=800&auto=format&fit=crop"
+                    alt="Big Wave">
+                <div class="gallery-overlay">
+                    <div class="overlay-text">
+                        <h4>Ombak Besar</h4>
+                        <span>Extreme</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="camp">
+                <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=800&auto=format&fit=crop"
+                    alt="Tenda">
+                <div class="gallery-overlay">
+                    <div class="overlay-text">
+                        <h4>Riverside Camp</h4>
+                        <span>Camping</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <i class="fas fa-times close-lightbox" id="closeLightbox"></i>
+        <img src="" alt="Gallery Preview" class="lightbox-content" id="lightboxImg">
+        <div class="lightbox-caption" id="lightboxCaption">Judul Foto</div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col" style="flex: 2; min-width: 300px;">
+                <a href="#" class="footer-logo">RIMBA RAFTING.</a>
+                <p style="line-height: 1.6; max-width: 80%;">Operator wisata arung jeram yang memprioritaskan
+                    keselamatan tanpa mengurangi keseruan. Bergabunglah bersama ribuan petualang lainnya.</p>
+            </div>
+            <div class="footer-col" style="flex: 1;">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="about.html">Tentang</a></li>
+                    <li><a href="galeri.html">Galeri</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col" style="flex: 1.2;">
+                <h4>Kontak</h4>
+                <div class="contact-row">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Jl. Raya Hutan Pinus No. 45, Bogor Selatan</span>
+                </div>
+                <div class="contact-row">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+62 812-9988-7766</span>
+                </div>
+                <div class="contact-row">
+                    <i class="fas fa-envelope"></i>
+                    <span>book@rimbarafting.com</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Rimba Rafting Indonesia. Designed with passion.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- NAVBAR & JS LAINNYA SAMA ---
+        const navbar = document.getElementById('navbar');
+        window.onscroll = () => {
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        };
+
+        const hamburger = document.querySelector('.hamburger');
+        const icon = hamburger.querySelector('i');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', (e) => {
+            navLinks.classList.toggle('active');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars'); icon.classList.add('fa-times');
+                hamburger.classList.add('active-color');
+            } else {
+                icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
+                if (window.scrollY < 50) hamburger.classList.remove('active-color');
+            }
+            e.stopPropagation();
+        });
+
+        document.querySelectorAll('.nav-links a:not(.dropdown-toggle)').forEach(link => {
+            link.addEventListener('click', () => { closeMenu(); });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !hamburger.contains(e.target) && navLinks.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+
+        function closeMenu() {
+            navLinks.classList.remove('active');
+            icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
+            if (window.scrollY < 50) hamburger.classList.remove('active-color');
+        }
+
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        const dropdownContent = document.querySelector('.dropdown-content');
+        const dropdownParent = document.querySelector('.dropdown');
+
+        dropdownToggle.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                dropdownContent.classList.toggle('show-mobile');
+                dropdownParent.classList.toggle('active');
+            }
+        });
+
+        // --- FILTER GALERI LOGIC ---
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                galleryItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.classList.remove('hide');
+                        item.classList.add('show');
+                    } else {
+                        item.classList.add('hide');
+                        item.classList.remove('show');
+                    }
+                });
+            });
+        });
+
+        // --- LIGHTBOX LOGIC ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+        const closeLightbox = document.getElementById('closeLightbox');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                const title = item.querySelector('h4').innerText;
+
+                lightboxImg.src = img.src;
+                lightboxCaption.innerText = title;
+                lightbox.classList.add('active');
+            });
+        });
+
+        closeLightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Petualangan - Rimba Rafting</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- 1. VARIABLES & RESET (SAMA PERSIS) --- */
+        :root {
+            --primary: #00695C;
+            --primary-light: #4DB6AC;
+            --accent: #FF8F00;
+            --text-dark: #1F2937;
+            --text-gray: #4B5563;
+            --white: #ffffff;
+            --off-white: #F3F4F6;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            list-style: none;
+            outline: none;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background-color: var(--off-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- 2. NAVBAR (SAMA PERSIS) --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 1002;
+            position: relative;
+        }
+
+        nav.scrolled .logo {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links li {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            position: relative;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--text-dark);
+        }
+
+        /* Dropdown Desktop */
+        .dropdown-content {
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            z-index: 1001;
+        }
+
+        .dropdown-content::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: transparent;
+        }
+
+        @media (min-width: 769px) {
+            .dropdown:hover .dropdown-content {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .dropdown:hover>a i {
+                transform: rotate(180deg);
+            }
+        }
+
+        .dropdown-content a {
+            color: var(--text-dark) !important;
+            padding: 12px 20px;
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--off-white);
+            color: var(--primary) !important;
+            padding-left: 25px;
+        }
+
+        .dropdown-content a::after {
+            display: none;
+        }
+
+        /* Button Booking (Hidden on this page since we are already here) */
+        .btn-booking {
+            background: linear-gradient(45deg, var(--accent), #FF6F00);
+            padding: 10px 28px !important;
+            border-radius: 50px;
+            color: var(--white) !important;
+            box-shadow: 0 4px 15px rgba(255, 111, 0, 0.4);
+            font-weight: 600;
+            display: none;
+            /* Disembunyikan di halaman ini */
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 2000;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav.scrolled .hamburger,
+        .hamburger.active-color {
+            color: var(--text-dark);
+        }
+
+        /* --- 3. HERO SECTION (Small) --- */
+        .page-hero {
+            height: 50vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1598950854378-028a30598852?q=80&w=2072&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 105, 92, 0.9));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--white);
+            padding: 0 20px;
+            margin-top: 40px;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        /* --- 4. BOOKING LAYOUT --- */
+        .booking-wrapper {
+            max-width: 1200px;
+            margin: -80px auto 50px;
+            padding: 0 5%;
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+        }
+
+        /* Form Card Styling */
+        .form-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-header {
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--off-white);
+            padding-bottom: 20px;
+        }
+
+        .form-header h2 {
+            font-family: var(--font-heading);
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .form-header p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            background: #f9f9f9;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--text-dark);
+            transition: 0.3s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--primary);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(0, 105, 92, 0.1);
+        }
+
+        /* Radio Package Selection (Visual) */
+        .package-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .radio-label {
+            cursor: pointer;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px 10px;
+            text-align: center;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .radio-label:hover {
+            border-color: var(--primary-light);
+        }
+
+        .radio-label input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .radio-label .p-name {
+            font-weight: 700;
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .radio-label .p-price {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            display: block;
+        }
+
+        /* State Aktif Radio */
+        .radio-label input:checked+div {
+            color: var(--primary);
+        }
+
+        .radio-label:has(input:checked) {
+            border-color: var(--primary);
+            background-color: rgba(0, 105, 92, 0.05);
+        }
+
+        .radio-label:has(input:checked)::after {
+            content: '\f00c';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            color: var(--primary);
+            font-size: 0.8rem;
+        }
+
+        /* Summary Card (Sticky) */
+        .summary-card {
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+            box-shadow: 0 15px 40px rgba(0, 105, 92, 0.3);
+            background-image: linear-gradient(135deg, var(--primary), #004d40);
+        }
+
+        .summary-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .summary-header h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .summary-total {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 20px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 50px;
+            background: var(--accent);
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1rem;
+            margin-top: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 143, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 143, 0, 0.6);
+            background: #ffa000;
+        }
+
+        /* --- 5. FOOTER (SAMA PERSIS) --- */
+        footer {
+            background-color: #111;
+            color: #ccc;
+            padding-top: 80px;
+            padding-bottom: 2rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            padding: 0 10%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4rem;
+            justify-content: space-between;
+        }
+
+        .footer-logo {
+            color: var(--white);
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul a {
+            color: #999;
+            transition: 0.3s;
+        }
+
+        .footer-col ul a:hover {
+            color: var(--accent);
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .contact-row i {
+            color: var(--primary-light);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 968px) {
+            .booking-wrapper {
+                grid-template-columns: 1fr;
+                margin-top: -40px;
+            }
+
+            .summary-card {
+                position: static;
+                margin-bottom: 40px;
+                order: -1;
+            }
+
+            /* Summary pindah ke atas di tablet */
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            /* Mobile Nav Logic */
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 80px;
+                gap: 0;
+                transition: 0.4s ease-in-out;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+                overflow-y: auto;
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+                flex-direction: column;
+                height: auto;
+                border-bottom: 1px solid #eee;
+                align-items: flex-start;
+            }
+
+            .nav-links a {
+                color: var(--text-dark);
+                font-size: 1.1rem;
+                width: 100%;
+                padding: 20px 30px;
+                justify-content: space-between;
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            /* Dropdown Mobile */
+            .dropdown-content {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+                box-shadow: none;
+                width: 100%;
+                background: #f8f9fa;
+                margin-top: 0;
+                padding: 0;
+                border-radius: 0;
+                display: none;
+                opacity: 1;
+                visibility: visible;
+                z-index: 1002;
+            }
+
+            .dropdown-content.show-mobile {
+                display: block;
+                animation: slideDown 0.3s ease;
+            }
+
+            .dropdown-content a {
+                padding-left: 50px;
+                font-size: 0.95rem;
+                color: #555 !important;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            /* Page Specific */
+            .page-hero {
+                height: 40vh;
+            }
+
+            .form-card {
+                padding: 25px;
+            }
+
+            .package-options {
+                grid-template-columns: 1fr;
+            }
+
+            /* Radio jadi vertikal di HP */
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="navbar">
+        <div class="logo">RIMBA</div>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
+        <ul class="nav-links">
+            <li><a href="index.html#beranda">Beranda</a></li>
+            <li><a href="about.html">Tentang</a></li>
+            <li><a href="galeri.html">Galeri</a></li>
+            <li class="dropdown">
+                <a href="index.html#paket" class="dropdown-toggle">
+                    Paket <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="paket-pemula.html">Pemula</a>
+                    <a href="paket-extreme.html">Extrem</a>
+                    <a href="paket-family.html">Family</a>
+                </div>
+            </li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#" class="btn-booking" style="display:inline-block;">Booking</a></li>
+        </ul>
+    </nav>
+
+    <header class="page-hero">
+        <div class="hero-content">
+            <h1>Reservasi Petualangan</h1>
+            <p>Lengkapi formulir di bawah untuk memulai perjalanan tak terlupakan Anda.</p>
+        </div>
+    </header>
+
+    <div class="booking-wrapper">
+
+        <div class="form-card">
+            <div class="form-header">
+                <h2>Data Pemesan</h2>
+                <p>Informasi Anda aman bersama kami.</p>
+            </div>
+
+            <form id="waForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" id="nama" placeholder="Contoh: Budi Santoso" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nomor WhatsApp</label>
+                        <input type="number" id="whatsapp" placeholder="Contoh: 08123456789" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Pilih Paket Rafting</label>
+                    <div class="package-options">
+                        <label class="radio-label">
+                            <input type="radio" name="paket" value="Pemula" data-price="125000" onclick="updatePrice()"
+                                required>
+                            <div>
+                                <span class="p-name">Pemula</span>
+                                <span class="p-price">Rp 125K / Pax</span>
+                            </div>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="paket" value="Family" data-price="175000" onclick="updatePrice()">
+                            <div>
+                                <span class="p-name">Family</span>
+                                <span class="p-price">Rp 175K / Pax</span>
+                            </div>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="paket" value="Extreme" data-price="250000"
+                                onclick="updatePrice()">
+                            <div>
+                                <span class="p-name">Extreme</span>
+                                <span class="p-price">Rp 250K / Pax</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Tanggal Booking</label>
+                        <input type="date" id="tanggal" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Jumlah Peserta (Pax)</label>
+                        <input type="number" id="jumlah" min="1" value="1" oninput="updatePrice()" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Catatan Tambahan (Opsional)</label>
+                    <textarea id="catatan" rows="3"
+                        placeholder="Contoh: Request makan siang vegetarian, dll."></textarea>
+                </div>
+            </form>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-header">
+                <h3>Ringkasan Pesanan</h3>
+            </div>
+
+            <div class="summary-item">
+                <span>Paket</span>
+                <span id="summary-paket">-</span>
+            </div>
+            <div class="summary-item">
+                <span>Harga per Pax</span>
+                <span id="summary-harga">Rp 0</span>
+            </div>
+            <div class="summary-item">
+                <span>Jumlah Peserta</span>
+                <span id="summary-jumlah">0 Orang</span>
+            </div>
+
+            <div class="summary-total">
+                <span>Total Estimasi</span>
+                <span id="summary-total">Rp 0</span>
+            </div>
+
+            <p style="font-size: 0.8rem; margin-top: 15px; opacity: 0.8;">*Harga belum termasuk dokumentasi tambahan
+                jika ada.</p>
+
+            <button type="submit" form="waForm" class="btn-submit">
+                <i class="fab fa-whatsapp"></i> Kirim ke WhatsApp
+            </button>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col" style="flex: 2; min-width: 300px;">
+                <a href="#" class="footer-logo">RIMBA RAFTING.</a>
+                <p style="line-height: 1.6; max-width: 80%;">Operator wisata arung jeram yang memprioritaskan
+                    keselamatan tanpa mengurangi keseruan. Bergabunglah bersama ribuan petualang lainnya.</p>
+            </div>
+            <div class="footer-col" style="flex: 1;">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="index.html#beranda">Beranda</a></li>
+                    <li><a href="about.html">Tentang</a></li>
+                    <li><a href="galeri.html">Galeri</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col" style="flex: 1.2;">
+                <h4>Kontak</h4>
+                <div class="contact-row">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Jl. Raya Hutan Pinus No. 45, Bogor Selatan</span>
+                </div>
+                <div class="contact-row">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+62 812-9988-7766</span>
+                </div>
+                <div class="contact-row">
+                    <i class="fas fa-envelope"></i>
+                    <span>book@rimbarafting.com</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Rimba Rafting Indonesia. Designed with passion.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Script Navbar & Hamburger (Sama dengan Index)
+        const navbar = document.getElementById('navbar');
+        window.onscroll = () => {
+            if (window.scrollY > 50) { navbar.classList.add('scrolled'); }
+            else { navbar.classList.remove('scrolled'); }
+        };
+
+        const hamburger = document.querySelector('.hamburger');
+        const icon = hamburger.querySelector('i');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', (e) => {
+            navLinks.classList.toggle('active');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); hamburger.classList.add('active-color');
+            } else {
+                icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
+                if (window.scrollY < 50) { hamburger.classList.remove('active-color'); }
+            }
+            e.stopPropagation();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active'); icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
+                    if (window.scrollY < 50) { hamburger.classList.remove('active-color'); }
+                }
+            }
+        });
+
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        const dropdownContent = document.querySelector('.dropdown-content');
+        const dropdownParent = document.querySelector('.dropdown');
+
+        dropdownToggle.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                dropdownContent.classList.toggle('show-mobile');
+                dropdownParent.classList.toggle('active');
+            }
+        });
+
+        // 2. Logic Kalkulasi Harga Real-time & Format WhatsApp
+        function updatePrice() {
+            const radios = document.getElementsByName('paket');
+            let selectedPrice = 0;
+            let selectedPackage = "-";
+
+            for (const radio of radios) {
+                if (radio.checked) {
+                    selectedPrice = parseInt(radio.getAttribute('data-price'));
+                    selectedPackage = radio.value;
+                    break;
+                }
+            }
+
+            const jumlah = document.getElementById('jumlah').value || 0;
+            const total = selectedPrice * jumlah;
+
+            // Update UI Summary
+            document.getElementById('summary-paket').innerText = selectedPackage;
+            document.getElementById('summary-harga').innerText = "Rp " + selectedPrice.toLocaleString('id-ID');
+            document.getElementById('summary-jumlah').innerText = jumlah + " Orang";
+            document.getElementById('summary-total').innerText = "Rp " + total.toLocaleString('id-ID');
+        }
+
+        // Logic Kirim ke WhatsApp
+        document.getElementById('waForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const nama = document.getElementById('nama').value;
+            const wa = document.getElementById('whatsapp').value;
+            const tanggal = document.getElementById('tanggal').value;
+            const jumlah = document.getElementById('jumlah').value;
+            const catatan = document.getElementById('catatan').value;
+
+            // Ambil paket yang dipilih
+            const radios = document.getElementsByName('paket');
+            let paket = "";
+            for (const radio of radios) { if (radio.checked) { paket = radio.value; break; } }
+
+            // Format Pesan WhatsApp
+            const message = `Halo Rimba Rafting, saya ingin reservasi:
+            
+Nama: ${nama}
+No WA: ${wa}
+Paket: ${paket}
+Tanggal: ${tanggal}
+Jumlah: ${jumlah} Orang
+Catatan: ${catatan ? catatan : '-'}
+
+Mohon info ketersediaan slot. Terima kasih!`;
+
+            // Nomor Tujuan (Ganti dengan nomor admin asli)
+            const adminNumber = "6281299887766";
+
+            // Redirect ke API WhatsApp
+            const url = `https://wa.me/${adminNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        });
+    </script>
+
+</body>
+
+</html>
