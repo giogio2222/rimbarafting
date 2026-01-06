@@ -228,7 +228,8 @@
         .hero-section {
             position: relative;
             height: 60vh;
-            background-image: url('img/baru/Desaintanpajudul33.webp');
+            /* Pastikan path gambar benar */
+            background-image: url('img/destinasi/sampean-1.webp');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -237,7 +238,12 @@
             justify-content: center;
             text-align: center;
             color: var(--white);
+
+            /* REVISI PADDING DI SINI */
             padding-bottom: 8rem;
+            /* Untuk efek lengkungan bawah */
+            padding-top: 8rem;
+            /* Tambahan agar teks turun dan tidak kena navbar */
         }
 
         .hero-overlay {
@@ -277,7 +283,7 @@
             background: var(--white);
             border-radius: 50px 50px 0 0;
             padding-top: 4rem;
-            padding-bottom: 4rem;
+            padding-bottom: 0;
             box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
@@ -363,7 +369,7 @@
             top: 4px;
         }
 
-        /* --- FILOSOFI RIMBA (Section Revisi) --- */
+        /* --- FILOSOFI RIMBA --- */
         .vision-mission {
             padding: 4rem 10%;
             background: var(--off-white);
@@ -388,7 +394,6 @@
 
         .vm-row.reverse .vm-content {
             text-align: right;
-            /* Rata kanan hanya di desktop */
         }
 
         .vm-icon {
@@ -478,7 +483,7 @@
 
         /* --- 7. CTA SECTION --- */
         .cta-section {
-            background: linear-gradient(rgba(0, 105, 92, 0.9), rgba(0, 77, 64, 0.9)), url('https://images.unsplash.com/photo-1530866495561-507c9faab2ed?q=80&w=2069&auto=format&fit=crop');
+            background: linear-gradient(rgba(0, 105, 92, 0.9), rgba(0, 77, 64, 0.9)), url('img/destinasi/sampean-1.webp');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -690,7 +695,7 @@
                 text-align: center;
             }
 
-            /* Memaksa text-align center pada konten, meng-override style desktop */
+            /* Memaksa text-align center pada konten di mobile */
             .vm-content,
             .vm-row.reverse .vm-content {
                 text-align: center;
@@ -717,13 +722,60 @@
                 transform: translateY(0);
             }
         }
+
+        /* --- FLOATING WHATSAPP --- */
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            /* Warna Hijau WhatsApp */
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            /* Pastikan di atas elemen lain */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .floating-wa:hover {
+            background-color: #1ebc57;
+            /* Warna sedikit lebih gelap saat hover */
+            transform: scale(1.1);
+            /* Efek membesar sedikit */
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Agar ikon pas di tengah */
+        .floating-wa i {
+            margin-top: 2px;
+            /* Sedikit penyesuaian vertikal */
+        }
+
+        /* Responsif untuk Mobile (agar tidak terlalu besar/menutupi konten) */
+        @media (max-width: 768px) {
+            .floating-wa {
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <nav id="navbar">
-        <div class="logo">RIMBA</div>
+        <a href="index.html" class="logo">RIMBA</a>
 
         <div class="hamburger">
             <i class="fas fa-bars"></i>
@@ -915,6 +967,11 @@
             <p>© 2024 Rimba Rafting Indonesia. Designed with passion.</p>
         </div>
     </footer>
+
+    <a href="https://wa.me/6281299887766?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20tanya%20paket%20rafting."
+        class="floating-wa" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script>
         // 1. Script Navbar & Hamburger

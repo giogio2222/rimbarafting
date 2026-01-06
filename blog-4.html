@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* --- 1. VARIABLES (SAMA PERSIS DENGAN REFERENSI) --- */
+        /* --- 1. VARIABLES & RESET --- */
         :root {
             --primary: #00695C;
             --primary-light: #4DB6AC;
@@ -42,10 +42,26 @@
             color: var(--text-dark);
             background-color: var(--off-white);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
-        /* --- 2. NAVBAR (SAMA PERSIS DENGAN REFERENSI) --- */
+        /* --- READING PROGRESS BAR --- */
+        .progress-container {
+            width: 100%;
+            height: 5px;
+            background: transparent;
+            position: fixed;
+            top: 0;
+            z-index: 1002;
+        }
+
+        .progress-bar {
+            height: 5px;
+            background: var(--accent);
+            width: 0%;
+        }
+
+        /* --- 2. NAVBAR --- */
         nav {
             position: fixed;
             top: 0;
@@ -108,10 +124,6 @@
             gap: 5px;
         }
 
-        .nav-links a i {
-            transition: transform 0.3s;
-        }
-
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -131,7 +143,6 @@
             color: var(--text-dark);
         }
 
-        /* Dropdown */
         .dropdown-content {
             display: block;
             position: absolute;
@@ -189,7 +200,6 @@
             display: none;
         }
 
-        /* Button Booking */
         .btn-booking {
             background: linear-gradient(45deg, var(--accent), #FF6F00);
             padding: 10px 28px !important;
@@ -208,7 +218,6 @@
             box-shadow: 0 8px 20px rgba(255, 111, 0, 0.5);
         }
 
-        /* Hamburger */
         .hamburger {
             display: none;
             color: var(--white);
@@ -224,23 +233,21 @@
             color: var(--text-dark);
         }
 
-
         /* --- 3. HERO BLOG DETAIL --- */
         .blog-hero {
-            height: 70vh;
+            height: 65vh;
             width: 100%;
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
-            background: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070&auto=format&fit=crop');
-            /* Gambar Pemandangan Sungai */
+            /* Background image updated for Destinations/River theme */
+            background: url('https://images.unsplash.com/photo-1544654032-9c1766a5e182?q=80&w=2070&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            /* Parallax Effect */
-            padding-bottom: 8rem;
+            padding-bottom: 4rem;
         }
 
         .blog-hero::before {
@@ -261,121 +268,175 @@
             padding: 0 20px;
         }
 
-        .category-badge {
-            background-color: var(--accent);
+        .cat-tag {
+            background: var(--accent);
             color: var(--white);
             padding: 5px 15px;
             border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
             letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
             display: inline-block;
-            margin-bottom: 1rem;
         }
 
         .blog-hero h1 {
             font-family: var(--font-heading);
-            font-size: 3.5rem;
+            font-size: 3rem;
             line-height: 1.2;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
+            margin-bottom: 1rem;
         }
 
-        .blog-meta {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            font-size: 0.95rem;
-            opacity: 0.9;
-        }
-
-        .blog-meta i {
-            margin-right: 8px;
-            color: var(--accent);
-        }
-
-        /* --- 4. CONTENT WRAPPER --- */
-        .content-wrapper {
-            position: relative;
-            z-index: 10;
-            margin-top: -100px;
-            /* Overlap effect */
-            background: var(--white);
-            border-radius: 60px 60px 0 0;
-            box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.15);
-            padding-top: 4rem;
-            padding-bottom: 4rem;
-            overflow: hidden;
-        }
-
-        .content-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 6px;
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        /* --- 5. BLOG ARTICLE LAYOUT --- */
-        .article-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 5%;
-            display: grid;
-            grid-template-columns: 60px 1fr;
-            gap: 50px;
-        }
-
-        /* Sticky Share */
-        .sticky-share {
-            position: sticky;
-            top: 120px;
-            height: fit-content;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .share-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--off-white);
-            color: var(--text-gray);
+        .author-meta {
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: 0.3s;
-            font-size: 1.2rem;
+            gap: 15px;
+            font-size: 0.95rem;
         }
 
-        .share-btn:hover {
-            background: var(--primary);
-            color: var(--white);
-            transform: translateY(-5px);
+        .author-meta img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
         }
 
-        /* Article Typography */
-        .article-body {
-            color: var(--text-dark);
-            font-size: 1.1rem;
-            line-height: 1.8;
+        /* --- 4. CONTENT WRAPPER & GRID LAYOUT --- */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            margin-top: -80px;
+            background: var(--white);
+            border-radius: 60px 60px 0 0;
+            padding-top: 4rem;
+            overflow: visible;
         }
 
-        .article-body p {
-            margin-bottom: 1.5rem;
-            text-align: justify;
+        .blog-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 60px;
+            position: relative;
         }
 
-        /* Drop Cap */
-        .article-body>p:first-of-type::first-letter {
+        /* --- 5. SIDEBAR (TOC & PROMO) --- */
+        .sidebar {
+            position: relative;
+        }
+
+        .sticky-sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .toc-box {
+            background: var(--off-white);
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .toc-box h3 {
             font-family: var(--font-heading);
-            font-size: 4rem;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .toc-list li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .toc-list a {
+            color: var(--text-gray);
+            transition: 0.3s;
+            display: block;
+        }
+
+        .toc-list a:hover,
+        .toc-list a.active {
+            color: var(--accent);
+            padding-left: 5px;
+            font-weight: 600;
+        }
+
+        /* --- MOBILE TOC STYLING --- */
+        .mobile-toc {
+            display: none;
+            background: var(--off-white);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0 30px 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .mobile-toc h3 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .mobile-toc li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .mobile-toc a {
+            color: var(--text-gray);
+            transition: 0.3s;
+            display: block;
+        }
+
+        .promo-sidebar {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            padding: 30px;
+            border-radius: 20px;
+            color: var(--white);
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 105, 92, 0.3);
+        }
+
+        .promo-sidebar h3 {
+            font-family: var(--font-heading);
+            margin-bottom: 10px;
+        }
+
+        .promo-sidebar .btn-white {
+            background: var(--white);
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .promo-sidebar .btn-white:hover {
+            transform: scale(1.05);
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        /* --- 6. ARTICLE CONTENT --- */
+        .article-content {
+            color: var(--text-dark);
+            font-size: 1.05rem;
+        }
+
+        .article-content>p:first-of-type::first-letter {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
             font-weight: 800;
             color: var(--primary);
             float: left;
@@ -383,166 +444,307 @@
             line-height: 0.8;
         }
 
-        .article-body h2 {
+        .article-content h2 {
             font-family: var(--font-heading);
             color: var(--primary);
-            font-size: 2rem;
-            margin: 3rem 0 1.5rem;
+            margin: 2.5rem 0 1rem;
             position: relative;
             padding-left: 20px;
-            font-weight: 700;
         }
 
-        .article-body h2::before {
+        .article-content h2::before {
             content: '';
             position: absolute;
             left: 0;
             top: 5px;
             bottom: 5px;
-            width: 6px;
+            width: 5px;
             background: var(--accent);
             border-radius: 5px;
         }
 
-        .article-body h3 {
-            font-family: var(--font-heading);
-            color: var(--text-dark);
-            margin: 2rem 0 1rem;
-            font-weight: 700;
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
         }
 
-        .article-body img {
-            width: 100%;
-            border-radius: 20px;
+        figure {
             margin: 2rem 0;
-            box-shadow: 20px 20px 0 var(--off-white), 0 0 20px rgba(0, 0, 0, 0.05);
+            width: 100%;
         }
 
-        /* Blockquote */
-        blockquote {
-            background: #e0f2f1;
-            border-left: 5px solid var(--primary);
-            margin: 2.5rem 0;
-            padding: 2.5rem;
-            font-family: var(--font-heading);
+        .article-content>figure:first-child {
+            margin-top: 0;
+            margin-bottom: 2rem;
+        }
+
+        figure img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        figure img:hover {
+            transform: scale(1.01);
+        }
+
+        figcaption {
+            font-size: 0.85rem;
+            color: #777;
+            text-align: center;
+            margin-top: 10px;
             font-style: italic;
-            font-size: 1.25rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        blockquote {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-style: italic;
             color: var(--primary);
-            border-radius: 0 20px 20px 0;
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: #e0f2f1;
+            border-radius: 20px;
             position: relative;
         }
 
-        blockquote i {
+        blockquote::before {
+            content: '\f10d';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
             position: absolute;
             top: -15px;
-            left: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             font-size: 2rem;
-            color: var(--primary);
+            color: var(--accent);
             background: #e0f2f1;
             padding: 0 10px;
             border-radius: 50%;
         }
 
-        /* Highlight Box */
-        .highlight-box {
-            background: linear-gradient(135deg, var(--primary), #004d40);
-            color: var(--white);
-            padding: 2.5rem;
+        /* --- 7. PROMO COLUMN --- */
+        .inline-promo {
+            margin: 3rem 0;
+            padding: 30px;
+            border: 2px dashed var(--accent);
             border-radius: 20px;
-            margin: 2rem 0;
-            box-shadow: 0 15px 30px rgba(0, 105, 92, 0.3);
-        }
-
-        .highlight-box h3 {
-            color: var(--accent);
-            margin-top: 0;
-        }
-
-        .highlight-box ul li {
-            margin-bottom: 12px;
+            background: #fff8e1;
             display: flex;
-            align-items: start;
-            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
         }
 
-        .highlight-box ul li i {
-            margin-top: 5px;
+        .ip-text h4 {
+            color: var(--text-dark);
+            font-family: var(--font-heading);
+            margin-bottom: 5px;
+        }
+
+        .ip-text p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        .ip-btn {
+            background: var(--accent);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* --- 8. FAQ ACCORDION --- */
+        .faq-section {
+            margin-top: 4rem;
+        }
+
+        .faq-section h2 {
+            border: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border: 1px solid #eee;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        details summary {
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary);
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        details summary::after {
+            content: '+';
+            font-size: 1.5rem;
             color: var(--accent);
         }
 
-        .highlight-box p {
-            color: rgba(255, 255, 255, 0.9);
+        details[open] summary::after {
+            content: '-';
         }
 
-        /* --- 6. NEXT/PREV NAVIGATION --- */
-        .blog-nav-section {
-            padding: 4rem 10%;
+        details p {
+            padding: 15px 20px;
             background: var(--off-white);
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--text-gray);
         }
 
-        .nav-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        /* --- 9. AUTHOR & SHARE --- */
+        .post-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             gap: 30px;
         }
 
-        .nav-card {
-            background: var(--white);
-            border-radius: 20px;
-            overflow: hidden;
+        .author-box {
             display: flex;
+            gap: 15px;
             align-items: center;
-            transition: 0.4s;
-            position: relative;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .nav-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 105, 92, 0.15);
-        }
-
-        .nav-card img {
-            width: 140px;
-            height: 120px;
-            object-fit: cover;
-        }
-
-        .nav-card-content {
-            padding: 20px;
             flex: 1;
         }
 
-        .nav-label {
-            font-size: 0.8rem;
-            color: var(--accent);
-            font-weight: 700;
-            text-transform: uppercase;
+        .author-box img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .author-info span {
+            font-size: 0.85rem;
+            color: #999;
             display: block;
             margin-bottom: 5px;
         }
 
-        .nav-title {
-            font-family: var(--font-heading);
-            font-weight: 700;
-            color: var(--text-dark);
-            font-size: 1.1rem;
-            line-height: 1.4;
-        }
-
-        .nav-card.prev .nav-card-content {
-            text-align: left;
-        }
-
-        .nav-card.next {
-            flex-direction: row-reverse;
-        }
-
-        .nav-card.next .nav-card-content {
+        .share-box {
             text-align: right;
         }
 
-        /* --- 7. FOOTER (SAMA PERSIS DENGAN REFERENSI) --- */
+        .share-box h5 {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: #999;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--off-white);
+            color: var(--text-gray);
+            align-items: center;
+            justify-content: center;
+            margin-left: 5px;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* --- 10. RELATED POSTS --- */
+        .related-posts {
+            padding: 4rem 10%;
+            background: var(--off-white);
+        }
+
+        .related-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .related-header h2 {
+            font-family: var(--font-heading);
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .r-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
+        }
+
+        .r-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .r-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .r-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+
+        .r-card:hover .r-img img {
+            transform: scale(1.1);
+        }
+
+        .r-content {
+            padding: 20px;
+        }
+
+        .r-content h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .r-content a {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* --- FOOTER --- */
         footer {
             background-color: #111;
             color: #ccc;
@@ -607,38 +809,38 @@
 
         /* --- RESPONSIVE --- */
         @media (max-width: 968px) {
+            .blog-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .mobile-toc {
+                display: block;
+            }
+
             .blog-hero h1 {
                 font-size: 2.5rem;
             }
 
-            .article-container {
-                grid-template-columns: 1fr;
+            .inline-promo {
+                flex-direction: column;
+                text-align: center;
             }
 
-            .sticky-share {
-                position: static;
-                flex-direction: row;
-                justify-content: center;
-                margin-bottom: 30px;
+            .post-footer {
+                flex-direction: column;
+                gap: 20px;
             }
 
-            .content-wrapper {
-                margin-top: -60px;
-                border-radius: 40px 40px 0 0;
-            }
-
-            .nav-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-card img {
-                width: 100px;
+            .share-box {
+                text-align: left;
             }
         }
 
         @media (max-width: 768px) {
-
-            /* Mobile Nav Logic */
             .hamburger {
                 display: block;
             }
@@ -684,7 +886,6 @@
                 display: none;
             }
 
-            /* Dropdown Mobile */
             .dropdown-content {
                 position: relative;
                 top: 0;
@@ -721,14 +922,13 @@
                 width: calc(100% - 60px);
             }
 
-            /* Blog Mobile Adjustments */
-            .blog-hero {
-                height: 60vh;
+            .content-wrapper {
+                border-radius: 40px 40px 0 0;
+                margin-top: -60px;
             }
 
-            .article-body>p:first-of-type::first-letter {
+            .article-content>p:first-of-type::first-letter {
                 font-size: 3rem;
-                margin-right: 10px;
             }
 
             .footer-content {
@@ -748,34 +948,78 @@
                 transform: translateY(0);
             }
         }
+
+        /* --- FLOATING WHATSAPP --- */
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            /* Warna Hijau WhatsApp */
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            /* Pastikan di atas elemen lain */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .floating-wa:hover {
+            background-color: #1ebc57;
+            /* Warna sedikit lebih gelap saat hover */
+            transform: scale(1.1);
+            /* Efek membesar sedikit */
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Agar ikon pas di tengah */
+        .floating-wa i {
+            margin-top: 2px;
+            /* Sedikit penyesuaian vertikal */
+        }
+
+        /* Responsif untuk Mobile (agar tidak terlalu besar/menutupi konten) */
+        @media (max-width: 768px) {
+            .floating-wa {
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
     <nav id="navbar">
-        <div class="logo">RIMBA</div>
-
-        <div class="hamburger">
-            <i class="fas fa-bars"></i>
-        </div>
-
+        <a href="index.html" class="logo">RIMBA</a>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
         <ul class="nav-links">
             <li><a href="index.html#beranda">Beranda</a></li>
-            <li><a href="about.html">Tentang</a></li>
+            <li><a href="index.html#tentang">Tentang</a></li>
             <li><a href="galeri.html">Galeri</a></li>
-
             <li class="dropdown">
-                <a href="index.html#paket" class="dropdown-toggle">
-                    Paket <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
-                </a>
+                <a href="index.html#paket" class="dropdown-toggle">Paket <i class="fas fa-chevron-down"
+                        style="font-size: 0.8em;"></i></a>
                 <div class="dropdown-content">
                     <a href="paket-pemula.html">Pemula</a>
                     <a href="paket-extreme.html">Extrem</a>
                     <a href="paket-family.html">Family</a>
                 </div>
             </li>
-
             <li><a href="blog.html" style="color: var(--accent);">Blog</a></li>
             <li><a href="booking.html" class="btn-booking">Booking Sekarang</a></li>
         </ul>
@@ -783,150 +1027,226 @@
 
     <header class="blog-hero">
         <div class="blog-hero-content">
+            <span class="cat-tag">DESTINASI</span>
             <h1>Sungai Terbaik di Jawa Barat untuk Rafting</h1>
-            <div class="blog-meta">
-                <span><i class="far fa-calendar"></i> 01 Des 2024</span>
-                <span><i class="far fa-user"></i> Admin</span>
-                <span><i class="far fa-clock"></i> 12 Menit Baca</span>
+            <div class="author-meta">
+                <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=100&auto=format&fit=crop"
+                    alt="Admin">
+                <div>
+                    <strong>Admin</strong><br>
+                    <span style="opacity: 0.8;">01 Des 2024 • 6 Menit Baca</span>
+                </div>
             </div>
         </div>
     </header>
 
     <div class="content-wrapper">
-        <main class="article-container">
+        <div class="blog-layout">
 
-            <aside class="sticky-share">
-                <a href="#" class="share-btn"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" class="share-btn"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="share-btn"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="share-btn"><i class="fas fa-link"></i></a>
+            <aside class="sidebar">
+                <div class="sticky-sidebar">
+                    <div class="toc-box">
+                        <h3>Daftar Isi</h3>
+                        <ul class="toc-list">
+                            <li><a href="#intro" class="active">Pendahuluan</a></li>
+                            <li><a href="#citarik">1. Sungai Citarik</a></li>
+                            <li><a href="#citatih">2. Sungai Citatih</a></li>
+                            <li><a href="#palayangan">3. Sungai Palayangan</a></li>
+                            <li><a href="#cisadane">4. Sungai Cisadane</a></li>
+                            <li><a href="#cimanuk">5. Sungai Cimanuk</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="promo-sidebar">
+                        <h3>Liburan Seru?</h3>
+                        <p>Dapatkan penawaran paket rafting keluarga terbaik di sini!</p>
+                        <a href="booking.html" class="btn-white">Cek Promo</a>
+                    </div>
+                </div>
             </aside>
 
-            <article class="article-body">
-                <p>Jawa Barat tidak hanya terkenal dengan kuliner yang lezat dan udara pegunungan yang sejuk. Bagi para
-                    pencinta adrenalin, provinsi ini adalah surga tersembunyi yang menawarkan jalur-jalur arung jeram
-                    (rafting) kelas dunia. Kontur tanah yang berbukit dan curah hujan yang tinggi menciptakan aliran
-                    sungai deras dengan berbagai tingkat kesulitan (grade), mulai dari yang ramah untuk keluarga hingga
-                    yang hanya boleh dijajal oleh para profesional.</p>
+            <div class="article-content">
 
-                <p>Memilih sungai yang tepat adalah langkah awal untuk mendapatkan pengalaman rafting yang tak
-                    terlupakan. Apakah Anda mencari pemandangan hutan pinus yang tenang atau deburan ombak liar yang
-                    memacu jantung? Berikut adalah ulasan lengkap mengenai sungai-sungai terbaik di Jawa Barat yang
-                    wajib masuk dalam daftar petualangan Anda tahun ini.</p>
+                <figure>
+                    <img src="img/destinasi/kaliwatu-1.webp" alt="Sungai di Jawa Barat">
+                    <figcaption>Sekelompok orang arung jeram melewati jeram dan air terjun.</figcaption>
+                </figure>
 
-                <h2>1. Sungai Citarik, Sukabumi</h2>
-                <p>Tidak mungkin membicarakan rafting di Jawa Barat tanpa menyebut Sungai Citarik. Berlokasi di kawasan
-                    Taman Nasional Gunung Halimun Salak, Sukabumi, sungai ini telah menjadi ikon wisata arung jeram
-                    nasional, bahkan pernah menjadi tuan rumah kejuaraan arung jeram dunia (WRC).</p>
-                <p>Karakteristik utama Citarik adalah jeramnya yang bervariasi dari Grade II hingga III, membuatnya
-                    sangat cocok untuk pemula maupun tingkat menengah. Airnya relatif jernih dengan bebatuan besar yang
-                    menciptakan lintasan slalom alami. Jarak tempuh yang ditawarkan pun beragam, mulai dari 5 km (short
-                    trip) hingga 17 km (long trip). Pemandangan di kiri kanan sungai berupa hutan tropis dan persawahan
-                    terasering akan memanjakan mata Anda sepanjang perjalanan.</p>
+                <section id="intro">
+                    <p>Jawa Barat adalah surga arung jeram. Berikut adalah daftar sungai dengan grade jeram paling
+                        menantang. Kontur pegunungan di provinsi ini menciptakan aliran sungai yang deras, jernih,
+                        dan penuh rintangan alami, menjadikannya destinasi wajib bagi para pencinta olahraga air.</p>
+                </section>
 
-                <h2>2. Sungai Citatih, Sukabumi</h2>
-                <p>Jika Citarik dirasa kurang menantang bagi nyali Anda, bergeserlah sedikit ke Sungai Citatih. Sungai
-                    ini dikenal sebagai "kakak" dari Citarik dengan arus yang jauh lebih liar dan debit air yang lebih
-                    besar. Citatih memiliki grade jeram antara III hingga IV, yang artinya Anda akan menghadapi
-                    gelombang air yang lebih tinggi dan manuver yang lebih teknis.</p>
-
-                <p>Salah satu spot legendaris di Citatih adalah "Jeram Gigi", sebuah turunan curam yang sering
-                    membalikkan perahu karet jika tim tidak mendayung dengan kompak. Dengan lebar sungai yang mencapai
-                    50 meter di beberapa titik, Citatih memberikan sensasi ekspedisi yang sesungguhnya. Rafting di sini
-                    sangat direkomendasikan bagi Anda yang sudah memiliki pengalaman sebelumnya atau memiliki kondisi
-                    fisik yang prima.</p>
-
-                <blockquote>
-                    <i class="fas fa-quote-left"></i>
-                    "Citatih bukan untuk mereka yang berhati lemah. Ini adalah arena di mana kerja sama tim diuji oleh
-                    kekuatan alam yang sesungguhnya."
-                </blockquote>
-
-                <h2>3. Sungai Palayangan, Pangalengan</h2>
-                <p>Berbeda dengan sungai lainnya yang debit airnya sangat bergantung pada curah hujan, Sungai Palayangan
-                    di Pangalengan, Bandung Selatan, memiliki keunggulan unik: debit air yang stabil sepanjang tahun.
-                    Hal ini dikarenakan sumber airnya berasal dari Danau Situ Cileunca yang diatur oleh pintu air (dam).
-                </p>
-                <p>Sungai ini menawarkan Grade III dengan jalur yang sempit dan teknis. Keistimewaan Palayangan terletak
-                    pada pemandangannya. Anda akan mengarungi sungai di tengah rimbunnya hutan pinus dan perkebunan teh
-                    yang hijau. Udaranya sangat sejuk, bahkan airnya terasa dingin menyegarkan. Karena lokasinya yang
-                    berada di dataran tinggi, rafting di sini seringkali diakhiri dengan wisata petik stroberi atau
-                    berkemah di pinggir danau.</p>
-
-                <img src="https://images.unsplash.com/photo-1544654032-9c1766a5e182?q=80&w=2070&auto=format&fit=crop"
-                    alt="Rafting di Sungai Palayangan">
-
-                <h2>4. Sungai Cisadane, Bogor</h2>
-                <p>Bagi warga Jakarta yang tidak ingin menempuh perjalanan terlalu jauh, Sungai Cisadane di Bogor adalah
-                    pilihan paling logis. Hanya butuh waktu sekitar 1,5 hingga 2 jam dari ibu kota, Anda sudah bisa
-                    merasakan sensasi arung jeram. Hulu Sungai Cisadane yang digunakan untuk rafting terletak di lereng
-                    Gunung Pangrango, sehingga airnya masih cukup bersih dan deras.</p>
-                <p>Salah satu ciri khas rafting di Cisadane adalah adanya bendungan irigasi setinggi 3 meter yang bisa
-                    diarungi (dengan teknik khusus dan panduan skipper). Sensasi "terjun bebas" ini menjadi daya tarik
-                    utama yang jarang ditemukan di sungai lain. Grade sungai ini berkisar di angka III, aman untuk
-                    pemula namun tetap memberikan kejutan yang menyenangkan.</p>
-
-                <h2>5. Sungai Cimanuk, Garut</h2>
-                <p>Bergeser ke arah timur, Kabupaten Garut memiliki Sungai Cimanuk. Sungai ini sering disebut sebagai
-                    salah satu sungai dengan karakteristik jeram paling teknis di Jawa Barat. Bebatuan cadas dan
-                    lorong-lorong sempit menuntut keahlian manuver yang presisi.</p>
-                <p>Vegetasi di sekitar Cimanuk sangat unik, didominasi oleh hutan bambu yang rimbun. Di beberapa titik,
-                    tebing-tebing batu menjulang tinggi memberikan kesan seperti sedang berada di Grand Canyon versi
-                    mini. Setelah puas memacu adrenalin, Anda bisa langsung menikmati wisata air panas alami yang banyak
-                    terdapat di sekitar kota Garut untuk melemaskan otot-otot yang tegang.</p>
-
-                <div class="highlight-box">
-                    <h3><i class="fas fa-map-signs"></i> Tips Memilih Lokasi:</h3>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> <strong>Untuk Keluarga:</strong> Pilih Sungai Citarik
-                            (Short Trip) atau Cisadane. Arus lebih terkontrol dan akses mudah.</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Untuk Adrenalin:</strong> Sungai Citatih adalah
-                            harga mati. Ambil paket long trip untuk kepuasan maksimal.</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Untuk Pemandangan:</strong> Sungai Palayangan
-                            juara dalam hal estetika hutan pinus dan danau.</li>
+                <div class="mobile-toc">
+                    <h3>Daftar Isi</h3>
+                    <ul class="toc-list">
+                        <li><a href="#intro">Pendahuluan</a></li>
+                        <li><a href="#citarik">1. Sungai Citarik</a></li>
+                        <li><a href="#citatih">2. Sungai Citatih</a></li>
+                        <li><a href="#palayangan">3. Sungai Palayangan</a></li>
+                        <li><a href="#cisadane">4. Sungai Cisadane</a></li>
+                        <li><a href="#cimanuk">5. Sungai Cimanuk</a></li>
+                        <li><a href="#faq">FAQ</a></li>
                     </ul>
                 </div>
 
-                <h2>Persiapan Sebelum Berangkat</h2>
-                <p>Apapun sungai yang Anda pilih, persiapan adalah kunci keselamatan. Pastikan Anda memilih operator
-                    rafting yang berlisensi dan menggunakan peralatan standar internasional (seperti yang diterapkan di
-                    Rimba Rafting). Jangan lupa membawa baju ganti, perlengkapan mandi, dan *sunblock*. Meskipun airnya
-                    dingin, paparan sinar matahari di sungai terbuka bisa membakar kulit dengan cepat.</p>
-                <p>Jawa Barat memiliki segalanya untuk para petualang air. Dari arus liar Citatih hingga kesejukan
-                    Palayangan, setiap sungai memiliki ceritanya sendiri. Jadi, sungai mana yang akan Anda taklukan
-                    akhir pekan ini?</p>
+                <section>
+                    <p>Mulai dari yang ramah untuk pemula hingga yang memacu adrenalin level tinggi, setiap sungai
+                        memiliki karakteristik uniknya masing-masing. Simak rekomendasi 5 sungai terbaik berikut ini
+                        untuk agenda liburan Anda selanjutnya.</p>
+                </section>
 
-                <h3>Kesimpulan</h3>
-                <p>Rafting bukan sekadar olahraga, melainkan cara kita berinteraksi dengan kekuatan alam. Sungai-sungai
-                    di Jawa Barat menawarkan variasi yang luar biasa yang bisa disesuaikan dengan tingkat keberanian dan
-                    keahlian Anda. Jangan ragu untuk mencoba, karena pengalaman menyusuri sungai-sungai ini akan menjadi
-                    kenangan yang akan Anda ceritakan berulang kali.</p>
+                <section id="citarik">
+                    <h2>1. Sungai Citarik (Sukabumi)</h2>
+                    <p>Terletak di kawasan Taman Nasional Gunung Halimun Salak, Sungai Citarik adalah primadona rafting
+                        di Jawa Barat. Dengan tingkat kesulitan Grade II-III, sungai ini sangat cocok untuk pemula dan
+                        keluarga.</p>
+                    <p>Airnya yang jernih dengan bebatuan alami memberikan pengalaman yang menyegarkan. Selain itu,
+                        akses menuju lokasi juga relatif mudah dijangkau dari Jakarta maupun Bandung.</p>
+                </section>
 
-                <p><em>Jelajahi, Nikmati, dan Jaga Alam Kita!</em></p>
-            </article>
-        </main>
+                <section id="citatih">
+                    <h2>2. Sungai Citatih (Sukabumi)</h2>
+                    <p>Jika Citarik dirasa kurang menantang, cobalah Sungai Citatih. Sungai ini menawarkan jeram Grade
+                        III-IV yang lebih liar dan panjang. Dikenal dengan sebutan "Roller Coaster" alami, Citatih
+                        menjanjikan sensasi yang tak terlupakan.</p>
+                    <p>Arusnya yang kuat menuntut kerjasama tim yang solid. Pemandangan tebing-tebing tinggi di
+                        sepanjang pengarungan menambah nilai eksotis petualangan ini.</p>
+                </section>
 
-        <section class="blog-nav-section">
-            <div class="nav-grid">
-                <a href="blog-3.html" class="nav-card prev">
-                    <img src="https://images.unsplash.com/photo-1598950854378-028a30598852?q=80&w=2072&auto=format&fit=crop"
-                        alt="Manfaat Kesehatan">
-                    <div class="nav-card-content">
-                        <span class="nav-label"><i class="fas fa-arrow-left"></i> Sebelumnya</span>
-                        <h4 class="nav-title">Manfaat Kesehatan Mental dari Rafting</h4>
+                <div class="inline-promo">
+                    <div class="ip-text">
+                        <h4>🚣 Paket Rafting Jawa Barat</h4>
+                        <p>Termasuk transport, makan siang, & dokumentasi.</p>
                     </div>
-                </a>
+                    <a href="booking.html" class="ip-btn">Booking Yuk</a>
+                </div>
 
-                <a href="blog-5.html" class="nav-card next">
-                    <img src="https://images.unsplash.com/photo-1594389028886-3a71b8089201?q=80&w=2070&auto=format&fit=crop"
-                        alt="Peralatan Rafting">
-                    <div class="nav-card-content">
-                        <span class="nav-label">Selanjutnya <i class="fas fa-arrow-right"></i></span>
-                        <h4 class="nav-title">Rafting Saat Hujan? Aman Gak Sih?</h4>
+                <section id="palayangan">
+                    <h2>3. Sungai Palayangan (Pangalengan)</h2>
+                    <p>Berhulu dari Situ Cileunca, Sungai Palayangan memiliki keunggulan debit air yang stabil sepanjang
+                        tahun karena diatur oleh pintu air danau. Grade jeramnya berkisar di level III.</p>
+                    <p>Daya tarik utamanya adalah pemandangan hutan pinus dan kebun teh yang mengapit sungai. Udaranya
+                        yang sejuk khas dataran tinggi Pangalengan membuat aktivitas fisik terasa lebih nyaman.</p>
+                </section>
+
+                <blockquote>
+                    "Petualangan terbaik adalah saat kita menyatu dengan alam, merasakan derasnya air, dan menaklukkan
+                    ketakutan diri sendiri."
+                </blockquote>
+
+                <section id="cisadane">
+                    <h2>4. Sungai Cisadane (Bogor)</h2>
+                    <p>Bagi warga Jabodetabek yang tidak ingin pergi terlalu jauh, Sungai Cisadane di Bogor adalah
+                        pilihan tepat. Sungai ini memiliki jeram Grade II-III yang seru namun tetap aman.</p>
+                    <p>Salah satu *highlight*-nya adalah adanya bendungan setinggi 3 meter yang bisa diarungi dengan
+                        perahu karet, memberikan sensasi terjun bebas yang mendebarkan.</p>
+                </section>
+
+                <figure>
+                    <img src="img/destinasi/kaliwatu-2.webp" alt="Rafting Cisadane">
+                    <figcaption>Keseruan tim saat melewati jeram di sungai Jawa Barat.</figcaption>
+                </figure>
+
+                <section id="cimanuk">
+                    <h2>5. Sungai Cimanuk (Garut)</h2>
+                    <p>Sungai Cimanuk di Garut menawarkan karakteristik jeram yang lebih teknis dengan banyak bebatuan.
+                        Grade sungai ini bervariasi antara II hingga III, cocok untuk pengarungan menengah.</p>
+                    <ul>
+                        <li><strong>Pemandangan:</strong> Hutan bambu yang asri di sepanjang aliran sungai.</li>
+                        <li><strong>Air Hangat:</strong> Garut terkenal dengan pemandian air panas, cocok untuk
+                            relaksasi
+                            setelah lelah berarung jeram.</li>
+                    </ul>
+                </section>
+
+                <section id="faq" class="faq-section">
+                    <h2>Pertanyaan Sering Diajukan (FAQ)</h2>
+
+                    <details class="faq-item">
+                        <summary>Kapan waktu terbaik untuk rafting di Jawa Barat?</summary>
+                        <p>Musim hujan (Oktober - April) biasanya memberikan debit air yang maksimal dan jeram yang
+                            lebih
+                            menantang. Namun, musim kemarau juga tetap aman untuk sungai seperti Palayangan.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Apakah aman membawa anak-anak?</summary>
+                        <p>Untuk sungai dengan Grade I-II seperti Citarik jalur pendek atau Cisadane, anak-anak usia 7
+                            tahun ke atas biasanya diperbolehkan dengan pengawasan khusus.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Apa perlengkapan yang harus dibawa?</summary>
+                        <p>Bawa pakaian ganti, sandal gunung atau sepatu air, *sunblock*, dan perlengkapan mandi. Helm
+                            dan pelampung sudah disediakan operator.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Berapa kisaran harga paket rafting?</summary>
+                        <p>Harga bervariasi tergantung lokasi dan fasilitas, mulai dari Rp 175.000 hingga Rp 350.000 per
+                            orang.</p>
+                    </details>
+                </section>
+
+                <div class="post-footer">
+                    <div class="author-box">
+                        <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=100&auto=format&fit=crop"
+                            alt="Admin">
+                        <div class="author-info">
+                            <h4>Admin Rimba Rafting</h4>
+                            <span>Travel Enthusiast</span>
+                            <p style="font-size: 0.9rem; margin:0; color:#666;">Selalu mencari destinasi petualangan
+                                baru dan berbagi tips perjalanan seru untuk Anda.</p>
+                        </div>
                     </div>
-                </a>
+
+                    <div class="share-box">
+                        <h5>Bagikan Artikel Ini:</h5>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <section class="related-posts">
+            <div class="related-header">
+                <h2>Bacaan Seru Lainnya</h2>
+            </div>
+            <div class="related-grid">
+                <div class="r-card">
+                    <div class="r-img"><img src="img/destinasi/pekalen-1.webp" alt="Tips"></div>
+                    <div class="r-content">
+                        <h4>Manfaat Kesehatan Mental dari Rafting</h4>
+                        <a href="blog-3.html">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="r-card">
+                    <div class="r-img"><img src="img/destinasi/glidik-1.webp" alt="Peralatan"></div>
+                    <div class="r-content">
+                        <h4>Rafting Saat Hujan? Aman Gak Sih?
+                        </h4>
+                        <a href="blog-5.html">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="r-card">
+                    <div class="r-img"><img src="img/destinasi/sampean-1.webp" alt="Hujan"></div>
+                    <div class="r-content">
+                        <h4>Sejarah Perkembangan Arung Jeram di Indonesia
+                        </h4>
+                        <a href="blog-6.html">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
             </div>
         </section>
+
     </div>
 
     <footer>
@@ -966,61 +1286,84 @@
         </div>
     </footer>
 
+    <a href="https://wa.me/6281299887766?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20tanya%20paket%20rafting."
+        class="floating-wa" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <script>
-        // 1. Script Navbar & Hamburger
-        const navbar = document.getElementById('navbar');
-        window.onscroll = () => {
+        // 1. Progress Bar Logic
+        window.onscroll = function () {
+            // Navbar Effect
+            const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
+
+            // Progress Bar Effect
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+
+            // Active TOC Logic
+            let sections = document.querySelectorAll('section');
+            let navLinks = document.querySelectorAll('.toc-list a');
+
+            sections.forEach(sec => {
+                let top = window.scrollY;
+                let offset = sec.offsetTop - 150;
+                let height = sec.offsetHeight;
+                let id = sec.getAttribute('id');
+
+                if (top >= offset && top < offset + height) {
+                    navLinks.forEach(links => {
+                        links.classList.remove('active');
+                        // Handle multiple TOC links (Mobile + Desktop)
+                        let targetLinks = document.querySelectorAll('.toc-list a[href*=' + id + ']');
+                        targetLinks.forEach(link => link.classList.add('active'));
+                    });
+                }
+            });
         };
 
+        // 2. Hamburger & Dropdown Logic
         const hamburger = document.querySelector('.hamburger');
         const icon = hamburger.querySelector('i');
         const navLinks = document.querySelector('.nav-links');
 
         hamburger.addEventListener('click', (e) => {
             navLinks.classList.toggle('active');
-
             if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-                hamburger.classList.add('active-color');
+                icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); hamburger.classList.add('active-color');
             } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-                if (window.scrollY < 50) {
-                    hamburger.classList.remove('active-color');
-                }
+                icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
+                if (window.scrollY < 50) { hamburger.classList.remove('active-color'); }
             }
             e.stopPropagation();
         });
 
+        // Close menu on click outside
         document.addEventListener('click', (e) => {
             if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
                 if (navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
-                    if (window.scrollY < 50) {
-                        hamburger.classList.remove('active-color');
-                    }
+                    if (window.scrollY < 50) { hamburger.classList.remove('active-color'); }
                 }
             }
         });
 
-        // 2. Script Dropdown Mobile
+        // Mobile Dropdown
         const dropdownToggle = document.querySelector('.dropdown-toggle');
         const dropdownContent = document.querySelector('.dropdown-content');
-        const dropdownParent = document.querySelector('.dropdown');
-
         dropdownToggle.addEventListener('click', (e) => {
             if (window.innerWidth <= 768) {
                 e.preventDefault();
                 dropdownContent.classList.toggle('show-mobile');
-                dropdownParent.classList.toggle('active');
             }
         });
     </script>

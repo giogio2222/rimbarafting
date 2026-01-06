@@ -228,7 +228,7 @@
             justify-content: flex-start;
             position: relative;
             /* GAMBAR BACKGROUND EXTREME */
-            background: url('img/baru/Desaintanpajudul33.webp');
+            background: url('img/destinasi/sampean-1.webp');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -756,13 +756,61 @@
                 padding: 4rem 5%;
             }
         }
+
+        /* --- TAMPILAN ICON WA DEFAULT (DESKTOP) --- */
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            /* Jarak dari bawah normal */
+            right: 30px;
+            /* Jarak dari kanan */
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            /* Pastikan selalu paling atas */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .floating-wa:hover {
+            background-color: #1ebc57;
+            transform: scale(1.1);
+        }
+
+        .floating-wa i {
+            margin-top: 2px;
+        }
+
+        /* --- TAMPILAN KHUSUS MOBILE (SOLUSI AGAR TIDAK NUMPUK) --- */
+        @media (max-width: 768px) {
+            .floating-wa {
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
+
+                /* KUNCI PERBAIKAN DI SINI: */
+                /* Kita naikkan jarak dari bawah menjadi 100px (atau sesuaikan) */
+                /* agar posisinya berada DI ATAS tombol booking/bar harga */
+                bottom: 100px;
+
+                right: 20px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <nav id="navbar">
-        <div class="logo">RIMBA</div>
+        <a href="index.html" class="logo">RIMBA</a>
         <div class="hamburger"><i class="fas fa-bars"></i></div>
         <ul class="nav-links">
             <li><a href="index.html">Beranda</a></li>
@@ -907,8 +955,7 @@
         <div class="cards-container">
             <div class="card">
                 <div class="card-img-wrap">
-                    <img src="img/baru/Desaintanpajudul29.webp"
-                        alt="Pemula">
+                    <img src="img/baru/Desaintanpajudul29.webp" alt="Pemula">
                 </div>
                 <div class="card-content">
                     <h3>Paket Pemula</h3>
@@ -921,8 +968,7 @@
 
             <div class="card">
                 <div class="card-img-wrap">
-                    <img src="img/baru/keluarga.webp"
-                        alt="Keluarga">
+                    <img src="img/baru/keluarga.webp" alt="Keluarga">
                 </div>
                 <div class="card-content">
                     <h3>Paket Family</h3>
@@ -979,6 +1025,11 @@
             <i class="fab fa-whatsapp"></i> Booking
         </a>
     </div>
+
+    <a href="https://wa.me/6281299887766?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20tanya%20paket%20rafting."
+        class="floating-wa" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script>
         // Navbar & Mobile Menu Logic (Sama dengan Index)

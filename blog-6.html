@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* --- 1. VARIABLES (SAMA PERSIS DENGAN REFERENSI) --- */
+        /* --- 1. VARIABLES & RESET --- */
         :root {
             --primary: #00695C;
             --primary-light: #4DB6AC;
@@ -42,10 +42,26 @@
             color: var(--text-dark);
             background-color: var(--off-white);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
-        /* --- 2. NAVBAR (SAMA PERSIS DENGAN REFERENSI) --- */
+        /* --- READING PROGRESS BAR --- */
+        .progress-container {
+            width: 100%;
+            height: 5px;
+            background: transparent;
+            position: fixed;
+            top: 0;
+            z-index: 1002;
+        }
+
+        .progress-bar {
+            height: 5px;
+            background: var(--accent);
+            width: 0%;
+        }
+
+        /* --- 2. NAVBAR --- */
         nav {
             position: fixed;
             top: 0;
@@ -108,10 +124,6 @@
             gap: 5px;
         }
 
-        .nav-links a i {
-            transition: transform 0.3s;
-        }
-
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -131,7 +143,6 @@
             color: var(--text-dark);
         }
 
-        /* Dropdown */
         .dropdown-content {
             display: block;
             position: absolute;
@@ -189,7 +200,6 @@
             display: none;
         }
 
-        /* Button Booking */
         .btn-booking {
             background: linear-gradient(45deg, var(--accent), #FF6F00);
             padding: 10px 28px !important;
@@ -208,7 +218,6 @@
             box-shadow: 0 8px 20px rgba(255, 111, 0, 0.5);
         }
 
-        /* Hamburger */
         .hamburger {
             display: none;
             color: var(--white);
@@ -224,23 +233,21 @@
             color: var(--text-dark);
         }
 
-
         /* --- 3. HERO BLOG DETAIL --- */
         .blog-hero {
-            height: 70vh;
+            height: 65vh;
             width: 100%;
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
+            /* Background image: Historical/Camping vibe */
             background: url('https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=2070&auto=format&fit=crop');
-            /* Gambar Camping/Expedition Vibe */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            /* Parallax Effect */
-            padding-bottom: 8rem;
+            padding-bottom: 4rem;
         }
 
         .blog-hero::before {
@@ -250,7 +257,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 105, 92, 0.9) 100%);
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 105, 92, 0.9) 100%);
         }
 
         .blog-hero-content {
@@ -261,121 +268,175 @@
             padding: 0 20px;
         }
 
-        .category-badge {
-            background-color: var(--accent);
+        .cat-tag {
+            background: var(--accent);
             color: var(--white);
             padding: 5px 15px;
             border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
             letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
             display: inline-block;
-            margin-bottom: 1rem;
         }
 
         .blog-hero h1 {
             font-family: var(--font-heading);
-            font-size: 3.5rem;
+            font-size: 3rem;
             line-height: 1.2;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
+            margin-bottom: 1rem;
         }
 
-        .blog-meta {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            font-size: 0.95rem;
-            opacity: 0.9;
-        }
-
-        .blog-meta i {
-            margin-right: 8px;
-            color: var(--accent);
-        }
-
-        /* --- 4. CONTENT WRAPPER --- */
-        .content-wrapper {
-            position: relative;
-            z-index: 10;
-            margin-top: -100px;
-            /* Overlap effect */
-            background: var(--white);
-            border-radius: 60px 60px 0 0;
-            box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.15);
-            padding-top: 4rem;
-            padding-bottom: 4rem;
-            overflow: hidden;
-        }
-
-        .content-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 6px;
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        /* --- 5. BLOG ARTICLE LAYOUT --- */
-        .article-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 5%;
-            display: grid;
-            grid-template-columns: 60px 1fr;
-            gap: 50px;
-        }
-
-        /* Sticky Share */
-        .sticky-share {
-            position: sticky;
-            top: 120px;
-            height: fit-content;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .share-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--off-white);
-            color: var(--text-gray);
+        .author-meta {
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: 0.3s;
-            font-size: 1.2rem;
+            gap: 15px;
+            font-size: 0.95rem;
         }
 
-        .share-btn:hover {
-            background: var(--primary);
-            color: var(--white);
-            transform: translateY(-5px);
+        .author-meta img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
         }
 
-        /* Article Typography */
-        .article-body {
-            color: var(--text-dark);
-            font-size: 1.1rem;
-            line-height: 1.8;
+        /* --- 4. CONTENT WRAPPER & GRID LAYOUT --- */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            margin-top: -80px;
+            background: var(--white);
+            border-radius: 60px 60px 0 0;
+            padding-top: 4rem;
+            overflow: visible;
         }
 
-        .article-body p {
-            margin-bottom: 1.5rem;
-            text-align: justify;
+        .blog-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 60px;
+            position: relative;
         }
 
-        /* Drop Cap */
-        .article-body>p:first-of-type::first-letter {
+        /* --- 5. SIDEBAR (TOC & PROMO) --- */
+        .sidebar {
+            position: relative;
+        }
+
+        .sticky-sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .toc-box {
+            background: var(--off-white);
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .toc-box h3 {
             font-family: var(--font-heading);
-            font-size: 4rem;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .toc-list li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .toc-list a {
+            color: var(--text-gray);
+            transition: 0.3s;
+            display: block;
+        }
+
+        .toc-list a:hover,
+        .toc-list a.active {
+            color: var(--accent);
+            padding-left: 5px;
+            font-weight: 600;
+        }
+
+        /* --- MOBILE TOC STYLING --- */
+        .mobile-toc {
+            display: none;
+            background: var(--off-white);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0 30px 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .mobile-toc h3 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .mobile-toc li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .mobile-toc a {
+            color: var(--text-gray);
+            transition: 0.3s;
+            display: block;
+        }
+
+        .promo-sidebar {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            padding: 30px;
+            border-radius: 20px;
+            color: var(--white);
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 105, 92, 0.3);
+        }
+
+        .promo-sidebar h3 {
+            font-family: var(--font-heading);
+            margin-bottom: 10px;
+        }
+
+        .promo-sidebar .btn-white {
+            background: var(--white);
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .promo-sidebar .btn-white:hover {
+            transform: scale(1.05);
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        /* --- 6. ARTICLE CONTENT --- */
+        .article-content {
+            color: var(--text-dark);
+            font-size: 1.05rem;
+        }
+
+        .article-content>p:first-of-type::first-letter {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
             font-weight: 800;
             color: var(--primary);
             float: left;
@@ -383,166 +444,307 @@
             line-height: 0.8;
         }
 
-        .article-body h2 {
+        .article-content h2 {
             font-family: var(--font-heading);
             color: var(--primary);
-            font-size: 2rem;
-            margin: 3rem 0 1.5rem;
+            margin: 2.5rem 0 1rem;
             position: relative;
             padding-left: 20px;
-            font-weight: 700;
         }
 
-        .article-body h2::before {
+        .article-content h2::before {
             content: '';
             position: absolute;
             left: 0;
             top: 5px;
             bottom: 5px;
-            width: 6px;
+            width: 5px;
             background: var(--accent);
             border-radius: 5px;
         }
 
-        .article-body h3 {
-            font-family: var(--font-heading);
-            color: var(--text-dark);
-            margin: 2rem 0 1rem;
-            font-weight: 700;
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
         }
 
-        .article-body img {
-            width: 100%;
-            border-radius: 20px;
+        figure {
             margin: 2rem 0;
-            box-shadow: 20px 20px 0 var(--off-white), 0 0 20px rgba(0, 0, 0, 0.05);
+            width: 100%;
         }
 
-        /* Blockquote */
-        blockquote {
-            background: #e0f2f1;
-            border-left: 5px solid var(--primary);
-            margin: 2.5rem 0;
-            padding: 2.5rem;
-            font-family: var(--font-heading);
+        .article-content>figure:first-child {
+            margin-top: 0;
+            margin-bottom: 2rem;
+        }
+
+        figure img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        figure img:hover {
+            transform: scale(1.01);
+        }
+
+        figcaption {
+            font-size: 0.85rem;
+            color: #777;
+            text-align: center;
+            margin-top: 10px;
             font-style: italic;
-            font-size: 1.25rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        blockquote {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-style: italic;
             color: var(--primary);
-            border-radius: 0 20px 20px 0;
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: #e0f2f1;
+            border-radius: 20px;
             position: relative;
         }
 
-        blockquote i {
+        blockquote::before {
+            content: '\f10d';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
             position: absolute;
             top: -15px;
-            left: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             font-size: 2rem;
-            color: var(--primary);
+            color: var(--accent);
             background: #e0f2f1;
             padding: 0 10px;
             border-radius: 50%;
         }
 
-        /* Highlight Box */
-        .highlight-box {
-            background: linear-gradient(135deg, var(--primary), #004d40);
-            color: var(--white);
-            padding: 2.5rem;
+        /* --- 7. PROMO COLUMN --- */
+        .inline-promo {
+            margin: 3rem 0;
+            padding: 30px;
+            border: 2px dashed var(--accent);
             border-radius: 20px;
-            margin: 2rem 0;
-            box-shadow: 0 15px 30px rgba(0, 105, 92, 0.3);
-        }
-
-        .highlight-box h3 {
-            color: var(--accent);
-            margin-top: 0;
-        }
-
-        .highlight-box ul li {
-            margin-bottom: 12px;
+            background: #fff8e1;
             display: flex;
-            align-items: start;
-            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
         }
 
-        .highlight-box ul li i {
-            margin-top: 5px;
+        .ip-text h4 {
+            color: var(--text-dark);
+            font-family: var(--font-heading);
+            margin-bottom: 5px;
+        }
+
+        .ip-text p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        .ip-btn {
+            background: var(--accent);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* --- 8. FAQ ACCORDION --- */
+        .faq-section {
+            margin-top: 4rem;
+        }
+
+        .faq-section h2 {
+            border: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border: 1px solid #eee;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        details summary {
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary);
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        details summary::after {
+            content: '+';
+            font-size: 1.5rem;
             color: var(--accent);
         }
 
-        .highlight-box p {
-            color: rgba(255, 255, 255, 0.9);
+        details[open] summary::after {
+            content: '-';
         }
 
-        /* --- 6. NEXT/PREV NAVIGATION --- */
-        .blog-nav-section {
-            padding: 4rem 10%;
+        details p {
+            padding: 15px 20px;
             background: var(--off-white);
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--text-gray);
         }
 
-        .nav-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        /* --- 9. AUTHOR & SHARE --- */
+        .post-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             gap: 30px;
         }
 
-        .nav-card {
-            background: var(--white);
-            border-radius: 20px;
-            overflow: hidden;
+        .author-box {
             display: flex;
+            gap: 15px;
             align-items: center;
-            transition: 0.4s;
-            position: relative;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .nav-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 105, 92, 0.15);
-        }
-
-        .nav-card img {
-            width: 140px;
-            height: 120px;
-            object-fit: cover;
-        }
-
-        .nav-card-content {
-            padding: 20px;
             flex: 1;
         }
 
-        .nav-label {
-            font-size: 0.8rem;
-            color: var(--accent);
-            font-weight: 700;
-            text-transform: uppercase;
+        .author-box img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .author-info span {
+            font-size: 0.85rem;
+            color: #999;
             display: block;
             margin-bottom: 5px;
         }
 
-        .nav-title {
-            font-family: var(--font-heading);
-            font-weight: 700;
-            color: var(--text-dark);
-            font-size: 1.1rem;
-            line-height: 1.4;
-        }
-
-        .nav-card.prev .nav-card-content {
-            text-align: left;
-        }
-
-        .nav-card.next {
-            flex-direction: row-reverse;
-        }
-
-        .nav-card.next .nav-card-content {
+        .share-box {
             text-align: right;
         }
 
-        /* --- 7. FOOTER (SAMA PERSIS DENGAN REFERENSI) --- */
+        .share-box h5 {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: #999;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--off-white);
+            color: var(--text-gray);
+            align-items: center;
+            justify-content: center;
+            margin-left: 5px;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* --- 10. RELATED POSTS --- */
+        .related-posts {
+            padding: 4rem 10%;
+            background: var(--off-white);
+        }
+
+        .related-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .related-header h2 {
+            font-family: var(--font-heading);
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .r-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
+        }
+
+        .r-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .r-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .r-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+
+        .r-card:hover .r-img img {
+            transform: scale(1.1);
+        }
+
+        .r-content {
+            padding: 20px;
+        }
+
+        .r-content h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .r-content a {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* --- FOOTER --- */
         footer {
             background-color: #111;
             color: #ccc;
@@ -607,38 +809,38 @@
 
         /* --- RESPONSIVE --- */
         @media (max-width: 968px) {
+            .blog-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .mobile-toc {
+                display: block;
+            }
+
             .blog-hero h1 {
                 font-size: 2.5rem;
             }
 
-            .article-container {
-                grid-template-columns: 1fr;
+            .inline-promo {
+                flex-direction: column;
+                text-align: center;
             }
 
-            .sticky-share {
-                position: static;
-                flex-direction: row;
-                justify-content: center;
-                margin-bottom: 30px;
+            .post-footer {
+                flex-direction: column;
+                gap: 20px;
             }
 
-            .content-wrapper {
-                margin-top: -60px;
-                border-radius: 40px 40px 0 0;
-            }
-
-            .nav-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-card img {
-                width: 100px;
+            .share-box {
+                text-align: left;
             }
         }
 
         @media (max-width: 768px) {
-
-            /* Mobile Nav Logic */
             .hamburger {
                 display: block;
             }
@@ -684,7 +886,6 @@
                 display: none;
             }
 
-            /* Dropdown Mobile */
             .dropdown-content {
                 position: relative;
                 top: 0;
@@ -721,14 +922,13 @@
                 width: calc(100% - 60px);
             }
 
-            /* Blog Mobile Adjustments */
-            .blog-hero {
-                height: 60vh;
+            .content-wrapper {
+                border-radius: 40px 40px 0 0;
+                margin-top: -60px;
             }
 
-            .article-body>p:first-of-type::first-letter {
+            .article-content>p:first-of-type::first-letter {
                 font-size: 3rem;
-                margin-right: 10px;
             }
 
             .footer-content {
@@ -748,34 +948,78 @@
                 transform: translateY(0);
             }
         }
+
+        /* --- FLOATING WHATSAPP --- */
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            /* Warna Hijau WhatsApp */
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            /* Pastikan di atas elemen lain */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .floating-wa:hover {
+            background-color: #1ebc57;
+            /* Warna sedikit lebih gelap saat hover */
+            transform: scale(1.1);
+            /* Efek membesar sedikit */
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Agar ikon pas di tengah */
+        .floating-wa i {
+            margin-top: 2px;
+            /* Sedikit penyesuaian vertikal */
+        }
+
+        /* Responsif untuk Mobile (agar tidak terlalu besar/menutupi konten) */
+        @media (max-width: 768px) {
+            .floating-wa {
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
     <nav id="navbar">
-        <div class="logo">RIMBA</div>
-
-        <div class="hamburger">
-            <i class="fas fa-bars"></i>
-        </div>
-
+        <a href="index.html" class="logo">RIMBA</a>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
         <ul class="nav-links">
             <li><a href="index.html#beranda">Beranda</a></li>
-            <li><a href="about.html">Tentang</a></li>
+            <li><a href="index.html#tentang">Tentang</a></li>
             <li><a href="galeri.html">Galeri</a></li>
-
             <li class="dropdown">
-                <a href="index.html#paket" class="dropdown-toggle">
-                    Paket <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
-                </a>
+                <a href="index.html#paket" class="dropdown-toggle">Paket <i class="fas fa-chevron-down"
+                        style="font-size: 0.8em;"></i></a>
                 <div class="dropdown-content">
                     <a href="paket-pemula.html">Pemula</a>
                     <a href="paket-extreme.html">Extrem</a>
                     <a href="paket-family.html">Family</a>
                 </div>
             </li>
-
             <li><a href="blog.html" style="color: var(--accent);">Blog</a></li>
             <li><a href="booking.html" class="btn-booking">Booking Sekarang</a></li>
         </ul>
@@ -783,148 +1027,235 @@
 
     <header class="blog-hero">
         <div class="blog-hero-content">
+            <span class="cat-tag">SEJARAH</span>
             <h1>Sejarah Perkembangan Arung Jeram di Indonesia</h1>
-            <div class="blog-meta">
-                <span><i class="far fa-calendar"></i> 25 Des 2024</span>
-                <span><i class="far fa-user"></i> Pakar Sejarah</span>
-                <span><i class="far fa-clock"></i> 15 Menit Baca</span>
+            <div class="author-meta">
+                <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=100&auto=format&fit=crop"
+                    alt="Pakar Sejarah">
+                <div>
+                    <strong>Pakar Sejarah</strong><br>
+                    <span style="opacity: 0.8;">25 Des 2024 • 9 Menit Baca</span>
+                </div>
             </div>
         </div>
     </header>
 
     <div class="content-wrapper">
-        <main class="article-container">
+        <div class="blog-layout">
 
-            <aside class="sticky-share">
-                <a href="#" class="share-btn"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" class="share-btn"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="share-btn"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="share-btn"><i class="fas fa-link"></i></a>
+            <aside class="sidebar">
+                <div class="sticky-sidebar">
+                    <div class="toc-box">
+                        <h3>Daftar Isi</h3>
+                        <ul class="toc-list">
+                            <li><a href="#intro" class="active">Pendahuluan</a></li>
+                            <li><a href="#era70">1. Awal Mula (Era 70-an)</a></li>
+                            <li><a href="#era80">2. Era Ekspedisi Sungai</a></li>
+                            <li><a href="#era90">3. Awal Komersialisasi</a></li>
+                            <li><a href="#faji">4. Pembentukan Federasi</a></li>
+                            <li><a href="#modern">5. Era Modern & Wisata</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="promo-sidebar">
+                        <h3>Suka Sejarah?</h3>
+                        <p>Ingin napak tilas sejarah sungai legendaris? Coba paket ekspedisi kami.</p>
+                        <a href="booking.html" class="btn-white">Cek Paket</a>
+                    </div>
+                </div>
             </aside>
 
-            <article class="article-body">
-                <p>Arung jeram atau <em>rafting</em> saat ini dikenal sebagai salah satu olahraga wisata yang populer
-                    dan menyenangkan. Ribuan wisatawan setiap akhir pekan memadati sungai-sungai di Jawa Barat, Jawa
-                    Tengah, hingga Bali untuk merasakan sensasi terombang-ambing di atas perahu karet. Namun, tahukah
-                    Anda bahwa sejarah arung jeram di Indonesia memiliki akar yang jauh lebih dalam dan penuh perjuangan
-                    daripada sekadar rekreasi akhir pekan?</p>
+            <div class="article-content">
 
-                <p>Jauh sebelum perahu karet berwarna-warni menghiasi sungai, nenek moyang kita telah menjadikan sungai
-                    sebagai urat nadi kehidupan. Namun, istilah "arung jeram" sebagai sebuah ekspedisi dan olahraga
-                    modern baru mulai dikenal pada pertengahan tahun 1970-an. Perjalanan panjang ini melibatkan para
-                    pencinta alam yang nekat, ekspedisi militer, hingga transformasi menjadi industri pariwisata yang
-                    profesional seperti sekarang.</p>
+                <figure>
+                    <img src="img/destinasi/sampean-1.webp" alt="Sejarah Rafting">
+                    <figcaption>Perahu arung jeram menyusuri sungai di antara tebing batu dan pepohonan hijau.
+                    </figcaption>
+                </figure>
 
-                <h2>1. Era Tradisional: Sungai Sebagai Urat Nadi</h2>
-                <p>Secara tradisional, masyarakat Indonesia sudah sangat akrab dengan kegiatan mengarungi sungai.
-                    Suku-suku di pedalaman Kalimantan dan Sumatera menggunakan rakit bambu atau kayu (sering disebut
-                    <em>akit</em> atau <em>getek</em>) untuk transportasi dan perdagangan. Mereka menaklukan jeram-jeram
-                    ganas hanya dengan bermodalkan galah bambu dan insting alam yang tajam.</p>
-                <p>Meskipun ini adalah bentuk awal dari "mengarungi jeram", tujuannya murni fungsional untuk bertahan
-                    hidup, bukan untuk olahraga atau rekreasi. Keahlian navigasi sungai masyarakat lokal inilah yang
-                    kelak menjadi pondasi penting bagi para penjelajah modern dalam memetakan sungai-sungai liar di
-                    nusantara.</p>
+                <section id="intro">
+                    <p>Dari ekspedisi militer hingga menjadi olahraga wisata populer. Inilah perjalanan panjang arung
+                        jeram di tanah air. Aktivitas yang kini kita kenal sebagai wisata akhir pekan yang seru ini
+                        memiliki akar sejarah yang dalam, bermula dari keberanian para perintis dalam menjelajahi
+                        aliran sungai-sungai liar di Indonesia.</p>
+                </section>
 
-                <h2>2. Era Perintis (1970-an): Kelompok Pencinta Alam</h2>
-                <p>Sejarah arung jeram modern di Indonesia tidak bisa dilepaskan dari peran kelompok pencinta alam,
-                    khususnya Mahasiswa Pencinta Alam Universitas Indonesia (Mapala UI) dan Wanadri. Pada tahun 1975,
-                    terjadi sebuah ekspedisi yang bisa dibilang sebagai tonggak awal arung jeram di Indonesia, yaitu
-                    ekspedisi penyusuran Sungai Citarum.</p>
-
-                <p>Pada masa itu, peralatan yang digunakan sangat jauh dari standar keamanan modern. Mereka menggunakan
-                    perahu karet bekas militer (LCR - Landing Craft Rubber) yang berat dan sulit dikendalikan, atau
-                    bahkan ban dalam truk yang dirakit. Belum ada helm standar rafting atau pelampung (PFD) yang
-                    ergonomis. Semangat petualangan dan keberanianlah yang menjadi modal utama mereka dalam memetakan
-                    karakteristik sungai di Jawa.</p>
-
-                <blockquote>
-                    <i class="fas fa-quote-left"></i>
-                    "Generasi perintis arung jeram Indonesia adalah orang-orang 'gila' yang berani menantang maut dengan
-                    peralatan seadanya demi membuka jalur yang kini kita nikmati dengan aman."
-                </blockquote>
-
-                <h2>3. Era 1990-an: Komersialisasi dan "Sobek Expedition"</h2>
-                <p>Dekade 90-an adalah masa keemasan di mana arung jeram mulai bertransformasi dari kegiatan eksklusif
-                    pencinta alam menjadi industri wisata. Salah satu momen kuncinya adalah kedatangan tim ekspedisi
-                    internasional "Sobek Expedition" ke Indonesia. Sobek adalah operator wisata petualangan ternama asal
-                    Amerika Serikat yang mencari sungai-sungai baru di dunia.</p>
-                <p>Mereka melakukan survei di Sungai Alas (Aceh) dan Sungai Sa'dan (Sulawesi Selatan). Kehadiran mereka
-                    membawa standar baru dalam hal peralatan dan teknik pengarungan. Di Pulau Jawa, Sungai Citarik di
-                    Sukabumi dan Sungai Ayung di Bali mulai dibuka untuk umum secara komersial. Pada masa inilah mulai
-                    bermunculan operator-operator rafting profesional yang mengadopsi standar keselamatan internasional.
-                </p>
-
-                <img src="https://images.unsplash.com/photo-1530866495561-507c9faab2ed?q=80&w=2069&auto=format&fit=crop"
-                    alt="Perahu Karet di Sungai Deras">
-
-                <h2>4. Lahirnya Federasi Arung Jeram Indonesia (FAJI)</h2>
-                <p>Seiring dengan menjamurnya kegiatan arung jeram, kebutuhan akan sebuah induk organisasi yang mengatur
-                    regulasi dan standar kompetisi menjadi mendesak. Pada tahun 1996, lahirlah Federasi Arung Jeram
-                    Indonesia (FAJI). Organisasi ini dibentuk oleh perwakilan dari berbagai klub pencinta alam dan
-                    operator wisata arung jeram.</p>
-                <p>FAJI berperan penting dalam membuat standarisasi keamanan, mengadakan pelatihan untuk pemandu
-                    (skipper), dan menyelenggarakan kejuaraan nasional (Kejurnas). Berkat adanya FAJI, arung jeram di
-                    Indonesia kini diakui sebagai cabang olahraga prestasi di bawah naungan KONI (Komite Olahraga
-                    Nasional Indonesia), bukan sekadar rekreasi semata.</p>
-
-                <div class="highlight-box">
-                    <h3><i class="fas fa-history"></i> Momen Penting Sejarah:</h3>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> <strong>1975:</strong> Ekspedisi Citarum oleh Mapala UI
-                            & Wanadri.</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>1980-an:</strong> Ekspedisi Sungai Alas dan
-                            Sungai Mahakam.</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>1996:</strong> Berdirinya FAJI (Federasi Arung
-                            Jeram Indonesia).</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>2015:</strong> Sungai Citarik menjadi tuan rumah
-                            World Rafting Championship (WRC).</li>
+                <div class="mobile-toc">
+                    <h3>Daftar Isi</h3>
+                    <ul class="toc-list">
+                        <li><a href="#intro">Pendahuluan</a></li>
+                        <li><a href="#era70">1. Awal Mula (Era 70-an)</a></li>
+                        <li><a href="#era80">2. Era Ekspedisi Sungai</a></li>
+                        <li><a href="#era90">3. Awal Komersialisasi</a></li>
+                        <li><a href="#faji">4. Pembentukan Federasi</a></li>
+                        <li><a href="#modern">5. Era Modern & Wisata</a></li>
+                        <li><a href="#faq">FAQ</a></li>
                     </ul>
                 </div>
 
-                <h2>5. Era Modern: Wisata dan Prestasi Dunia</h2>
-                <p>Memasuki tahun 2000-an hingga sekarang, arung jeram telah menjadi gaya hidup. Peralatan semakin
-                    canggih, perahu semakin ringan dan kuat (bahan PVC/Hypalon), dan prosedur keselamatan semakin ketat.
-                    Sungai-sungai di Indonesia pun mulai dikenal dunia. Puncaknya adalah ketika Sungai Citarik dipercaya
-                    menjadi tuan rumah Kejuaraan Dunia Arung Jeram (World Rafting Championship) pada tahun 2015.</p>
-                <p>Prestasi atlet arung jeram Indonesia pun semakin gemilang di kancah internasional, membuktikan bahwa
-                    sungai-sungai di nusantara adalah kawah candradimuka yang melahirkan pedayung-pedayung tangguh. Di
-                    sisi lain, wisata arung jeram kini sangat inklusif, bisa dinikmati oleh anak-anak hingga lansia
-                    dengan pilihan paket "Family Rafting".</p>
+                <section>
+                    <p>Perkembangan arung jeram di Indonesia tidak terlepas dari peran komunitas pecinta alam dan
+                        militer yang menggunakan sungai sebagai sarana latihan dan ekspedisi. Mari kita telusuri jejak
+                        sejarahnya dari masa ke masa.</p>
+                </section>
 
-                <h3>Kesimpulan</h3>
-                <p>Sejarah arung jeram di Indonesia adalah cerita tentang evolusi keberanian. Dari rakit bambu nenek
-                    moyang, perahu karet bekas militer para perintis, hingga perahu modern berstandar internasional saat
-                    ini. Semangat untuk menyatu dengan alam dan menaklukan tantangan tetap menjadi jiwa dari olahraga
-                    ini.</p>
-                <p>Saat Anda duduk di atas perahu karet Rimba Rafting hari ini, ingatlah bahwa Anda sedang menikmati
-                    hasil jerih payah para perintis yang telah membuka jalur sungai puluhan tahun silam. Mari kita jaga
-                    sungai-sungai ini agar sejarah dan keindahannya terus mengalir untuk generasi mendatang.</p>
+                <section id="era70">
+                    <h2>1. Awal Mula (Era 70-an)</h2>
+                    <p>Pada pertengahan tahun 1970-an, aktivitas pengarungan sungai mulai diperkenalkan oleh kelompok
+                        pecinta alam seperti Wanadri (Bandung) dan Mapala UI (Jakarta). Saat itu, istilah yang digunakan
+                        adalah "Olah Raga Arus Deras" (ORAD).</p>
+                    <p>Peralatan yang digunakan masih sangat sederhana dan terbatas. Para perintis seringkali
+                        menggunakan perahu karet militer bekas (*Landing Craft Rubber*) atau bahkan rakit dari ban dalam
+                        truk dan bambu untuk menaklukkan jeram.</p>
+                </section>
 
-                <p><em>Hormati Sungai, Hargai Sejarah!</em></p>
-            </article>
-        </main>
+                <section id="era80">
+                    <h2>2. Era Ekspedisi Sungai (80-an)</h2>
+                    <p>Dekade 80-an ditandai dengan maraknya ekspedisi besar-besaran. Sungai Citarum, Sungai Mahakam,
+                        dan Sungai Alas di Aceh menjadi saksi bisu keberanian para penggiat alam. Pada masa ini,
+                        kompetisi bertajuk "Lomba Arung Sungai" mulai digelar, memicu semangat kompetisi antar kelompok
+                        pecinta alam.</p>
+                    <p>Ekspedisi ini bukan hanya tentang olahraga, tetapi juga pendataan potensi sungai dan kampanye
+                        lingkungan hidup.</p>
+                </section>
 
-        <section class="blog-nav-section">
-            <div class="nav-grid">
-                <a href="blog-5.html" class="nav-card prev">
-                    <img src="https://images.unsplash.com/photo-1519056230495-2f9540b6c669?q=80&w=2070&auto=format&fit=crop"
-                        alt="Rafting Saat Hujan">
-                    <div class="nav-card-content">
-                        <span class="nav-label"><i class="fas fa-arrow-left"></i> Sebelumnya</span>
-                        <h4 class="nav-title">Rafting Saat Hujan? Aman Gak Sih?</h4>
+                <div class="inline-promo">
+                    <div class="ip-text">
+                        <h4>📜 Paket Rafting Edukasi</h4>
+                        <p>Belajar teknik dayung klasik & sejarah sungai lokal.</p>
                     </div>
-                </a>
+                    <a href="booking.html" class="ip-btn">Daftar Sekarang</a>
+                </div>
 
-                <a href="blog-1.html" class="nav-card next">
-                    <img src="https://images.unsplash.com/photo-1520063234250-9884e9d36e2f?q=80&w=800&auto=format&fit=crop"
-                        alt="Kembali ke Blog">
-                    <div class="nav-card-content">
-                        <span class="nav-label">Selanjutnya <i class="fas fa-arrow-right"></i></span>
-                        <h4 class="nav-title">5 Tips Keselamatan Rafting untuk Pemula</h4>
+                <section id="era90">
+                    <h2>3. Awal Komersialisasi (90-an)</h2>
+                    <p>Melihat potensi wisata yang besar, industri arung jeram komersial mulai tumbuh di awal 90-an.
+                        Bali menjadi pionir dengan Sungai Ayung, diikuti oleh Jawa Barat dengan Sungai Citarik dan
+                        Citarum.</p>
+                    <p>Operator wisata profesional mulai bermunculan, mendatangkan perahu karet standar internasional,
+                        helm, dan pelampung modern untuk menjamin keselamatan wisatawan umum.</p>
+                </section>
+
+                <blockquote>
+                    "Sungai mengajarkan kita bahwa sejarah mengalir terus ke depan, namun kita tidak boleh melupakan
+                    hulu
+                    dari mana kita berasal."
+                </blockquote>
+
+                <section id="faji">
+                    <h2>4. Pembentukan Federasi (1996)</h2>
+                    <p>Untuk menstandarisasi keamanan dan regulasi kompetisi, pada tahun 1996 dibentuklah Federasi Arung
+                        Jeram Indonesia (FAJI). Organisasi ini menjadi wadah resmi yang menaungi atlet dan penggiat
+                        arung jeram di seluruh nusantara.</p>
+                    <p>FAJI berperan penting dalam menyelenggarakan Kejuaraan Nasional (Kejurnas) dan mengirimkan atlet
+                        Indonesia ke ajang kejuaraan dunia (*World Rafting Championship*).</p>
+                </section>
+
+                <figure>
+                    <img src="img/destinasi/tanggul-1.webp" alt="Kompetisi Rafting">
+                    <figcaption>Beberapa perahu arung jeram menyusuri sungai di tengah alam hijau.
+                    </figcaption>
+                </figure>
+
+                <section id="modern">
+                    <h2>5. Era Modern & Wisata Massal</h2>
+                    <p>Saat ini, arung jeram bukan lagi olahraga eksklusif para petualang. Siapa saja, mulai dari
+                        anak-anak hingga lansia, bisa menikmatinya dengan aman berkat standar operasional yang ketat.
+                    </p>
+                    <ul>
+                        <li><strong>Desa Wisata:</strong> Banyak desa di pinggir sungai yang berkembang menjadi
+                            destinasi
+                            wisata rafting mandiri.</li>
+                        <li><strong>Prestasi:</strong> Tim arung jeram Indonesia kini disegani di kancah internasional,
+                            sering meraih medali di kategori Youth dan Open.</li>
+                    </ul>
+                </section>
+
+                <section id="faq" class="faq-section">
+                    <h2>Pertanyaan Sering Diajukan (FAQ)</h2>
+
+                    <details class="faq-item">
+                        <summary>Kapan arung jeram pertama kali masuk Indonesia?</summary>
+                        <p>Diperkirakan sekitar pertengahan tahun 1970-an, dipelopori oleh kelompok pecinta alam
+                            universitas dan militer.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Apa sungai pertama yang diarungi secara ekspedisi?</summary>
+                        <p>Sungai Citarum dan Sungai Alas adalah beberapa yang paling awal dan legendaris dalam sejarah
+                            ekspedisi sungai di Indonesia.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Apa kepanjangan dari FAJI?</summary>
+                        <p>Federasi Arung Jeram Indonesia, induk organisasi olahraga arus deras di tanah air.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Apakah arung jeram jaman dulu aman?</summary>
+                        <p>Risikonya jauh lebih tinggi dibandingkan sekarang karena keterbatasan alat dan pengetahuan
+                            tentang teknik penyelamatan (*river rescue*).</p>
+                    </details>
+                </section>
+
+                <div class="post-footer">
+                    <div class="author-box">
+                        <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=100&auto=format&fit=crop"
+                            alt="Pakar Sejarah">
+                        <div class="author-info">
+                            <h4>Pakar Sejarah</h4>
+                            <span>Historical Researcher</span>
+                            <p style="font-size: 0.9rem; margin:0; color:#666;">Peneliti yang fokus mendokumentasikan
+                                perkembangan olahraga petualangan di Indonesia.</p>
+                        </div>
                     </div>
-                </a>
+
+                    <div class="share-box">
+                        <h5>Bagikan Sejarah Ini:</h5>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <section class="related-posts">
+            <div class="related-header">
+                <h2>Bacaan Seru Lainnya</h2>
+            </div>
+            <div class="related-grid">
+                <div class="r-card">
+                    <div class="r-img"><img src="img/destinasi/glidik-1.webp" alt="Tips"></div>
+                    <div class="r-content">
+                        <h4>Rafting Saat Hujan? Aman Gak Sih?
+                        </h4>
+                        <a href="blog-5.html">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="r-card">
+                    <div class="r-img"><img src="img/destinasi/bajulmati-1.webp" alt="Peralatan"></div>
+                    <div class="r-content">
+                        <h4>5 Tips Keselamatan Rafting untuk Pemula
+                        </h4>
+                        <a href="blog-1.html">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="r-card">
+                    <div class="r-img"><img src="img/baru/keselamatan.webp" alt="Sungai"></div>
+                    <div class="r-content">
+                        <h4>Mengenal Peralatan Wajib Arung Jeram
+                        </h4>
+                        <a href="blog-2.html">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
             </div>
         </section>
+
     </div>
 
     <footer>
@@ -964,61 +1295,84 @@
         </div>
     </footer>
 
+    <a href="https://wa.me/6281299887766?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20tanya%20paket%20rafting."
+        class="floating-wa" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <script>
-        // 1. Script Navbar & Hamburger
-        const navbar = document.getElementById('navbar');
-        window.onscroll = () => {
+        // 1. Progress Bar Logic
+        window.onscroll = function () {
+            // Navbar Effect
+            const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
+
+            // Progress Bar Effect
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+
+            // Active TOC Logic
+            let sections = document.querySelectorAll('section');
+            let navLinks = document.querySelectorAll('.toc-list a');
+
+            sections.forEach(sec => {
+                let top = window.scrollY;
+                let offset = sec.offsetTop - 150;
+                let height = sec.offsetHeight;
+                let id = sec.getAttribute('id');
+
+                if (top >= offset && top < offset + height) {
+                    navLinks.forEach(links => {
+                        links.classList.remove('active');
+                        // Handle multiple TOC links (Mobile + Desktop)
+                        let targetLinks = document.querySelectorAll('.toc-list a[href*=' + id + ']');
+                        targetLinks.forEach(link => link.classList.add('active'));
+                    });
+                }
+            });
         };
 
+        // 2. Hamburger & Dropdown Logic
         const hamburger = document.querySelector('.hamburger');
         const icon = hamburger.querySelector('i');
         const navLinks = document.querySelector('.nav-links');
 
         hamburger.addEventListener('click', (e) => {
             navLinks.classList.toggle('active');
-
             if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-                hamburger.classList.add('active-color');
+                icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); hamburger.classList.add('active-color');
             } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-                if (window.scrollY < 50) {
-                    hamburger.classList.remove('active-color');
-                }
+                icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
+                if (window.scrollY < 50) { hamburger.classList.remove('active-color'); }
             }
             e.stopPropagation();
         });
 
+        // Close menu on click outside
         document.addEventListener('click', (e) => {
             if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
                 if (navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
-                    if (window.scrollY < 50) {
-                        hamburger.classList.remove('active-color');
-                    }
+                    if (window.scrollY < 50) { hamburger.classList.remove('active-color'); }
                 }
             }
         });
 
-        // 2. Script Dropdown Mobile
+        // Mobile Dropdown
         const dropdownToggle = document.querySelector('.dropdown-toggle');
         const dropdownContent = document.querySelector('.dropdown-content');
-        const dropdownParent = document.querySelector('.dropdown');
-
         dropdownToggle.addEventListener('click', (e) => {
             if (window.innerWidth <= 768) {
                 e.preventDefault();
                 dropdownContent.classList.toggle('show-mobile');
-                dropdownParent.classList.toggle('active');
             }
         });
     </script>

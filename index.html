@@ -232,7 +232,7 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            background: url('img/baru/hero.webp');
+            background: url('img/destinasi/glidik-2.webp');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -299,7 +299,6 @@
         /* --- ABOUT --- */
         .about {
             padding: 0 10% 4rem;
-            /* Adjusted bottom padding */
             display: flex;
             align-items: center;
             gap: 5rem;
@@ -344,7 +343,7 @@
             margin-bottom: 1.5rem;
         }
 
-        /* --- FEATURES SECTION (NEW) --- */
+        /* --- FEATURES SECTION --- */
         .features {
             padding: 2rem 10% 6rem;
             text-align: center;
@@ -352,7 +351,6 @@
 
         .features-grid {
             display: grid;
-            /* Responsif otomatis: minimal lebar 220px, kalau kurang turun ke bawah */
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
@@ -364,7 +362,6 @@
             border-radius: 20px;
             transition: all 0.3s ease;
             position: relative;
-            /* Border transparan untuk menghindari layout shift saat hover */
             border: 1px solid transparent;
         }
 
@@ -378,7 +375,6 @@
             width: 70px;
             height: 70px;
             background: rgba(0, 105, 92, 0.08);
-            /* Primary color very light */
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -393,7 +389,6 @@
             background: var(--primary);
             color: var(--white);
             transform: rotateY(180deg);
-            /* Efek putar 3D saat hover */
         }
 
         .feature-box h3 {
@@ -504,6 +499,167 @@
             padding-left: 5px;
         }
 
+        /* --- FAQ SECTION (NEW & CREATIVE) --- */
+        .faq-section {
+            padding: 6rem 10%;
+            background: linear-gradient(135deg, #fff 0%, #f0fdfc 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative Background */
+        .faq-section::after {
+            content: '?';
+            position: absolute;
+            left: -50px;
+            top: 20%;
+            font-size: 40rem;
+            color: rgba(0, 105, 92, 0.03);
+            font-family: var(--font-heading);
+            font-weight: 900;
+            z-index: 0;
+            line-height: 0;
+            pointer-events: none;
+        }
+
+        .faq-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Bagian Kiri (Sticky Title) */
+        .faq-left {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .faq-sticky-content {
+            position: sticky;
+            top: 120px;
+            /* Jarak saat scroll */
+        }
+
+        .faq-left h2 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            line-height: 1.2;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-left p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .faq-btn-contact {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary);
+            font-weight: 700;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 5px;
+            transition: 0.3s;
+        }
+
+        .faq-btn-contact:hover {
+            color: var(--accent);
+            padding-left: 10px;
+        }
+
+        /* Bagian Kanan (Accordion List) */
+        .faq-right {
+            flex: 1.5;
+            min-width: 300px;
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .faq-question::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: var(--accent);
+            transition: 0.3s;
+        }
+
+        .faq-icon {
+            font-size: 1.2rem;
+            color: #ccc;
+            transition: transform 0.4s ease;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background-color: #fafafa;
+        }
+
+        .faq-answer p {
+            padding: 0 2rem 2rem 2rem;
+            color: var(--text-gray);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Active State Styles */
+        .faq-item.active {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 105, 92, 0.08);
+            border-color: var(--primary-light);
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--primary);
+            padding-left: 2.5rem;
+            /* Memberi ruang untuk border */
+        }
+
+        .faq-item.active .faq-question::before {
+            width: 6px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+            color: var(--accent);
+        }
+
+        .faq-item.active .faq-answer {
+            background-color: var(--white);
+        }
+
         /* --- MAP --- */
         .map-wrapper {
             padding: 2rem;
@@ -587,7 +743,7 @@
             font-size: 0.85rem;
         }
 
-        /* --- MEDIA QUERY MOBILE (REVISI) --- */
+        /* --- MEDIA QUERY TABLET --- */
         @media (max-width: 968px) {
             .hero h1 {
                 font-size: 3rem;
@@ -600,11 +756,20 @@
             }
 
             .content-wrapper {
-                margin-top: -60px;
-                border-radius: 40px 40px 0 0;
+                margin-top: -100px;
+                border-radius: 50px 50px 0 0;
+                padding-top: 4rem;
+                position: relative;
+                z-index: 20;
+            }
+
+            /* FAQ Tablet Adjustment */
+            .faq-left h2 {
+                font-size: 2.5rem;
             }
         }
 
+        /* --- MEDIA QUERY MOBILE --- */
         @media (max-width: 768px) {
             .hamburger {
                 display: block;
@@ -693,6 +858,20 @@
                 width: calc(100% - 60px);
             }
 
+            /* PERBAIKAN STACKING/OVERLAP MOBILE DI SINI */
+            .content-wrapper {
+                margin-top: -60px;
+                border-radius: 40px 40px 0 0;
+                padding-top: 3rem;
+                position: relative;
+                z-index: 20;
+                background: var(--white);
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
             .packages {
                 padding: 4rem 1.5rem;
             }
@@ -701,23 +880,32 @@
                 padding: 0 1.5rem 4rem;
             }
 
-            /* Mobile padding features */
             .cards-container {
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             }
 
-            .hero {
-                background: url('img/baru/hero.webp');
-                background-size: cover;
-                background-position: center;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
             .map-wrapper {
                 margin: 0 1rem;
+            }
+
+            /* FAQ Responsive Mobile */
+            .faq-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .faq-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .faq-sticky-content {
+                position: static;
+                /* Hilangkan sticky di mobile */
+            }
+
+            .faq-item.active {
+                transform: none;
+                /* Hilangkan geser kanan di mobile */
             }
         }
 
@@ -732,13 +920,60 @@
                 transform: translateY(0);
             }
         }
+
+        /* --- FLOATING WHATSAPP --- */
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            /* Warna Hijau WhatsApp */
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            /* Pastikan di atas elemen lain */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .floating-wa:hover {
+            background-color: #1ebc57;
+            /* Warna sedikit lebih gelap saat hover */
+            transform: scale(1.1);
+            /* Efek membesar sedikit */
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Agar ikon pas di tengah */
+        .floating-wa i {
+            margin-top: 2px;
+            /* Sedikit penyesuaian vertikal */
+        }
+
+        /* Responsif untuk Mobile (agar tidak terlalu besar/menutupi konten) */
+        @media (max-width: 768px) {
+            .floating-wa {
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <nav id="navbar">
-        <div class="logo">RIMBA</div>
+        <a href="index.html" class="logo">RIMBA</a>
 
         <div class="hamburger">
             <i class="fas fa-bars"></i>
@@ -784,8 +1019,7 @@
                     hujan.</p>
             </div>
             <div class="about-img">
-                <img src="img/baru/about.webp"
-                    alt="Rimba Team">
+                <img src="img/baru/about.webp" alt="Rimba Team">
             </div>
         </section>
 
@@ -839,8 +1073,7 @@
             <div class="cards-container">
                 <div class="card">
                     <div class="card-img-wrap">
-                        <img src="img/baru/Desaintanpajudul29.webp"
-                            alt="Pemula">
+                        <img src="img/baru/Desaintanpajudul29.webp" alt="Pemula">
                         <div class="price-tag" style="background: var(--accent); color: white;">POPULER</div>
                     </div>
                     <div class="card-content">
@@ -854,9 +1087,7 @@
 
                 <div class="card">
                     <div class="card-img-wrap">
-                        <img src="img/baru/Desaintanpajudul33.webp"
-                            alt="Extreme">
-                        <!-- <div class="price-tag" style="background: var(--accent); color: white;">POPULER</div> -->
+                        <img src="img/baru/Desaintanpajudul33.webp" alt="Extreme">
                     </div>
                     <div class="card-content">
                         <h3>Paket Extrem</h3>
@@ -869,9 +1100,7 @@
 
                 <div class="card">
                     <div class="card-img-wrap">
-                        <img src="img/baru/keluarga.webp"
-                            alt="Keluarga">
-                        <!-- <div class="price-tag">IDR 175K</div> -->
+                        <img src="img/baru/keluarga.webp" alt="Keluarga">
                     </div>
                     <div class="card-content">
                         <h3>Paket Family</h3>
@@ -884,6 +1113,83 @@
             </div>
         </section>
 
+        <section class="faq-section">
+            <div class="faq-container">
+                <div class="faq-left">
+                    <div class="faq-sticky-content">
+                        <span class="section-tag">Info Penting</span>
+                        <h2>Masih Ada<br>Pertanyaan?</h2>
+                        <p>Kami telah merangkum hal-hal yang paling sering ditanyakan oleh petualang baru. Jangan ragu
+                            untuk menghubungi kami jika butuh info lebih lanjut.</p>
+                        <a href="https://wa.me/6281299887766" class="faq-btn-contact">
+                            Chat via WhatsApp <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="faq-right">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Apakah aman untuk pemula yang tidak bisa berenang?
+                            <i class="fas fa-plus faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sangat aman! Setiap peserta akan dilengkapi dengan Pelampung (Life Jacket) standar
+                                internasional yang mampu menahan beban hingga 120kg. Selain itu, Anda akan didampingi
+                                oleh pemandu (skipper) di setiap perahu yang ahli dalam penyelamatan air.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Apa saja perlengkapan yang harus dibawa?
+                            <i class="fas fa-plus faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Kami sarankan membawa pakaian ganti, peralatan mandi, sunscreen, dan sandal gunung atau
+                                sepatu karet. Hindari memakai perhiasan berlebihan. Kami menyediakan dry bag untuk
+                                menyimpan barang elektronik kecil seperti HP.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Bagaimana jika hujan turun saat rafting?
+                            <i class="fas fa-plus faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Rafting tetap berjalan saat hujan ringan hingga sedang, justru menambah keseruan! Namun,
+                                jika debit air sungai naik hingga batas bahaya (banjir bandang), trip akan kami tunda
+                                atau batalkan demi keselamatan. Kami memantau cuaca setiap jam.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Apakah ada batasan usia?
+                            <i class="fas fa-plus faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Untuk paket Family, usia minimal 7 tahun atau tinggi badan 110cm. Untuk paket Pemula &
+                                Extrem, minimal 12 tahun dan maksimal 60 tahun dalam kondisi sehat jasmani (tidak
+                                memiliki riwayat penyakit jantung/asma berat).</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Bagaimana cara melakukan reservasi?
+                            <i class="fas fa-plus faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Anda bisa melakukan booking melalui website ini pada halaman 'Booking', atau langsung
+                                menghubungi WhatsApp kami. Disarankan booking H-3 untuk memastikan ketersediaan slot,
+                                terutama di akhir pekan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <div class="map-wrapper">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.5739063717283!2d110.42080701538605!3d-6.941394994985055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70f2c41804c81b%3A0xc3f3453715b3c5a7!2sSimpang%20Lima%20Semarang!5e0!3m2!1sid!2sid!4v1645498274532!5m2!1sid!2sid"
@@ -928,6 +1234,11 @@
             <p>© 2024 Rimba Rafting Indonesia. Designed with passion.</p>
         </div>
     </footer>
+
+    <a href="https://wa.me/6281299887766?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20tanya%20paket%20rafting."
+        class="floating-wa" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script>
         // Navbar Scrolled Effect
@@ -996,6 +1307,35 @@
                 dropdownContent.classList.toggle('show-mobile');
                 dropdownParent.classList.toggle('active');
             }
+        });
+
+        // --- FAQ ACCORDION LOGIC (NEW) ---
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+
+                // Opsional: Tutup item lain jika ingin hanya satu yang terbuka
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.faq-answer').style.maxHeight = null;
+                    }
+                });
+
+                // Toggle item yang diklik
+                item.classList.toggle('active');
+
+                if (!isActive) {
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                } else {
+                    answer.style.maxHeight = null;
+                }
+            });
         });
     </script>
 </body>

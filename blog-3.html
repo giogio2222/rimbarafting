@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* --- 1. VARIABLES (SAMA PERSIS DENGAN REFERENSI) --- */
+        /* --- 1. VARIABLES & RESET --- */
         :root {
             --primary: #00695C;
             --primary-light: #4DB6AC;
@@ -42,10 +42,26 @@
             color: var(--text-dark);
             background-color: var(--off-white);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
-        /* --- 2. NAVBAR (SAMA PERSIS DENGAN REFERENSI) --- */
+        /* --- READING PROGRESS BAR --- */
+        .progress-container {
+            width: 100%;
+            height: 5px;
+            background: transparent;
+            position: fixed;
+            top: 0;
+            z-index: 1002;
+        }
+
+        .progress-bar {
+            height: 5px;
+            background: var(--accent);
+            width: 0%;
+        }
+
+        /* --- 2. NAVBAR --- */
         nav {
             position: fixed;
             top: 0;
@@ -108,10 +124,6 @@
             gap: 5px;
         }
 
-        .nav-links a i {
-            transition: transform 0.3s;
-        }
-
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -131,7 +143,6 @@
             color: var(--text-dark);
         }
 
-        /* Dropdown */
         .dropdown-content {
             display: block;
             position: absolute;
@@ -189,7 +200,6 @@
             display: none;
         }
 
-        /* Button Booking */
         .btn-booking {
             background: linear-gradient(45deg, var(--accent), #FF6F00);
             padding: 10px 28px !important;
@@ -208,7 +218,6 @@
             box-shadow: 0 8px 20px rgba(255, 111, 0, 0.5);
         }
 
-        /* Hamburger */
         .hamburger {
             display: none;
             color: var(--white);
@@ -224,23 +233,21 @@
             color: var(--text-dark);
         }
 
-
         /* --- 3. HERO BLOG DETAIL --- */
         .blog-hero {
-            height: 70vh;
+            height: 65vh;
             width: 100%;
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
-            background: url('https://images.unsplash.com/photo-1544654032-9c1766a5e182?q=80&w=2070&auto=format&fit=crop');
-            /* Gambar Rafting + Air */
+            /* Background image updated to reflect health/nature theme */
+            background: url('https://images.unsplash.com/photo-1470246973918-29a53295c561?q=80&w=2069&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            /* Parallax Effect */
-            padding-bottom: 8rem;
+            padding-bottom: 4rem;
         }
 
         .blog-hero::before {
@@ -261,121 +268,175 @@
             padding: 0 20px;
         }
 
-        .category-badge {
-            background-color: var(--accent);
+        .cat-tag {
+            background: var(--accent);
             color: var(--white);
             padding: 5px 15px;
             border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
             letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
             display: inline-block;
-            margin-bottom: 1rem;
         }
 
         .blog-hero h1 {
             font-family: var(--font-heading);
-            font-size: 3.5rem;
+            font-size: 3rem;
             line-height: 1.2;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
+            margin-bottom: 1rem;
         }
 
-        .blog-meta {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            font-size: 0.95rem;
-            opacity: 0.9;
-        }
-
-        .blog-meta i {
-            margin-right: 8px;
-            color: var(--accent);
-        }
-
-        /* --- 4. CONTENT WRAPPER --- */
-        .content-wrapper {
-            position: relative;
-            z-index: 10;
-            margin-top: -100px;
-            /* Overlap effect */
-            background: var(--white);
-            border-radius: 60px 60px 0 0;
-            box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.15);
-            padding-top: 4rem;
-            padding-bottom: 4rem;
-            overflow: hidden;
-        }
-
-        .content-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 6px;
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        /* --- 5. BLOG ARTICLE LAYOUT --- */
-        .article-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 5%;
-            display: grid;
-            grid-template-columns: 60px 1fr;
-            gap: 50px;
-        }
-
-        /* Sticky Share */
-        .sticky-share {
-            position: sticky;
-            top: 120px;
-            height: fit-content;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .share-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--off-white);
-            color: var(--text-gray);
+        .author-meta {
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: 0.3s;
-            font-size: 1.2rem;
+            gap: 15px;
+            font-size: 0.95rem;
         }
 
-        .share-btn:hover {
-            background: var(--primary);
-            color: var(--white);
-            transform: translateY(-5px);
+        .author-meta img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
         }
 
-        /* Article Typography */
-        .article-body {
-            color: var(--text-dark);
-            font-size: 1.1rem;
-            line-height: 1.8;
+        /* --- 4. CONTENT WRAPPER & GRID LAYOUT --- */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            margin-top: -80px;
+            background: var(--white);
+            border-radius: 60px 60px 0 0;
+            padding-top: 4rem;
+            overflow: visible;
         }
 
-        .article-body p {
-            margin-bottom: 1.5rem;
-            text-align: justify;
+        .blog-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 60px;
+            position: relative;
         }
 
-        /* Drop Cap */
-        .article-body>p:first-of-type::first-letter {
+        /* --- 5. SIDEBAR (TOC & PROMO) --- */
+        .sidebar {
+            position: relative;
+        }
+
+        .sticky-sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .toc-box {
+            background: var(--off-white);
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .toc-box h3 {
             font-family: var(--font-heading);
-            font-size: 4rem;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .toc-list li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .toc-list a {
+            color: var(--text-gray);
+            transition: 0.3s;
+            display: block;
+        }
+
+        .toc-list a:hover,
+        .toc-list a.active {
+            color: var(--accent);
+            padding-left: 5px;
+            font-weight: 600;
+        }
+
+        /* --- MOBILE TOC STYLING --- */
+        .mobile-toc {
+            display: none;
+            background: var(--off-white);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0 30px 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .mobile-toc h3 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .mobile-toc li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .mobile-toc a {
+            color: var(--text-gray);
+            transition: 0.3s;
+            display: block;
+        }
+
+        .promo-sidebar {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            padding: 30px;
+            border-radius: 20px;
+            color: var(--white);
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 105, 92, 0.3);
+        }
+
+        .promo-sidebar h3 {
+            font-family: var(--font-heading);
+            margin-bottom: 10px;
+        }
+
+        .promo-sidebar .btn-white {
+            background: var(--white);
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .promo-sidebar .btn-white:hover {
+            transform: scale(1.05);
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        /* --- 6. ARTICLE CONTENT --- */
+        .article-content {
+            color: var(--text-dark);
+            font-size: 1.05rem;
+        }
+
+        .article-content>p:first-of-type::first-letter {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
             font-weight: 800;
             color: var(--primary);
             float: left;
@@ -383,166 +444,307 @@
             line-height: 0.8;
         }
 
-        .article-body h2 {
+        .article-content h2 {
             font-family: var(--font-heading);
             color: var(--primary);
-            font-size: 2rem;
-            margin: 3rem 0 1.5rem;
+            margin: 2.5rem 0 1rem;
             position: relative;
             padding-left: 20px;
-            font-weight: 700;
         }
 
-        .article-body h2::before {
+        .article-content h2::before {
             content: '';
             position: absolute;
             left: 0;
             top: 5px;
             bottom: 5px;
-            width: 6px;
+            width: 5px;
             background: var(--accent);
             border-radius: 5px;
         }
 
-        .article-body h3 {
-            font-family: var(--font-heading);
-            color: var(--text-dark);
-            margin: 2rem 0 1rem;
-            font-weight: 700;
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
         }
 
-        .article-body img {
-            width: 100%;
-            border-radius: 20px;
+        figure {
             margin: 2rem 0;
-            box-shadow: 20px 20px 0 var(--off-white), 0 0 20px rgba(0, 0, 0, 0.05);
+            width: 100%;
         }
 
-        /* Blockquote */
-        blockquote {
-            background: #e0f2f1;
-            border-left: 5px solid var(--primary);
-            margin: 2.5rem 0;
-            padding: 2.5rem;
-            font-family: var(--font-heading);
+        .article-content>figure:first-child {
+            margin-top: 0;
+            margin-bottom: 2rem;
+        }
+
+        figure img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        figure img:hover {
+            transform: scale(1.01);
+        }
+
+        figcaption {
+            font-size: 0.85rem;
+            color: #777;
+            text-align: center;
+            margin-top: 10px;
             font-style: italic;
-            font-size: 1.25rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        blockquote {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-style: italic;
             color: var(--primary);
-            border-radius: 0 20px 20px 0;
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: #e0f2f1;
+            border-radius: 20px;
             position: relative;
         }
 
-        blockquote i {
+        blockquote::before {
+            content: '\f10d';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
             position: absolute;
             top: -15px;
-            left: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             font-size: 2rem;
-            color: var(--primary);
+            color: var(--accent);
             background: #e0f2f1;
             padding: 0 10px;
             border-radius: 50%;
         }
 
-        /* Highlight Box */
-        .highlight-box {
-            background: linear-gradient(135deg, var(--primary), #004d40);
-            color: var(--white);
-            padding: 2.5rem;
+        /* --- 7. PROMO COLUMN --- */
+        .inline-promo {
+            margin: 3rem 0;
+            padding: 30px;
+            border: 2px dashed var(--accent);
             border-radius: 20px;
-            margin: 2rem 0;
-            box-shadow: 0 15px 30px rgba(0, 105, 92, 0.3);
-        }
-
-        .highlight-box h3 {
-            color: var(--accent);
-            margin-top: 0;
-        }
-
-        .highlight-box ul li {
-            margin-bottom: 12px;
+            background: #fff8e1;
             display: flex;
-            align-items: start;
-            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
         }
 
-        .highlight-box ul li i {
-            margin-top: 5px;
+        .ip-text h4 {
+            color: var(--text-dark);
+            font-family: var(--font-heading);
+            margin-bottom: 5px;
+        }
+
+        .ip-text p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        .ip-btn {
+            background: var(--accent);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* --- 8. FAQ ACCORDION --- */
+        .faq-section {
+            margin-top: 4rem;
+        }
+
+        .faq-section h2 {
+            border: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border: 1px solid #eee;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        details summary {
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary);
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        details summary::after {
+            content: '+';
+            font-size: 1.5rem;
             color: var(--accent);
         }
 
-        .highlight-box p {
-            color: rgba(255, 255, 255, 0.9);
+        details[open] summary::after {
+            content: '-';
         }
 
-        /* --- 6. NEXT/PREV NAVIGATION --- */
-        .blog-nav-section {
-            padding: 4rem 10%;
+        details p {
+            padding: 15px 20px;
             background: var(--off-white);
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--text-gray);
         }
 
-        .nav-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        /* --- 9. AUTHOR & SHARE --- */
+        .post-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             gap: 30px;
         }
 
-        .nav-card {
-            background: var(--white);
-            border-radius: 20px;
-            overflow: hidden;
+        .author-box {
             display: flex;
+            gap: 15px;
             align-items: center;
-            transition: 0.4s;
-            position: relative;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .nav-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 105, 92, 0.15);
-        }
-
-        .nav-card img {
-            width: 140px;
-            height: 120px;
-            object-fit: cover;
-        }
-
-        .nav-card-content {
-            padding: 20px;
             flex: 1;
         }
 
-        .nav-label {
-            font-size: 0.8rem;
-            color: var(--accent);
-            font-weight: 700;
-            text-transform: uppercase;
+        .author-box img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .author-info span {
+            font-size: 0.85rem;
+            color: #999;
             display: block;
             margin-bottom: 5px;
         }
 
-        .nav-title {
-            font-family: var(--font-heading);
-            font-weight: 700;
-            color: var(--text-dark);
-            font-size: 1.1rem;
-            line-height: 1.4;
-        }
-
-        .nav-card.prev .nav-card-content {
-            text-align: left;
-        }
-
-        .nav-card.next {
-            flex-direction: row-reverse;
-        }
-
-        .nav-card.next .nav-card-content {
+        .share-box {
             text-align: right;
         }
 
-        /* --- 7. FOOTER (SAMA PERSIS DENGAN REFERENSI) --- */
+        .share-box h5 {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: #999;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--off-white);
+            color: var(--text-gray);
+            align-items: center;
+            justify-content: center;
+            margin-left: 5px;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* --- 10. RELATED POSTS --- */
+        .related-posts {
+            padding: 4rem 10%;
+            background: var(--off-white);
+        }
+
+        .related-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .related-header h2 {
+            font-family: var(--font-heading);
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .r-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
+        }
+
+        .r-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .r-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .r-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+
+        .r-card:hover .r-img img {
+            transform: scale(1.1);
+        }
+
+        .r-content {
+            padding: 20px;
+        }
+
+        .r-content h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .r-content a {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* --- FOOTER --- */
         footer {
             background-color: #111;
             color: #ccc;
@@ -607,38 +809,38 @@
 
         /* --- RESPONSIVE --- */
         @media (max-width: 968px) {
+            .blog-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .mobile-toc {
+                display: block;
+            }
+
             .blog-hero h1 {
                 font-size: 2.5rem;
             }
 
-            .article-container {
-                grid-template-columns: 1fr;
+            .inline-promo {
+                flex-direction: column;
+                text-align: center;
             }
 
-            .sticky-share {
-                position: static;
-                flex-direction: row;
-                justify-content: center;
-                margin-bottom: 30px;
+            .post-footer {
+                flex-direction: column;
+                gap: 20px;
             }
 
-            .content-wrapper {
-                margin-top: -60px;
-                border-radius: 40px 40px 0 0;
-            }
-
-            .nav-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-card img {
-                width: 100px;
+            .share-box {
+                text-align: left;
             }
         }
 
         @media (max-width: 768px) {
-
-            /* Mobile Nav Logic */
             .hamburger {
                 display: block;
             }
@@ -684,7 +886,6 @@
                 display: none;
             }
 
-            /* Dropdown Mobile */
             .dropdown-content {
                 position: relative;
                 top: 0;
@@ -721,14 +922,13 @@
                 width: calc(100% - 60px);
             }
 
-            /* Blog Mobile Adjustments */
-            .blog-hero {
-                height: 60vh;
+            .content-wrapper {
+                border-radius: 40px 40px 0 0;
+                margin-top: -60px;
             }
 
-            .article-body>p:first-of-type::first-letter {
+            .article-content>p:first-of-type::first-letter {
                 font-size: 3rem;
-                margin-right: 10px;
             }
 
             .footer-content {
@@ -748,34 +948,78 @@
                 transform: translateY(0);
             }
         }
+
+        /* --- FLOATING WHATSAPP --- */
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            /* Warna Hijau WhatsApp */
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            /* Pastikan di atas elemen lain */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .floating-wa:hover {
+            background-color: #1ebc57;
+            /* Warna sedikit lebih gelap saat hover */
+            transform: scale(1.1);
+            /* Efek membesar sedikit */
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Agar ikon pas di tengah */
+        .floating-wa i {
+            margin-top: 2px;
+            /* Sedikit penyesuaian vertikal */
+        }
+
+        /* Responsif untuk Mobile (agar tidak terlalu besar/menutupi konten) */
+        @media (max-width: 768px) {
+            .floating-wa {
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
     <nav id="navbar">
-        <div class="logo">RIMBA</div>
-
-        <div class="hamburger">
-            <i class="fas fa-bars"></i>
-        </div>
-
+        <a href="index.html" class="logo">RIMBA</a>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
         <ul class="nav-links">
             <li><a href="index.html#beranda">Beranda</a></li>
             <li><a href="index.html#tentang">Tentang</a></li>
             <li><a href="galeri.html">Galeri</a></li>
-
             <li class="dropdown">
-                <a href="index.html#paket" class="dropdown-toggle">
-                    Paket <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
-                </a>
+                <a href="index.html#paket" class="dropdown-toggle">Paket <i class="fas fa-chevron-down"
+                        style="font-size: 0.8em;"></i></a>
                 <div class="dropdown-content">
                     <a href="paket-pemula.html">Pemula</a>
                     <a href="paket-extreme.html">Extrem</a>
                     <a href="paket-family.html">Family</a>
                 </div>
             </li>
-
             <li><a href="blog.html" style="color: var(--accent);">Blog</a></li>
             <li><a href="booking.html" class="btn-booking">Booking Sekarang</a></li>
         </ul>
@@ -783,144 +1027,231 @@
 
     <header class="blog-hero">
         <div class="blog-hero-content">
+            <span class="cat-tag">Kesehatan</span>
             <h1>Manfaat Kesehatan Mental dari Rafting</h1>
-            <div class="blog-meta">
-                <span><i class="far fa-calendar"></i> 20 Nov 2024</span>
-                <span><i class="far fa-user"></i> Dr. Tirta</span>
-                <span><i class="far fa-clock"></i> 8 Menit Baca</span>
+            <div class="author-meta">
+                <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=100&auto=format&fit=crop"
+                    alt="Dr. Tirta">
+                <div>
+                    <strong>Dr. Tirta</strong><br>
+                    <span style="opacity: 0.8;">20 Nov 2024 • 7 Menit Baca</span>
+                </div>
             </div>
         </div>
     </header>
 
     <div class="content-wrapper">
-        <main class="article-container">
+        <div class="blog-layout">
 
-            <aside class="sticky-share">
-                <a href="#" class="share-btn"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" class="share-btn"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="share-btn"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="share-btn"><i class="fas fa-link"></i></a>
+            <aside class="sidebar">
+                <div class="sticky-sidebar">
+                    <div class="toc-box">
+                        <h3>Daftar Isi</h3>
+                        <ul class="toc-list">
+                            <li><a href="#intro" class="active">Pendahuluan</a></li>
+                            <li><a href="#stres">1. Mengurangi Stres</a></li>
+                            <li><a href="#endorfin">2. Hormon Kebahagiaan</a></li>
+                            <li><a href="#ecotherapy">3. Terapi Alam</a></li>
+                            <li><a href="#fokus">4. Melatih Fokus</a></li>
+                            <li><a href="#koneksi">5. Koneksi Sosial</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="promo-sidebar">
+                        <h3>Butuh Healing?</h3>
+                        <p>Segarkan pikiran dengan paket rafting hemat akhir pekan ini!</p>
+                        <a href="booking.html" class="btn-white">Book Now</a>
+                    </div>
+                </div>
             </aside>
 
-            <article class="article-body">
-                <p>Di era modern yang serba cepat ini, stres dan kecemasan telah menjadi "teman akrab" bagi banyak
-                    orang. Tekanan pekerjaan, notifikasi gadget yang tidak pernah berhenti, hingga polusi udara di
-                    perkotaan membuat otak kita bekerja terus-menerus tanpa jeda. Banyak yang mencari pelarian melalui
-                    liburan, namun tidak semua liburan memberikan efek pemulihan yang maksimal. Salah satu aktivitas
-                    yang kini mulai dilirik bukan hanya sebagai olahraga ekstrem, tetapi juga sebagai terapi mental,
-                    adalah arung jeram atau rafting.</p>
+            <div class="article-content">
 
-                <p>Ternyata, melawan arus sungai tidak hanya membakar kalori fisik, tetapi juga membakar beban pikiran.
-                    Sebagai seorang praktisi kesehatan, saya melihat fenomena ini bukan sekadar tren, melainkan sebuah
-                    kebutuhan biologis dan psikologis tubuh manusia untuk kembali ke alam. Berikut adalah penjelasan
-                    medis dan psikologis mengapa rafting bisa menjadi obat mujarab bagi kesehatan mental Anda.</p>
+                <figure>
+                    <img src="img/destinasi/pekalen-1.webp" alt="Keceriaan Tim Rafting">
+                    <figcaption>Tim rafting mengangkat dayung dengan semangat saat melewati jeram sungai yang deras.
+                    </figcaption>
+                </figure>
 
-                <h2>1. Efek "Green & Blue Space" pada Otak</h2>
-                <p>Secara ilmiah, berada di lingkungan yang didominasi warna hijau (pepohonan/hutan) dan biru
-                    (air/sungai) memiliki dampak langsung terhadap penurunan kadar kortisol, yaitu hormon pemicu stres.
-                    Konsep ini sering disebut sebagai *Ecotherapy* atau terapi alam.</p>
-                <p>Saat Anda melakukan rafting, Anda dikelilingi oleh hutan tropis yang rimbun dan suara gemericik air
-                    sungai yang konstan. Suara air ini menghasilkan apa yang disebut <em>Pink Noise</em>, sebuah
-                    frekuensi suara yang terbukti dapat menenangkan gelombang otak dan meningkatkan kualitas tidur di
-                    malam hari setelah beraktivitas. Berbeda dengan suara bising perkotaan yang memicu kewaspadaan
-                    (alertness), suara alam memicu relaksasi parasimpatik.</p>
+                <section id="intro">
+                    <p>Ternyata melawan arus sungai bisa mengurangi stres dan meningkatkan hormon kebahagiaan. Simak
+                        penjelasan medisnya. Dalam dunia medis modern, kita sering mendengar istilah <i>burnout</i>
+                        akibat rutinitas kerja yang monoton. Olahraga ekstrem seperti arung jeram menawarkan solusi unik
+                        yang memadukan aktivitas fisik intens dengan ketenangan alam.</p>
+                </section>
 
-                <h2>2. Adrenalin Sebagai "Eustress"</h2>
-                <p>Banyak orang menghindari stres, padahal tidak semua stres itu buruk. Dalam dunia medis, kita mengenal
-                    istilah <strong>Eustress</strong> atau stres yang positif. Saat Anda menghadapi jeram yang
-                    menantang, tubuh akan melepaskan adrenalin. Dalam dosis yang tepat dan lingkungan yang terkontrol
-                    (seperti rafting dengan prosedur keamanan yang baik), lonjakan adrenalin ini membuat Anda merasa
-                    lebih hidup, fokus, dan energik.</p>
-
-                <p>Setelah adrenalin mereda pasca menaklukan jeram, otak akan membanjiri tubuh dengan hormon dopamin dan
-                    endorfin. Ini adalah hormon "hadiah" yang memberikan rasa puas, bahagia, dan euforia alami. Perasaan
-                    ini jauh lebih kuat dan tahan lama dibandingkan kepuasan instan yang didapat dari media sosial atau
-                    belanja online.</p>
-
-                <blockquote>
-                    <i class="fas fa-quote-left"></i>
-                    "Melawan arus sungai mengajarkan otak kita bahwa rintangan besar bisa dilalui. Ini adalah latihan
-                    mental terbaik untuk membangun resiliensi di kehidupan nyata."
-                </blockquote>
-
-                <h2>3. Melatih "Mindfulness" Tanpa Usaha</h2>
-                <p>Meditasi seringkali sulit dilakukan bagi pemula karena pikiran cenderung mengembara. Namun, rafting
-                    memaksa Anda untuk berada dalam kondisi *Mindfulness* atau sadar penuh akan momen saat ini secara
-                    otomatis. Ketika Anda berada di atas perahu karet, menghadapi jeram Grade 3 atau 4, otak Anda tidak
-                    memiliki kapasitas untuk memikirkan cicilan rumah, deadline pekerjaan, atau masalah asmara.</p>
-                <p>Fokus Anda sepenuhnya tertuju pada dayungan, instruksi pemandu, dan keseimbangan perahu. Kondisi ini
-                    disebut sebagai <em>Flow State</em>, sebuah keadaan mental di mana seseorang begitu larut dalam
-                    aktivitas sehingga waktu terasa hilang. *Flow state* adalah salah satu cara paling efektif untuk
-                    mengistirahatkan otak dari kecemasan kronis (anxiety) dan *overthinking*.</p>
-
-                <img src="https://images.unsplash.com/photo-1598950854378-028a30598852?q=80&w=2072&auto=format&fit=crop"
-                    alt="Rafting dan Kebahagiaan">
-
-                <h2>4. Membangun Koneksi Sosial (Bonding)</h2>
-                <p>Manusia adalah makhluk sosial, dan isolasi sosial adalah salah satu pemicu depresi terbesar. Rafting
-                    adalah olahraga tim. Anda tidak bisa melakukannya sendirian. Di atas perahu, status sosial, jabatan,
-                    dan latar belakang menjadi tidak relevan. Yang ada hanyalah kerja sama tim untuk menjaga perahu
-                    tetap seimbang.</p>
-                <p>Interaksi intens, tawa saat tercebur air, dan sorakan keberhasilan saat melewati jeram memicu
-                    pelepasan hormon Oksitosin, atau hormon cinta dan kepercayaan. Aktivitas ini sangat efektif untuk
-                    *team building* perusahaan atau mempererat hubungan keluarga yang mulai renggang karena kesibukan
-                    masing-masing.</p>
-
-                <div class="highlight-box">
-                    <h3><i class="fas fa-heartbeat"></i> Fakta Medis Singkat:</h3>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> <strong>Detoks Digital:</strong> 2-3 jam tanpa HP di
-                            sungai mengurangi kelelahan mata dan mental.</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Vitamin D:</strong> Paparan sinar matahari pagi
-                            meningkatkan imun dan mood.</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Kepercayaan Diri:</strong> Mengatasi rasa takut
-                            fisik meningkatkan *self-efficacy*.</li>
+                <div class="mobile-toc">
+                    <h3>Daftar Isi</h3>
+                    <ul class="toc-list">
+                        <li><a href="#intro">Pendahuluan</a></li>
+                        <li><a href="#stres">1. Mengurangi Stres</a></li>
+                        <li><a href="#endorfin">2. Hormon Kebahagiaan</a></li>
+                        <li><a href="#ecotherapy">3. Terapi Alam</a></li>
+                        <li><a href="#fokus">4. Melatih Fokus</a></li>
+                        <li><a href="#koneksi">5. Koneksi Sosial</a></li>
+                        <li><a href="#faq">FAQ</a></li>
                     </ul>
                 </div>
 
-                <h2>5. Mengubah Cara Pandang Terhadap Rasa Takut</h2>
-                <p>Bagi pasien dengan gangguan kecemasan, rasa takut seringkali menjadi penghalang untuk menikmati
-                    hidup. Rafting menyediakan lingkungan yang aman untuk "bermain" dengan rasa takut tersebut. Anda
-                    belajar bahwa jatuh ke air itu dingin dan mengejutkan, tapi Anda bisa naik kembali ke perahu.</p>
-                <p>Pengalaman fisik ini diterjemahkan oleh otak sebagai sebuah keberhasilan bertahan hidup (survival
-                    success). Secara tidak sadar, ini menanamkan pola pikir baru: "Jika saya bisa melewati jeram deras
-                    ini, saya juga bisa melewati masalah berat di kantor." Ini adalah bentuk terapi perilaku kognitif
-                    (CBT) yang dilakukan di alam terbuka.</p>
+                <section>
+                    <p>Banyak penelitian menunjukkan bahwa menghabiskan waktu di alam terbuka (<i>green space</i>) dan
+                        di dekat air (<i>blue space</i>) memiliki dampak signifikan terhadap penurunan kecemasan. Mari
+                        kita bedah 5 manfaat utama rafting bagi kesehatan mental Anda.</p>
+                </section>
 
-                <h3>Kesimpulan</h3>
-                <p>Kesehatan bukan hanya soal angka di timbangan atau hasil cek darah di laboratorium. Kesehatan mental
-                    adalah fondasi dari kualitas hidup yang baik. Jika Anda merasa jenuh, stres, atau kehilangan
-                    semangat, mungkin resep yang Anda butuhkan bukanlah obat-obatan, melainkan sebuah dayung, helm, dan
-                    derasnya arus sungai.</p>
-                <p>Di Rimba Rafting, kami tidak hanya memandu Anda menyusuri sungai, tapi kami menemani Anda dalam
-                    perjalanan memulihkan jiwa. Air sungai yang dingin akan membilas kelelahan mental Anda, dan Anda
-                    akan pulang dengan versi diri yang lebih segar dan tangguh. Salam sehat!</p>
+                <section id="stres">
+                    <h2>1. Menurunkan Kadar Kortisol (Stres)</h2>
+                    <p>Stres kronis ditandai dengan tingginya kadar hormon kortisol dalam tubuh. Suara gemericik air
+                        sungai yang konstan dan pemandangan hijau di sekitar tebing sungai memiliki efek
+                        saraf parasimpatis yang menenangkan.</p>
+                    <p>Sebuah studi menunjukkan bahwa beraktivitas di alam selama 20-30 menit saja sudah cukup untuk
+                        menurunkan level kortisol secara signifikan. Di sungai, Anda "dipaksa" melupakan deadline
+                        pekerjaan dan hanya menikmati momen saat ini.</p>
+                </section>
 
-                <p><em>Stay Active, Stay Sane!</em></p>
-            </article>
-        </main>
+                <section id="endorfin">
+                    <h2>2. Pemicu Hormon Kebahagiaan (Endorfin)</h2>
+                    <p>Saat perahu meluncur menuruni jeram, tubuh Anda merespons dengan lonjakan adrenalin. Setelah
+                        momen menegangkan itu lewat, otak akan melepaskan endorfin dan dopamin—hormon yang menciptakan
+                        rasa bahagia dan euforia.</p>
+                    <p>Efek ini sering disebut sebagai "Rafter's High", mirip dengan perasaan lega dan puas setelah
+                        lari maraton, namun didapatkan dengan cara yang jauh lebih seru dan menyenangkan.</p>
+                </section>
 
-        <section class="blog-nav-section">
-            <div class="nav-grid">
-                <a href="blog-2.html" class="nav-card prev">
-                    <img src="https://images.unsplash.com/photo-1594389028886-3a71b8089201?q=80&w=2070&auto=format&fit=crop"
-                        alt="Peralatan Rafting">
-                    <div class="nav-card-content">
-                        <span class="nav-label"><i class="fas fa-arrow-left"></i> Sebelumnya</span>
-                        <h4 class="nav-title">Mengenal Peralatan Wajib Arung Jeram</h4>
+                <div class="inline-promo">
+                    <div class="ip-text">
+                        <h4>🌿 Paket Wellness Rafting</h4>
+                        <p>Rafting santai + Yoga di tepi sungai + Makan siang organik.</p>
                     </div>
-                </a>
+                    <a href="booking.html" class="ip-btn">Lihat Paket</a>
+                </div>
 
-                <a href="blog-4.html" class="nav-card next">
-                    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop"
-                        alt="Rekomendasi Wisata">
-                    <div class="nav-card-content">
-                        <span class="nav-label">Selanjutnya <i class="fas fa-arrow-right"></i></span>
-                        <h4 class="nav-title">Sungai Terbaik di Jawa Barat untuk Rafting</h4>
+                <section id="ecotherapy">
+                    <h2>3. Terapi Alam (Ecotherapy)</h2>
+                    <p>Rafting adalah bentuk nyata dari <i>Ecotherapy</i>. Jauh dari polusi udara perkotaan dan paparan
+                        layar gadget (<i>digital detox</i>) memberikan kesempatan bagi otak untuk beristirahat
+                        (<i>cognitive rest</i>).</p>
+                    <p>Udara sungai yang kaya akan ion negatif juga dipercaya dapat meningkatkan suplai oksigen ke otak,
+                        membuat pikiran terasa lebih jernih dan segar setelah pengarungan selesai.</p>
+                </section>
+
+                <blockquote>
+                    "Alam bukan tempat untuk dikunjungi. Alam adalah rumah. Pulanglah sesekali untuk menyembuhkan jiwa
+                    yang lelah."
+                </blockquote>
+
+                <section id="fokus">
+                    <h2>4. Melatih Fokus & Mindfulness</h2>
+                    <p>Di atas perahu karet, Anda tidak punya pilihan selain fokus. Mendengarkan komando pemandu,
+                        memperhatikan arus air, dan mendayung secara sinkron membutuhkan konsentrasi penuh.</p>
+                    <p>Kondisi ini menciptakan <i>Flow State</i>, sebuah keadaan mental di mana seseorang begitu larut
+                        dalam aktivitas sehingga waktu terasa hilang dan kekhawatiran akan masa depan atau penyesalan
+                        masa lalu lenyap seketika.</p>
+                </section>
+
+                <figure>
+                    <img src="img/destinasi/pekalen-2.webp" alt="Kerjasama Tim">
+                    <figcaption>Sekelompok orang sedang arung jeram di sungai berarus deras.</figcaption>
+                </figure>
+
+                <section id="koneksi">
+                    <h2>5. Membangun Koneksi Sosial</h2>
+                    <p>Isolasi sosial adalah salah satu pemicu depresi. Rafting adalah olahraga tim yang mustahil
+                        dilakukan sendirian. Anda harus percaya pada teman satu perahu dan saling menjaga.</p>
+                    <ul>
+                        <li><strong>Shared Experience:</strong> Melewati rintangan bersama menciptakan ikatan emosional
+                            yang kuat.</li>
+                        <li><strong>Komunikasi:</strong> Tertawa bersama saat perahu terbentur atau terciprat air adalah
+                            terapi sosial yang sangat ampuh.</li>
+                    </ul>
+                </section>
+
+                <section id="faq" class="faq-section">
+                    <h2>Pertanyaan Sering Diajukan (FAQ)</h2>
+
+                    <details class="faq-item">
+                        <summary>Apakah aman bagi penderita gangguan kecemasan?</summary>
+                        <p>Rafting bisa menjadi terapi yang baik, namun disarankan memilih sungai dengan Grade rendah
+                            (I-II) agar tidak memicu kepanikan berlebih. Konsultasikan dengan dokter Anda terlebih
+                            dahulu.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Apakah anak-anak juga bisa mendapatkan manfaat ini?</summary>
+                        <p>Tentu. Rafting melatih keberanian dan kepercayaan diri anak, serta menjauhkan mereka sejenak
+                            dari kecanduan gadget.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Seberapa sering sebaiknya melakukan rafting?</summary>
+                        <p>Untuk manfaat kesehatan mental yang optimal, aktivitas alam (tidak harus selalu rafting)
+                            disarankan dilakukan minimal sebulan sekali sebagai bentuk <i>recharging</i>.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Apakah perlu bisa berenang?</summary>
+                        <p>Tidak wajib, karena Anda akan menggunakan pelampung. Rasa aman dari pelampung justru membantu
+                            mengurangi ketakutan akan air.</p>
+                    </details>
+                </section>
+
+                <div class="post-footer">
+                    <div class="author-box">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=100&auto=format&fit=crop"
+                            alt="Dr. Tirta">
+                        <div class="author-info">
+                            <h4>Dr. Tirta</h4>
+                            <span>Medical Influencer & Sport Enthusiast</span>
+                            <p style="font-size: 0.9rem; margin:0; color:#666;">Dokter yang aktif mengedukasi
+                                pentingnya keseimbangan kesehatan fisik dan mental melalui olahraga luar ruang.</p>
+                        </div>
                     </div>
-                </a>
+
+                    <div class="share-box">
+                        <h5>Bagikan Artikel Ini:</h5>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <section class="related-posts">
+            <div class="related-header">
+                <h2>Bacaan Seru Lainnya</h2>
+            </div>
+            <div class="related-grid">
+                <div class="r-card">
+                    <div class="r-img"><img src="img/baru/keselamatan.webp" alt="Sungai"></div>
+                    <div class="r-content">
+                        <h4>Mengenal Peralatan Wajib Arung Jeram
+                        </h4>
+                        <a href="blog-2.html">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="r-card">
+                    <div class="r-img"><img src="img/destinasi/kaliwatu-1.webp" alt="Peralatan"></div>
+                    <div class="r-content">
+                        <h4>Sungai Terbaik di Jawa Barat untuk Rafting
+                        </h4>
+                        <a href="blog-4.html">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="r-card">
+                    <div class="r-img"><img src="img/destinasi/glidik-1.webp" alt="Hujan"></div>
+                    <div class="r-content">
+                        <h4>Rafting Saat Hujan? Aman Gak Sih? Simak Faktanya</h4>
+                        <a href="blog-5.html">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
             </div>
         </section>
+
     </div>
 
     <footer>
@@ -934,7 +1265,7 @@
                 <h4>Navigasi</h4>
                 <ul>
                     <li><a href="index.html#beranda">Beranda</a></li>
-                <li><a href="about.html">Tentang</a></li>
+                    <li><a href="about.html">Tentang</a></li>
                     <li><a href="galeri.html">Galeri</a></li>
                     <li><a href="blog.html">Blog</a></li>
                 </ul>
@@ -960,61 +1291,84 @@
         </div>
     </footer>
 
+    <a href="https://wa.me/6281299887766?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20tanya%20paket%20rafting."
+        class="floating-wa" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <script>
-        // 1. Script Navbar & Hamburger
-        const navbar = document.getElementById('navbar');
-        window.onscroll = () => {
+        // 1. Progress Bar Logic
+        window.onscroll = function () {
+            // Navbar Effect
+            const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
+
+            // Progress Bar Effect
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+
+            // Active TOC Logic
+            let sections = document.querySelectorAll('section');
+            let navLinks = document.querySelectorAll('.toc-list a');
+
+            sections.forEach(sec => {
+                let top = window.scrollY;
+                let offset = sec.offsetTop - 150;
+                let height = sec.offsetHeight;
+                let id = sec.getAttribute('id');
+
+                if (top >= offset && top < offset + height) {
+                    navLinks.forEach(links => {
+                        links.classList.remove('active');
+                        // Handle multiple TOC links (Mobile + Desktop)
+                        let targetLinks = document.querySelectorAll('.toc-list a[href*=' + id + ']');
+                        targetLinks.forEach(link => link.classList.add('active'));
+                    });
+                }
+            });
         };
 
+        // 2. Hamburger & Dropdown Logic
         const hamburger = document.querySelector('.hamburger');
         const icon = hamburger.querySelector('i');
         const navLinks = document.querySelector('.nav-links');
 
         hamburger.addEventListener('click', (e) => {
             navLinks.classList.toggle('active');
-
             if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-                hamburger.classList.add('active-color');
+                icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); hamburger.classList.add('active-color');
             } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-                if (window.scrollY < 50) {
-                    hamburger.classList.remove('active-color');
-                }
+                icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
+                if (window.scrollY < 50) { hamburger.classList.remove('active-color'); }
             }
             e.stopPropagation();
         });
 
+        // Close menu on click outside
         document.addEventListener('click', (e) => {
             if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
                 if (navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
-                    if (window.scrollY < 50) {
-                        hamburger.classList.remove('active-color');
-                    }
+                    if (window.scrollY < 50) { hamburger.classList.remove('active-color'); }
                 }
             }
         });
 
-        // 2. Script Dropdown Mobile
+        // Mobile Dropdown
         const dropdownToggle = document.querySelector('.dropdown-toggle');
         const dropdownContent = document.querySelector('.dropdown-content');
-        const dropdownParent = document.querySelector('.dropdown');
-
         dropdownToggle.addEventListener('click', (e) => {
             if (window.innerWidth <= 768) {
                 e.preventDefault();
                 dropdownContent.classList.toggle('show-mobile');
-                dropdownParent.classList.toggle('active');
             }
         });
     </script>

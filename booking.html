@@ -222,7 +222,7 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            background: url('https://images.unsplash.com/photo-1598950854378-028a30598852?q=80&w=2072&auto=format&fit=crop');
+            background: url('img/destinasi/sampean-1.webp');
             background-size: cover;
             background-position: center;
         }
@@ -657,13 +657,60 @@
                 transform: translateY(0);
             }
         }
+
+        /* --- FLOATING WHATSAPP --- */
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            /* Warna Hijau WhatsApp */
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            /* Pastikan di atas elemen lain */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .floating-wa:hover {
+            background-color: #1ebc57;
+            /* Warna sedikit lebih gelap saat hover */
+            transform: scale(1.1);
+            /* Efek membesar sedikit */
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Agar ikon pas di tengah */
+        .floating-wa i {
+            margin-top: 2px;
+            /* Sedikit penyesuaian vertikal */
+        }
+
+        /* Responsif untuk Mobile (agar tidak terlalu besar/menutupi konten) */
+        @media (max-width: 768px) {
+            .floating-wa {
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <nav id="navbar">
-        <div class="logo">RIMBA</div>
+        <a href="index.html" class="logo">RIMBA</a>
         <div class="hamburger"><i class="fas fa-bars"></i></div>
         <ul class="nav-links">
             <li><a href="index.html#beranda">Beranda</a></li>
@@ -828,6 +875,11 @@
             <p>© 2024 Rimba Rafting Indonesia. Designed with passion.</p>
         </div>
     </footer>
+
+    <a href="https://wa.me/6281299887766?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20tanya%20paket%20rafting."
+        class="floating-wa" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script>
         // 1. Script Navbar & Hamburger (Sama dengan Index)

@@ -225,7 +225,7 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            background: url('https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=1920&auto=format&fit=crop');
+            background: url('img/destinasi/sampean-1.webp');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -277,42 +277,50 @@
             border-radius: 10px;
         }
 
-        /* --- FILTER BUTTONS --- */
+        /* --- FILTER BUTTONS (UPDATED) --- */
         .filter-container {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
+            width: 100%;
             margin-top: 1rem;
             margin-bottom: 3rem;
             position: sticky;
-            top: 100px;
+            top: 90px;
+            /* Sesuaikan dengan tinggi navbar */
             z-index: 90;
-            padding: 10px;
+            padding: 10px 5%;
+            /* Padding kiri kanan agar tidak mepet */
         }
 
         .filter-menu {
             background: var(--white);
-            padding: 10px 15px;
+            padding: 8px;
             border-radius: 50px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
             justify-content: center;
+            align-items: center;
+            /* Tambahan agar di desktop tidak terlalu lebar */
+            max-width: 800px;
+            width: auto;
+            transition: all 0.3s ease;
         }
 
         .filter-btn {
             border: none;
             background: transparent;
-            padding: 8px 20px;
+            padding: 10px 24px;
             border-radius: 30px;
             font-family: var(--font-body);
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             cursor: pointer;
             color: var(--text-gray);
             transition: 0.3s;
+            white-space: nowrap;
+            /* Mencegah teks turun baris di desktop */
         }
 
         .filter-btn:hover {
@@ -561,7 +569,7 @@
         }
 
         /* --- RESPONSIVE --- */
-        @media (max-width: 968px) {
+        @media (max-width: 768px) {
             .gallery-hero h1 {
                 font-size: 3rem;
             }
@@ -672,11 +680,54 @@
             }
 
             .filter-container {
-                top: 80px;
+                top: 75px;
+                /* Posisi sticky sedikit diturunkan dari navbar */
+                padding: 0 15px;
+                /* Jarak aman dari pinggir layar */
+                margin-bottom: 2rem;
             }
 
             .filter-menu {
                 width: 100%;
+                border-radius: 20px;
+                /* Radius sudut lebih kecil agar hemat tempat */
+                padding: 10px;
+                gap: 8px;
+                /* Jarak antar tombol diperkecil */
+
+                /* MENGUBAH TAMPILAN JADI GRID 2 KOLOM */
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                /* Membagi jadi 2 kolom sama besar */
+            }
+
+            .filter-btn {
+                width: 100%;
+                /* Tombol memenuhi kotak gridnya */
+                padding: 8px 5px;
+                /* Padding lebih kecil */
+                font-size: 0.75rem;
+                /* Ukuran font diperkecil agar muat */
+                border-radius: 12px;
+                /* Menyesuaikan bentuk kotak */
+                white-space: normal;
+                /* Izinkan teks panjang turun ke bawah jika perlu */
+                line-height: 1.2;
+                /* Spasi antar baris teks */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                height: 100%;
+                /* Tinggi tombol seragam */
+                min-height: 40px;
+                /* Tinggi minimal agar mudah dipencet */
+            }
+
+            /* Khusus tombol 'Semua' agar tidak terlalu kosong, opsional: bisa dibuat full width */
+            .filter-btn[data-filter="all"] {
+                grid-column: span 2;
+                /* Uncomment jika ingin tombol 'Semua' lebar sendiri */
             }
         }
 
@@ -691,13 +742,84 @@
                 transform: translateY(0);
             }
         }
+
+        /* --- 7. CTA SECTION --- */
+        .cta-section {
+            background: linear-gradient(rgba(0, 105, 92, 0.9), rgba(0, 77, 64, 0.9)), url('img/destinasi/sampean-1.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 5rem 10%;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .cta-content h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* --- FLOATING WHATSAPP --- */
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            /* Warna Hijau WhatsApp */
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            /* Pastikan di atas elemen lain */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .floating-wa:hover {
+            background-color: #1ebc57;
+            /* Warna sedikit lebih gelap saat hover */
+            transform: scale(1.1);
+            /* Efek membesar sedikit */
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Agar ikon pas di tengah */
+        .floating-wa i {
+            margin-top: 2px;
+            /* Sedikit penyesuaian vertikal */
+        }
+
+        /* Responsif untuk Mobile (agar tidak terlalu besar/menutupi konten) */
+        @media (max-width: 768px) {
+            .floating-wa {
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <nav id="navbar">
-        <div class="logo">RIMBA</div>
+        <a href="index.html" class="logo">RIMBA</a>
         <div class="hamburger"><i class="fas fa-bars"></i></div>
         <ul class="nav-links">
             <li><a href="index.html">Beranda</a></li>
@@ -719,7 +841,7 @@
     </nav>
 
     <div class="gallery-hero">
-        <h1>Jejak Petualangan</h1>
+        <h1>Jelajahi Destinasi Rafting Terbaik</h1>
     </div>
 
     <div class="content-wrapper">
@@ -727,110 +849,150 @@
         <div class="filter-container">
             <div class="filter-menu">
                 <button class="filter-btn active" data-filter="all">Semua</button>
-                <button class="filter-btn" data-filter="extreme">Extreme</button>
-                <button class="filter-btn" data-filter="fun">Fun Rafting</button>
-                <button class="filter-btn" data-filter="alam">Pemandangan</button>
-                <button class="filter-btn" data-filter="camp">Camping</button>
+                <button class="filter-btn" data-filter="maba">Malang & Batu</button>
+                <button class="filter-btn" data-filter="proje">Probolinggo & Jember</button>
+                <button class="filter-btn" data-filter="lumba">Lumajang & Banyuwangi</button>
             </div>
         </div>
 
         <div class="gallery-container">
 
-            <div class="gallery-item" data-category="extreme">
-                <img src="https://images.unsplash.com/photo-1530866495561-507c9faab2ed?q=80&w=800&auto=format&fit=crop"
-                    alt="Arus Deras">
+            <div class="gallery-item" data-category="lumba">
+                <img src="img/destinasi/bajulmati-1.webp" alt="Arus Deras">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
-                        <h4>Jeram Tengkorak</h4>
-                        <span>Extreme</span>
+                        <h4>Sungai Bajulmati</h4>
+                        <span>Banyuwangi</span>
                     </div>
                 </div>
             </div>
 
-            <div class="gallery-item" data-category="fun">
-                <img src="https://images.unsplash.com/photo-1625648866164-9b88496464f1?q=80&w=800&auto=format&fit=crop"
-                    alt="Rafting Santai">
+            <div class="gallery-item" data-category="maba">
+                <img src="img/destinasi/bango-1.webp" alt="Rafting Santai">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
-                        <h4>Sungai Elo</h4>
-                        <span>Fun Rafting</span>
+                        <h4>Sungai Bango</h4>
+                        <span>Batu</span>
                     </div>
                 </div>
             </div>
 
-            <div class="gallery-item" data-category="alam">
-                <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=800&auto=format&fit=crop"
-                    alt="Hutan Pinus">
+            <div class="gallery-item" data-category="lumba">
+                <img src="img/destinasi/glidik-2.webp" alt="Hutan Pinus">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
-                        <h4>Lembah Hijau</h4>
-                        <span>Pemandangan</span>
+                        <h4>Sungai Glidik</h4>
+                        <span>Lumajang</span>
                     </div>
                 </div>
             </div>
 
-            <div class="gallery-item" data-category="extreme">
-                <img src="https://images.unsplash.com/photo-1563299796-b729d0af54a5?q=80&w=800&auto=format&fit=crop"
-                    alt="Tim Pro">
+            <div class="gallery-item" data-category="maba">
+                <img src="img/destinasi/kaliwatu-1.webp" alt="Tim Pro">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
-                        <h4>Tim Rescue</h4>
-                        <span>Extreme</span>
+                        <h4>Sungai Kaliwatu</h4>
+                        <span>Malang</span>
                     </div>
                 </div>
             </div>
 
-            <div class="gallery-item" data-category="camp">
-                <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=800&auto=format&fit=crop"
-                    alt="Api Unggun">
+            <div class="gallery-item" data-category="proje">
+                <img src="img/destinasi/pekalen-1.webp" alt="Api Unggun">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
-                        <h4>Malam Keakraban</h4>
-                        <span>Camping</span>
+                        <h4>Sungai Pekalen</h4>
+                        <span>Probolinggo</span>
                     </div>
                 </div>
             </div>
 
-            <div class="gallery-item" data-category="fun">
-                <img src="https://images.unsplash.com/photo-1544099858-75feeb57f01e?q=80&w=800&auto=format&fit=crop"
-                    alt="Foto Tim">
+            <div class="gallery-item" data-category="proje">
+                <img src="img/destinasi/sampean-1.webp" alt="Foto Tim">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
-                        <h4>Briefing Pagi</h4>
-                        <span>Fun Rafting</span>
+                        <h4>Sungai Sampean</h4>
+                        <span>Bondowoso</span>
                     </div>
                 </div>
             </div>
 
-            <div class="gallery-item" data-category="alam">
-                <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=800&auto=format&fit=crop"
-                    alt="Air Terjun">
+            <div class="gallery-item" data-category="proje">
+                <img src="img/destinasi/tanggul-1.webp" alt="Air Terjun">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
-                        <h4>Curug Bidadari</h4>
-                        <span>Pemandangan</span>
+                        <h4>Sungai Tanggul</h4>
+                        <span>Jember</span>
                     </div>
                 </div>
             </div>
 
-            <div class="gallery-item" data-category="extreme">
-                <img src="https://images.unsplash.com/photo-1520063234250-9884e9d36e2f?q=80&w=800&auto=format&fit=crop"
-                    alt="Big Wave">
+            <div class="gallery-item" data-category="maba">
+                <img src="img/destinasi/bango-2.webp" alt="Big Wave">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
-                        <h4>Ombak Besar</h4>
-                        <span>Extreme</span>
+                        <h4>Sungai Bango</h4>
+                        <span>Batu</span>
                     </div>
                 </div>
             </div>
 
-            <div class="gallery-item" data-category="camp">
-                <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=800&auto=format&fit=crop"
-                    alt="Tenda">
+            <div class="gallery-item" data-category="maba">
+                <img src="img/destinasi/kaliwatu-2.webp" alt="Tenda">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
-                        <h4>Riverside Camp</h4>
-                        <span>Camping</span>
+                        <h4>Sungai Kaliwatu</h4>
+                        <span>Malang</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="proje">
+                <img src="img/destinasi/pekalen-2.webp" alt="Tenda">
+                <div class="gallery-overlay">
+                    <div class="overlay-text">
+                        <h4>Sungai Pekalen</h4>
+                        <span>Probolinggo</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="proje">
+                <img src="img/destinasi/sampean-2.webp" alt="Tenda">
+                <div class="gallery-overlay">
+                    <div class="overlay-text">
+                        <h4>Sungai Sampean</h4>
+                        <span>Bondowoso</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="lumba">
+                <img src="img/destinasi/bajulmati-2.webp" alt="Tenda">
+                <div class="gallery-overlay">
+                    <div class="overlay-text">
+                        <h4>Sungai Bajulmati</h4>
+                        <span>Banyuwangi</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="lumba">
+                <img src="img/destinasi/glidik-1.webp" alt="Tenda">
+                <div class="gallery-overlay">
+                    <div class="overlay-text">
+                        <h4>Sungai Glidik</h4>
+                        <span>Lumajang</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="lumba">
+                <img src="img/destinasi/klatak-2.webp" alt="Tenda">
+                <div class="gallery-overlay">
+                    <div class="overlay-text">
+                        <h4>Sungai Klatak</h4>
+                        <span>Banyuwangi</span>
                     </div>
                 </div>
             </div>
@@ -843,6 +1005,16 @@
         <img src="" alt="Gallery Preview" class="lightbox-content" id="lightboxImg">
         <div class="lightbox-caption" id="lightboxCaption">Judul Foto</div>
     </div>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Siap Untuk Petualangan Berikutnya?</h2>
+            <p>Jangan biarkan keraguan menghalangi Anda. Bergabunglah bersama ribuan petualang lain yang telah
+                merasakan sensasi Rimba Rafting.</p>
+            <a href="booking.html" class="btn-booking" style="display: inline-block; transform: scale(1.1);">Booking
+                Petualangan Sekarang!</a>
+        </div>
+    </section>
 
     <footer>
         <div class="footer-content">
@@ -880,6 +1052,11 @@
             <p>© 2024 Rimba Rafting Indonesia. Designed with passion.</p>
         </div>
     </footer>
+
+    <a href="https://wa.me/6281299887766?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20tanya%20paket%20rafting."
+        class="floating-wa" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script>
         // --- NAVBAR & JS LAINNYA SAMA ---

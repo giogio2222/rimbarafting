@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* --- 1. VARIABLES (SAMA PERSIS DENGAN REFERENSI) --- */
+        /* --- 1. VARIABLES & RESET --- */
         :root {
             --primary: #00695C;
             --primary-light: #4DB6AC;
@@ -42,10 +42,26 @@
             color: var(--text-dark);
             background-color: var(--off-white);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
-        /* --- 2. NAVBAR (SAMA PERSIS DENGAN REFERENSI) --- */
+        /* --- READING PROGRESS BAR --- */
+        .progress-container {
+            width: 100%;
+            height: 5px;
+            background: transparent;
+            position: fixed;
+            top: 0;
+            z-index: 1002;
+        }
+
+        .progress-bar {
+            height: 5px;
+            background: var(--accent);
+            width: 0%;
+        }
+
+        /* --- 2. NAVBAR --- */
         nav {
             position: fixed;
             top: 0;
@@ -108,10 +124,6 @@
             gap: 5px;
         }
 
-        .nav-links a i {
-            transition: transform 0.3s;
-        }
-
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -131,7 +143,6 @@
             color: var(--text-dark);
         }
 
-        /* Dropdown */
         .dropdown-content {
             display: block;
             position: absolute;
@@ -189,7 +200,6 @@
             display: none;
         }
 
-        /* Button Booking */
         .btn-booking {
             background: linear-gradient(45deg, var(--accent), #FF6F00);
             padding: 10px 28px !important;
@@ -208,7 +218,6 @@
             box-shadow: 0 8px 20px rgba(255, 111, 0, 0.5);
         }
 
-        /* Hamburger */
         .hamburger {
             display: none;
             color: var(--white);
@@ -224,23 +233,20 @@
             color: var(--text-dark);
         }
 
-
         /* --- 3. HERO BLOG DETAIL --- */
         .blog-hero {
-            height: 70vh;
+            height: 65vh;
             width: 100%;
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
-            background: url('https://images.unsplash.com/photo-1594389028886-3a71b8089201?q=80&w=2070&auto=format&fit=crop');
-            /* Gambar Peralatan Rafting */
+            background: url('https://images.unsplash.com/photo-1534960680480-2a818c322ce3?q=80&w=2070&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            /* Parallax Effect */
-            padding-bottom: 8rem;
+            padding-bottom: 4rem;
         }
 
         .blog-hero::before {
@@ -261,121 +267,176 @@
             padding: 0 20px;
         }
 
-        .category-badge {
-            background-color: var(--accent);
+        .cat-tag {
+            background: var(--accent);
             color: var(--white);
             padding: 5px 15px;
             border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
             letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
             display: inline-block;
-            margin-bottom: 1rem;
         }
 
         .blog-hero h1 {
             font-family: var(--font-heading);
-            font-size: 3.5rem;
+            font-size: 3rem;
             line-height: 1.2;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
+            margin-bottom: 1rem;
         }
 
-        .blog-meta {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            font-size: 0.95rem;
-            opacity: 0.9;
-        }
-
-        .blog-meta i {
-            margin-right: 8px;
-            color: var(--accent);
-        }
-
-        /* --- 4. CONTENT WRAPPER --- */
-        .content-wrapper {
-            position: relative;
-            z-index: 10;
-            margin-top: -100px;
-            /* Overlap effect */
-            background: var(--white);
-            border-radius: 60px 60px 0 0;
-            box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.15);
-            padding-top: 4rem;
-            padding-bottom: 4rem;
-            overflow: hidden;
-        }
-
-        .content-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 6px;
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        /* --- 5. BLOG ARTICLE LAYOUT --- */
-        .article-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 5%;
-            display: grid;
-            grid-template-columns: 60px 1fr;
-            gap: 50px;
-        }
-
-        /* Sticky Share */
-        .sticky-share {
-            position: sticky;
-            top: 120px;
-            height: fit-content;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .share-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--off-white);
-            color: var(--text-gray);
+        .author-meta {
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: 0.3s;
-            font-size: 1.2rem;
+            gap: 15px;
+            font-size: 0.95rem;
         }
 
-        .share-btn:hover {
-            background: var(--primary);
-            color: var(--white);
-            transform: translateY(-5px);
+        .author-meta img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
         }
 
-        /* Article Typography */
-        .article-body {
-            color: var(--text-dark);
-            font-size: 1.1rem;
-            line-height: 1.8;
+        /* --- 4. CONTENT WRAPPER & GRID LAYOUT --- */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            margin-top: -80px;
+            background: var(--white);
+            border-radius: 60px 60px 0 0;
+            padding-top: 4rem;
+            overflow: visible;
         }
 
-        .article-body p {
-            margin-bottom: 1.5rem;
-            text-align: justify;
+        .blog-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 60px;
+            position: relative;
         }
 
-        /* Drop Cap */
-        .article-body>p:first-of-type::first-letter {
+        /* --- 5. SIDEBAR (TOC & PROMO) --- */
+        .sidebar {
+            position: relative;
+        }
+
+        .sticky-sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .toc-box {
+            background: var(--off-white);
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .toc-box h3 {
             font-family: var(--font-heading);
-            font-size: 4rem;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .toc-list li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .toc-list a {
+            color: var(--text-gray);
+            transition: 0.3s;
+            display: block;
+        }
+
+        .toc-list a:hover,
+        .toc-list a.active {
+            color: var(--accent);
+            padding-left: 5px;
+            font-weight: 600;
+        }
+
+        /* --- NEW: MOBILE TOC STYLING --- */
+        .mobile-toc {
+            display: none;
+            /* Default hidden on desktop */
+            background: var(--off-white);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0 30px 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .mobile-toc h3 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .mobile-toc li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .mobile-toc a {
+            color: var(--text-gray);
+            transition: 0.3s;
+            display: block;
+        }
+
+        .promo-sidebar {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            padding: 30px;
+            border-radius: 20px;
+            color: var(--white);
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 105, 92, 0.3);
+        }
+
+        .promo-sidebar h3 {
+            font-family: var(--font-heading);
+            margin-bottom: 10px;
+        }
+
+        .promo-sidebar .btn-white {
+            background: var(--white);
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .promo-sidebar .btn-white:hover {
+            transform: scale(1.05);
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        /* --- 6. ARTICLE CONTENT --- */
+        .article-content {
+            color: var(--text-dark);
+            font-size: 1.05rem;
+        }
+
+        .article-content>p:first-of-type::first-letter {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
             font-weight: 800;
             color: var(--primary);
             float: left;
@@ -383,166 +444,308 @@
             line-height: 0.8;
         }
 
-        .article-body h2 {
+        .article-content h2 {
             font-family: var(--font-heading);
             color: var(--primary);
-            font-size: 2rem;
-            margin: 3rem 0 1.5rem;
+            margin: 2.5rem 0 1rem;
             position: relative;
             padding-left: 20px;
-            font-weight: 700;
         }
 
-        .article-body h2::before {
+        .article-content h2::before {
             content: '';
             position: absolute;
             left: 0;
             top: 5px;
             bottom: 5px;
-            width: 6px;
+            width: 5px;
             background: var(--accent);
             border-radius: 5px;
         }
 
-        .article-body h3 {
-            font-family: var(--font-heading);
-            color: var(--text-dark);
-            margin: 2rem 0 1rem;
-            font-weight: 700;
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
         }
 
-        .article-body img {
-            width: 100%;
-            border-radius: 20px;
+        figure {
             margin: 2rem 0;
-            box-shadow: 20px 20px 0 var(--off-white), 0 0 20px rgba(0, 0, 0, 0.05);
+            width: 100%;
         }
 
-        /* Blockquote */
-        blockquote {
-            background: #e0f2f1;
-            border-left: 5px solid var(--primary);
-            margin: 2.5rem 0;
-            padding: 2.5rem;
-            font-family: var(--font-heading);
+        /* Adjustment: First Figure specific margin if needed */
+        .article-content>figure:first-child {
+            margin-top: 0;
+            margin-bottom: 2rem;
+        }
+
+        figure img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        figure img:hover {
+            transform: scale(1.01);
+        }
+
+        figcaption {
+            font-size: 0.85rem;
+            color: #777;
+            text-align: center;
+            margin-top: 10px;
             font-style: italic;
-            font-size: 1.25rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        blockquote {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-style: italic;
             color: var(--primary);
-            border-radius: 0 20px 20px 0;
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: #e0f2f1;
+            border-radius: 20px;
             position: relative;
         }
 
-        blockquote i {
+        blockquote::before {
+            content: '\f10d';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
             position: absolute;
             top: -15px;
-            left: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             font-size: 2rem;
-            color: var(--primary);
+            color: var(--accent);
             background: #e0f2f1;
             padding: 0 10px;
             border-radius: 50%;
         }
 
-        /* Highlight Box */
-        .highlight-box {
-            background: linear-gradient(135deg, var(--primary), #004d40);
-            color: var(--white);
-            padding: 2.5rem;
+        /* --- 7. PROMO COLUMN --- */
+        .inline-promo {
+            margin: 3rem 0;
+            padding: 30px;
+            border: 2px dashed var(--accent);
             border-radius: 20px;
-            margin: 2rem 0;
-            box-shadow: 0 15px 30px rgba(0, 105, 92, 0.3);
-        }
-
-        .highlight-box h3 {
-            color: var(--accent);
-            margin-top: 0;
-        }
-
-        .highlight-box ul li {
-            margin-bottom: 12px;
+            background: #fff8e1;
             display: flex;
-            align-items: start;
-            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
         }
 
-        .highlight-box ul li i {
-            margin-top: 5px;
+        .ip-text h4 {
+            color: var(--text-dark);
+            font-family: var(--font-heading);
+            margin-bottom: 5px;
+        }
+
+        .ip-text p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        .ip-btn {
+            background: var(--accent);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* --- 8. FAQ ACCORDION --- */
+        .faq-section {
+            margin-top: 4rem;
+        }
+
+        .faq-section h2 {
+            border: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border: 1px solid #eee;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        details summary {
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary);
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        details summary::after {
+            content: '+';
+            font-size: 1.5rem;
             color: var(--accent);
         }
 
-        .highlight-box p {
-            color: rgba(255, 255, 255, 0.9);
+        details[open] summary::after {
+            content: '-';
         }
 
-        /* --- 6. NEXT/PREV NAVIGATION --- */
-        .blog-nav-section {
-            padding: 4rem 10%;
+        details p {
+            padding: 15px 20px;
             background: var(--off-white);
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--text-gray);
         }
 
-        .nav-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        /* --- 9. AUTHOR & SHARE --- */
+        .post-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             gap: 30px;
         }
 
-        .nav-card {
-            background: var(--white);
-            border-radius: 20px;
-            overflow: hidden;
+        .author-box {
             display: flex;
+            gap: 15px;
             align-items: center;
-            transition: 0.4s;
-            position: relative;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .nav-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 105, 92, 0.15);
-        }
-
-        .nav-card img {
-            width: 140px;
-            height: 120px;
-            object-fit: cover;
-        }
-
-        .nav-card-content {
-            padding: 20px;
             flex: 1;
         }
 
-        .nav-label {
-            font-size: 0.8rem;
-            color: var(--accent);
-            font-weight: 700;
-            text-transform: uppercase;
+        .author-box img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .author-info span {
+            font-size: 0.85rem;
+            color: #999;
             display: block;
             margin-bottom: 5px;
         }
 
-        .nav-title {
-            font-family: var(--font-heading);
-            font-weight: 700;
-            color: var(--text-dark);
-            font-size: 1.1rem;
-            line-height: 1.4;
-        }
-
-        .nav-card.prev .nav-card-content {
-            text-align: left;
-        }
-
-        .nav-card.next {
-            flex-direction: row-reverse;
-        }
-
-        .nav-card.next .nav-card-content {
+        .share-box {
             text-align: right;
         }
 
-        /* --- 7. FOOTER (SAMA PERSIS DENGAN REFERENSI) --- */
+        .share-box h5 {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: #999;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--off-white);
+            color: var(--text-gray);
+            align-items: center;
+            justify-content: center;
+            margin-left: 5px;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* --- 10. RELATED POSTS --- */
+        .related-posts {
+            padding: 4rem 10%;
+            background: var(--off-white);
+        }
+
+        .related-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .related-header h2 {
+            font-family: var(--font-heading);
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .r-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
+        }
+
+        .r-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .r-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .r-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+
+        .r-card:hover .r-img img {
+            transform: scale(1.1);
+        }
+
+        .r-content {
+            padding: 20px;
+        }
+
+        .r-content h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .r-content a {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* --- FOOTER --- */
         footer {
             background-color: #111;
             color: #ccc;
@@ -607,38 +810,40 @@
 
         /* --- RESPONSIVE --- */
         @media (max-width: 968px) {
+            .blog-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+                /* Hide Sidebar on Desktop */
+            }
+
+            /* Display Mobile TOC */
+            .mobile-toc {
+                display: block;
+            }
+
             .blog-hero h1 {
                 font-size: 2.5rem;
             }
 
-            .article-container {
-                grid-template-columns: 1fr;
+            .inline-promo {
+                flex-direction: column;
+                text-align: center;
             }
 
-            .sticky-share {
-                position: static;
-                flex-direction: row;
-                justify-content: center;
-                margin-bottom: 30px;
+            .post-footer {
+                flex-direction: column;
+                gap: 20px;
             }
 
-            .content-wrapper {
-                margin-top: -60px;
-                border-radius: 40px 40px 0 0;
-            }
-
-            .nav-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-card img {
-                width: 100px;
+            .share-box {
+                text-align: left;
             }
         }
 
         @media (max-width: 768px) {
-
-            /* Mobile Nav Logic */
             .hamburger {
                 display: block;
             }
@@ -684,7 +889,6 @@
                 display: none;
             }
 
-            /* Dropdown Mobile */
             .dropdown-content {
                 position: relative;
                 top: 0;
@@ -721,14 +925,13 @@
                 width: calc(100% - 60px);
             }
 
-            /* Blog Mobile Adjustments */
-            .blog-hero {
-                height: 60vh;
+            .content-wrapper {
+                border-radius: 40px 40px 0 0;
+                margin-top: -60px;
             }
 
-            .article-body>p:first-of-type::first-letter {
+            .article-content>p:first-of-type::first-letter {
                 font-size: 3rem;
-                margin-right: 10px;
             }
 
             .footer-content {
@@ -748,34 +951,78 @@
                 transform: translateY(0);
             }
         }
+
+        /* --- FLOATING WHATSAPP --- */
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            /* Warna Hijau WhatsApp */
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            /* Pastikan di atas elemen lain */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .floating-wa:hover {
+            background-color: #1ebc57;
+            /* Warna sedikit lebih gelap saat hover */
+            transform: scale(1.1);
+            /* Efek membesar sedikit */
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Agar ikon pas di tengah */
+        .floating-wa i {
+            margin-top: 2px;
+            /* Sedikit penyesuaian vertikal */
+        }
+
+        /* Responsif untuk Mobile (agar tidak terlalu besar/menutupi konten) */
+        @media (max-width: 768px) {
+            .floating-wa {
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
     <nav id="navbar">
-        <div class="logo">RIMBA</div>
-
-        <div class="hamburger">
-            <i class="fas fa-bars"></i>
-        </div>
-
+        <a href="index.html" class="logo">RIMBA</a>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
         <ul class="nav-links">
             <li><a href="index.html#beranda">Beranda</a></li>
-            <li><a href="about.html">Tentang</a></li>
+            <li><a href="index.html#tentang">Tentang</a></li>
             <li><a href="galeri.html">Galeri</a></li>
-
             <li class="dropdown">
-                <a href="index.html#paket" class="dropdown-toggle">
-                    Paket <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
-                </a>
+                <a href="index.html#paket" class="dropdown-toggle">Paket <i class="fas fa-chevron-down"
+                        style="font-size: 0.8em;"></i></a>
                 <div class="dropdown-content">
                     <a href="paket-pemula.html">Pemula</a>
                     <a href="paket-extreme.html">Extrem</a>
                     <a href="paket-family.html">Family</a>
                 </div>
             </li>
-
             <li><a href="blog.html" style="color: var(--accent);">Blog</a></li>
             <li><a href="booking.html" class="btn-booking">Booking Sekarang</a></li>
         </ul>
@@ -784,154 +1031,234 @@
     <header class="blog-hero">
         <div class="blog-hero-content">
             <h1>Mengenal Peralatan Wajib Arung Jeram</h1>
-            <div class="blog-meta">
-                <span><i class="far fa-calendar"></i> 05 Nov 2024</span>
-                <span><i class="far fa-user"></i> Guide Budi</span>
-                <span><i class="far fa-clock"></i> 10 Menit Baca</span>
+            <div class="author-meta">
+                <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=100&auto=format&fit=crop"
+                    alt="Guide Budi">
+                <div>
+                    <strong>Guide Budi</strong><br>
+                    <span style="opacity: 0.8;">05 Nov 2024 • 8 Menit Baca</span>
+                </div>
             </div>
         </div>
     </header>
 
     <div class="content-wrapper">
-        <main class="article-container">
+        <div class="blog-layout">
 
-            <aside class="sticky-share">
-                <a href="#" class="share-btn"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" class="share-btn"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="share-btn"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="share-btn"><i class="fas fa-link"></i></a>
+            <aside class="sidebar">
+                <div class="sticky-sidebar">
+                    <div class="toc-box">
+                        <h3>Daftar Isi</h3>
+                        <ul class="toc-list">
+                            <li><a href="#intro" class="active">Pendahuluan</a></li>
+                            <li><a href="#operator">1. Perahu Karet</a></li>
+                            <li><a href="#peralatan">2. Pelampung (PFD)</a></li>
+                            <li><a href="#briefing">3. Helm Pelindung</a></li>
+                            <li><a href="#teknik">4. Dayung</a></li>
+                            <li><a href="#tenang">5. Tali Lempar</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="promo-sidebar">
+                        <h3>Mau Coba Rafting?</h3>
+                        <p>Dapatkan diskon 20% untuk pemesanan grup minggu ini!</p>
+                        <a href="booking.html" class="btn-white">Ambil Promo</a>
+                    </div>
+                </div>
             </aside>
 
-            <article class="article-body">
-                <p>Jangan asal dayung! Arung jeram atau rafting adalah aktivitas ekstrem yang sangat bergantung pada
-                    peralatan. Keamanan Anda di sungai liar tidak hanya ditentukan oleh keahlian berenang atau kekuatan
-                    otot semata, melainkan juga kualitas dan kelengkapan peralatan yang digunakan. Banyak pemula sering
-                    mengabaikan detail ini dan menyerahkan sepenuhnya kepada operator tanpa mengecek ulang.</p>
+            <div class="article-content">
 
-                <p>Sebagai penyedia layanan arung jeram profesional, <strong>Rimba Rafting</strong> selalu memastikan
-                    setiap alat yang digunakan memenuhi standar internasional (Safety Grade A). Namun, sebagai "Rafters"
-                    cerdas, Anda wajib mengenali fungsi dari setiap peralatan tersebut. Artikel ini akan mengupas tuntas
-                    peralatan wajib dalam arung jeram agar Anda lebih percaya diri saat menaklukan jeram.</p>
+                <figure>
+                    <img src="img/baru/keselamatan.webp" alt="Peralatan Rafting Lengkap">
+                    <figcaption>Perlengkapan keselamatan rafting seperti helm, pelampung, dayung, dan kotak P3K yang
+                        siap digunakan.</figcaption>
+                </figure>
 
-                <h2>1. Perahu Karet (Inflatable Raft)</h2>
-                <p>Ini adalah "kendaraan tempur" utama kita. Perahu rafting modern umumnya terbuat dari bahan sintetis
-                    yang sangat kuat seperti Polyester atau Hypalon yang tahan terhadap gesekan batu tajam dan hantaman
-                    arus. Ukurannya bervariasi, mulai dari kapasitas 4 orang hingga 10 orang, tergantung pada debit air
-                    dan tingkat kesulitan sungai.</p>
+                <section id="intro">
+                    <p>Jangan asal dayung! Kenali fungsi helm, pelampung, dan jenis dayung yang digunakan dalam rafting
+                        standar internasional. Arung jeram bukan hanya soal keberanian menaklukkan arus, tetapi juga
+                        tentang memahami peralatan yang menjaga Anda tetap aman.</p>
+                </section>
 
-                <p>Fitur keselamatan utama pada perahu rafting adalah sistem <em>Self-Bailing</em>. Ini adalah
-                    lubang-lubang kecil di dasar pinggiran perahu yang memungkinkan air yang masuk akibat ombak segera
-                    keluar kembali secara otomatis. Selain itu, perahu dibagi menjadi beberapa ruang udara (chamber)
-                    terpisah. Artinya, jika satu bagian bocor karena robek, bagian lain tetap menggelembung sehingga
-                    perahu tidak akan tenggelam sepenuhnya.</p>
-
-                <blockquote>
-                    <i class="fas fa-quote-left"></i>
-                    "Perahu rafting didesain bukan untuk tidak bisa terbalik, tapi untuk tetap mengapung dalam kondisi
-                    seekstrem apapun. Keseimbangan andalah kuncinya."
-                </blockquote>
-
-                <h2>2. Pelampung (Personal Flotation Device / PFD)</h2>
-                <p>Sering disebut *Life Jacket*, namun istilah teknis yang tepat adalah PFD. Pelampung rafting berbeda
-                    dengan pelampung pesawat terbang. Pelampung rafting didesain dengan daya apung tinggi (buoyancy)
-                    yang mampu menahan bobot tubuh orang dewasa di air bergolak (aerated water). Air sungai yang berbusa
-                    memiliki densitas lebih rendah daripada air tenang, sehingga Anda butuh daya apung ekstra.</p>
-
-                <p>Pastikan PFD yang Anda gunakan memiliki bantalan pelindung di belakang kepala (head rest) untuk
-                    melindungi leher saat hanyut dalam posisi telentang. Selain itu, perhatikan kekencangan tali
-                    pengikat. Pelampung yang longgar sangat berbahaya karena bisa terlepas melewati kepala saat Anda
-                    terjun ke air atau ditarik oleh teman untuk penyelamatan.</p>
-
-                <img src="https://images.unsplash.com/photo-1544099858-75feeb57f01e?q=80&w=2070&auto=format&fit=crop"
-                    alt="Tim Rafting dengan Peralatan Lengkap">
-
-                <h2>3. Helm Pelindung (Helmet)</h2>
-                <p>Sungai dipenuhi oleh bebatuan licin dan keras, baik di permukaan maupun di dasar sungai. Helm adalah
-                    proteksi mutlak untuk kepala Anda. Helm rafting didesain khusus dengan bahan plastik ABS yang ringan
-                    namun tahan benturan keras.</p>
-                <p>Berbeda dengan helm motor, helm rafting memiliki lubang drainase air agar air tidak terperangkap di
-                    dalam helm yang bisa memberatkan leher. Pastikan tali dagu (chin strap) terpasang kencang namun
-                    nyaman. Helm tidak boleh goyang saat Anda menggelengkan kepala.</p>
-
-                <h2>4. Dayung (Paddle)</h2>
-                <p>Dayung adalah alat kemudi dan mesin penggerak perahu. Dayung rafting umumnya terdiri dari tiga
-                    bagian: T-Grip (pegangan atas), Shaft (batang), dan Blade (bilah). Bahan yang digunakan biasanya
-                    kombinasi aluminium dan plastik kuat atau karbon untuk yang lebih profesional.</p>
-
-                <div class="highlight-box">
-                    <h3><i class="fas fa-lightbulb"></i> Tips Memegang Dayung:</h3>
-                    <p>Kesalahan umum pemula adalah cara memegang T-Grip. Berikut panduannya:</p>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> <strong>Pegang T-Grip dari atas:</strong> Jangan
-                            memegang batang sampingnya saja. Telapak tangan harus menutupi bagian atas T-Grip.</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Jaga Jarak Tangan:</strong> Tangan bawah
-                            memegang batang dekat bilah dayung untuk tenaga maksimal.</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Waspada T-Grip:</strong> T-Grip yang keras bisa
-                            menghantam gigi atau wajah teman jika Anda tidak hati-hati saat mendayung liar.</li>
+                <div class="mobile-toc">
+                    <h3>Daftar Isi</h3>
+                    <ul class="toc-list">
+                        <li><a href="#intro">Pendahuluan</a></li>
+                        <li><a href="#operator">1. Perahu Karet</a></li>
+                        <li><a href="#peralatan">2. Pelampung (PFD)</a></li>
+                        <li><a href="#briefing">3. Helm Pelindung</a></li>
+                        <li><a href="#teknik">4. Dayung</a></li>
+                        <li><a href="#tenang">5. Tali Lempar</a></li>
+                        <li><a href="#faq">FAQ</a></li>
                     </ul>
                 </div>
 
-                <h2>5. Tali Lempar (Throw Bag)</h2>
-                <p>Ini adalah peralatan penyelamatan (rescue) yang biasanya dibawa oleh pemandu (Skipper), namun peserta
-                    juga perlu tahu. Throw bag berisi tali panjang (biasanya 15-20 meter) yang bisa mengapung. Alat ini
-                    digunakan untuk menyelamatkan peserta yang hanyut jauh dari perahu.</p>
-                <p>Jika Anda hanyut dan melihat tali dilempar ke arah Anda, tangkap talinya, <strong>bukan
-                        tasnya</strong>. Pegang erat tali tersebut dan posisikan tali di bahu (bukan dililitkan di
-                    tangan) sambil memunggungi perahu agar Anda bisa ditarik melawan arus dengan posisi wajah tetap di
-                    atas air.</p>
+                <section>
+                    <p>Peralatan rafting modern dirancang dengan teknologi tinggi untuk menghadapi benturan batu dan
+                        derasnya air sungai. Sebagai pemula, mengetahui fungsi setiap alat akan membuat Anda merasa
+                        lebih percaya diri dan aman saat berada di atas perahu. Berikut adalah ulasan lengkap mengenai
+                        peralatan wajib tersebut.</p>
+                </section>
 
-                <h2>6. Dry Bag (Tas Kedap Air)</h2>
-                <p>Meskipun bukan alat keselamatan nyawa, Dry Bag sangat krusial untuk kenyamanan. Ini adalah tas khusus
-                    berbahan karet tebal dengan sistem penutup gulung (roll-top) yang mencegah air masuk. Biasanya
-                    diikatkan di tengah perahu.</p>
-                <p>Gunakan dry bag untuk menyimpan barang-barang elektronik, kunci kendaraan, obat-obatan pribadi, atau
-                    baju ganti kering. Namun, kami sangat menyarankan untuk tidak membawa barang berharga berlebihan ke
-                    atas perahu karena risiko hilang atau terbentur tetap ada.</p>
+                <section id="operator">
+                    <h2>1. Perahu Karet (Inflatable Raft)</h2>
+                    <p>Perahu yang digunakan untuk arung jeram bukanlah perahu karet biasa. Ini adalah *Raft* yang
+                        terbuat dari bahan PVC atau Hypalon yang sangat kuat dan tahan gesekan. Perahu ini dirancang
+                        elastis agar mampu memantul saat menabrak batu, sehingga tidak mudah robek.</p>
+                    <p>Fitur terpenting dari perahu rafting modern adalah sistem *Self-Bailing*. Lantai perahu memiliki
+                        lubang-lubang kecil di pinggirnya yang memungkinkan air yang masuk saat melewati jeram untuk
+                        keluar kembali secara otomatis, menjaga perahu tetap ringan dan mudah dikendalikan.</p>
+                </section>
 
-                <h2>7. Pakaian dan Alas Kaki</h2>
-                <p>Peralatan terakhir yang sering dilupakan adalah apa yang menempel di badan Anda. Hindari bahan katun
-                    (kaos oblong biasa) karena katun menyerap air, menjadi berat, dan membuat tubuh cepat dingin
-                    (hipotermia). Gunakan pakaian berbahan sintetik seperti jersey, spandex, atau polyester yang cepat
-                    kering (quick-dry).</p>
-                <p>Untuk alas kaki, dilarang keras menggunakan sandal jepit biasa! Sandal jepit akan putus atau hanyut
-                    dalam hitungan detik di arus deras. Gunakan sandal gunung dengan tali pengikat tumit atau sepatu
-                    kets tua yang Anda relakan untuk basah. Alas kaki berfungsi melindungi telapak kaki saat harus
-                    berjalan di dasar sungai berbatu atau saat <em>portaging</em> (mengangkat perahu di darat).</p>
+                <section id="peralatan">
+                    <h2>2. Pelampung (Personal Flotation Device)</h2>
+                    <p>Pelampung atau PFD adalah nyawa kedua Anda. Fungsi utamanya bukan hanya membuat Anda mengapung,
+                        tetapi juga melindungi tubuh bagian atas dari benturan benda keras di sungai. Pelampung arus
+                        deras memiliki daya apung yang lebih tinggi dibandingkan pelampung renang biasa.</p>
+                    <ul>
+                        <li><strong>Daya Apung Tinggi:</strong> Mampu menopang berat badan plus tekanan air.</li>
+                        <li><strong>Bantalan Leher:</strong> Berfungsi menahan kepala tetap di atas air saat Anda hanyut
+                            dalam posisi telentang.</li>
+                    </ul>
+                </section>
 
-                <h3>Kesimpulan</h3>
-                <p>Mengenal peralatan rafting bukan hanya menambah wawasan, tapi juga meningkatkan rasa aman. Di Rimba
-                    Rafting, kami melakukan perawatan rutin dan pengecekan ketat terhadap seluruh inventaris peralatan
-                    kami sebelum trip dimulai. Helm yang retak, pelampung yang sobek, atau perahu yang kurang angin
-                    tidak memiliki tempat dalam standar operasional kami.</p>
-                <p>Dengan peralatan yang tepat dan pemahaman cara penggunaannya, Anda bisa fokus menikmati keindahan
-                    alam dan sensasi adrenalin tanpa rasa was-was. Sudah siap mencoba peralatan kami secara langsung?
-                    Segera reservasi petualangan Anda sekarang juga!</p>
-
-                <p><em>Safety First, Fun Always!</em></p>
-            </article>
-        </main>
-
-        <section class="blog-nav-section">
-            <div class="nav-grid">
-                <a href="blog-1.html" class="nav-card prev">
-                    <img src="https://images.unsplash.com/photo-1530866495561-507c9faab2ed?q=80&w=2069&auto=format&fit=crop"
-                        alt="5 Tips Keselamatan">
-                    <div class="nav-card-content">
-                        <span class="nav-label"><i class="fas fa-arrow-left"></i> Sebelumnya</span>
-                        <h4 class="nav-title">5 Tips Keselamatan Rafting untuk Pemula</h4>
+                <div class="inline-promo">
+                    <div class="ip-text">
+                        <h4>🔥 Promo Weekend Seru!</h4>
+                        <p>Ajak 5 temanmu, Gratis 1 Pax + Dokumentasi Drone.</p>
                     </div>
-                </a>
+                    <a href="booking.html" class="ip-btn">Booking Sekarang</a>
+                </div>
 
-                <a href="blog-3.html" class="nav-card next">
-                    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070&auto=format&fit=crop"
-                        alt="Grade Sungai">
-                    <div class="nav-card-content">
-                        <span class="nav-label">Selanjutnya <i class="fas fa-arrow-right"></i></span>
-                        <h4 class="nav-title">Manfaat Kesehatan Mental dari Rafting</h4>
+                <section id="briefing">
+                    <h2>3. Helm Pelindung (Helmet)</h2>
+                    <p>Kepala adalah bagian tubuh paling vital yang wajib dilindungi. Helm rafting didesain khusus
+                        dengan bahan plastik ABS yang tahan benturan namun tetap ringan. Berbeda dengan helm motor, helm
+                        rafting memiliki lubang-lubang drainase agar air tidak terperangkap di dalamnya.</p>
+                    <p>Pastikan helm terpasang pas di kepala, tidak longgar, dan melindungi area dahi serta pelipis.
+                        Benturan dengan batu sungai atau bahkan dayung teman adalah risiko yang bisa diminimalisir
+                        dengan penggunaan helm yang benar.</p>
+                </section>
+
+                <blockquote>
+                    "Peralatan yang baik tidak akan pernah membohongi hasil. Keamanan Anda bergantung pada kualitas alat
+                    dan cara Anda menggunakannya."
+                </blockquote>
+
+                <section id="teknik">
+                    <h2>4. Dayung (Paddle)</h2>
+                    <p>Dayung adalah alat kemudi dan penggerak perahu. Dayung rafting terdiri dari tiga bagian utama:
+                        *T-Grip* (pegangan atas), *Shaft* (gagang), dan *Blade* (bilah dayung). Dayung biasanya terbuat
+                        dari bahan aluminium ringan dengan bilah plastik yang kuat.</p>
+                    <p>Pemandu biasanya menggunakan dayung yang lebih panjang dan lebar untuk tenaga kemudi yang lebih
+                        besar, sementara peserta menggunakan dayung standar yang ringan namun efisien untuk mendayung
+                        bersama tim.</p>
+                </section>
+
+                <figure>
+                    <img src="img/destinasi/bajulmati-1.webp" alt="Helm dan Pelampung">
+                    <figcaption>Peserta rafting tampak ceria mengarungi sungai sambil mengenakan helm dan pelampung
+                        keselamatan.</figcaption>
+                </figure>
+
+                <section id="tenang">
+                    <h2>5. Tali Lempar (Throw Bag)</h2>
+                    <p>Meskipun ini biasanya dibawa oleh pemandu, peserta wajib mengetahuinya. *Throw bag* adalah tas
+                        berisi tali panjang yang bisa mengapung. Alat ini digunakan untuk penyelamatan (rescue) jarak
+                        jauh.</p>
+                    <ul>
+                        <li><strong>Fungsi:</strong> Menolong peserta yang hanyut dan jauh dari jangkauan perahu.</li>
+                        <li><strong>Cara Kerja:</strong> Pemandu melempar tas ke arah korban, korban memegang tali
+                            (bukan tasnya), lalu ditarik kembali ke perahu atau tepi sungai.</li>
+                    </ul>
+                </section>
+
+                <section id="faq" class="faq-section">
+                    <h2>Pertanyaan Sering Diajukan (FAQ)</h2>
+
+                    <details class="faq-item">
+                        <summary>Apakah saya perlu membawa Dry Bag sendiri?</summary>
+                        <p>Biasanya operator rafting sudah menyediakan satu *Dry Bag* besar di setiap perahu untuk
+                            menyimpan barang berharga bersama-sama. Namun, Anda boleh membawa *dry bag* kecil pribadi
+                            jika perlu.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Apakah sepatu kets biasa aman digunakan?</summary>
+                        <p>Bisa, namun akan menjadi berat saat basah. Sangat disarankan menggunakan sandal gunung
+                            (dengan tali belakang) atau sepatu khusus air (*water shoes*) yang melindungi kaki dari batu
+                            tajam.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Bolehkah memakai kacamata hitam?</summary>
+                        <p>Boleh, asalkan menggunakan tali pengikat (*strap*). Tanpa tali, kacamata sangat mudah
+                            terlepas dan hilang saat melewati jeram besar.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Apakah peralatan disewakan terpisah?</summary>
+                        <p>Tidak. Dalam paket wisata rafting standar, seluruh peralatan keselamatan (Helm, Pelampung,
+                            Dayung) sudah termasuk dalam harga paket dan wajib digunakan.</p>
+                    </details>
+                </section>
+
+                <div class="post-footer">
+                    <div class="author-box">
+                        <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=100&auto=format&fit=crop"
+                            alt="Guide Budi">
+                        <div class="author-info">
+                            <h4>Guide Budi</h4>
+                            <span>Senior River Guide</span>
+                            <p style="font-size: 0.9rem; margin:0; color:#666;">Berpengalaman lebih dari 10 tahun
+                                memandu arung jeram dan ahli dalam prosedur keselamatan sungai.</p>
+                        </div>
                     </div>
-                </a>
+
+                    <div class="share-box">
+                        <h5>Bagikan Artikel Ini:</h5>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <section class="related-posts">
+            <div class="related-header">
+                <h2>Bacaan Seru Lainnya</h2>
+            </div>
+            <div class="related-grid">
+                <div class="r-card">
+                    <div class="r-img"><img src="img/destinasi/bajulmati-1.webp" alt="Sungai"></div>
+                    <div class="r-content">
+                        <h4>5 Tips Keselamatan Rafting untuk Pemula</h4>
+                        <a href="blog-1.html">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="r-card">
+                    <div class="r-img"><img src="img/destinasi/pekalen-1.webp" alt="Kesehatan"></div>
+                    <div class="r-content">
+                        <h4>Manfaat Kesehatan Mental dari Olahraga Arung Jeram</h4>
+                        <a href="blog-3.html">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="r-card">
+                    <div class="r-img"><img src="img/destinasi/kaliwatu-1.webp" alt="Hujan"></div>
+                    <div class="r-content">
+                        <h4>Sungai Terbaik di Jawa Barat untuk Rafting</h4>
+                        <a href="blog-4.html">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
             </div>
         </section>
+
     </div>
 
     <footer>
@@ -945,7 +1272,7 @@
                 <h4>Navigasi</h4>
                 <ul>
                     <li><a href="index.html#beranda">Beranda</a></li>
-                    <li><a href="index.html#tentang">Tentang</a></li>
+                    <li><a href="about.html">Tentang</a></li>
                     <li><a href="galeri.html">Galeri</a></li>
                     <li><a href="blog.html">Blog</a></li>
                 </ul>
@@ -971,61 +1298,84 @@
         </div>
     </footer>
 
+    <a href="https://wa.me/6281299887766?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20tanya%20paket%20rafting."
+        class="floating-wa" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <script>
-        // 1. Script Navbar & Hamburger
-        const navbar = document.getElementById('navbar');
-        window.onscroll = () => {
+        // 1. Progress Bar Logic
+        window.onscroll = function () {
+            // Navbar Effect
+            const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
+
+            // Progress Bar Effect
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+
+            // Active TOC Logic
+            let sections = document.querySelectorAll('section');
+            let navLinks = document.querySelectorAll('.toc-list a');
+
+            sections.forEach(sec => {
+                let top = window.scrollY;
+                let offset = sec.offsetTop - 150;
+                let height = sec.offsetHeight;
+                let id = sec.getAttribute('id');
+
+                if (top >= offset && top < offset + height) {
+                    navLinks.forEach(links => {
+                        links.classList.remove('active');
+                        // Handle multiple TOC links (Mobile + Desktop)
+                        let targetLinks = document.querySelectorAll('.toc-list a[href*=' + id + ']');
+                        targetLinks.forEach(link => link.classList.add('active'));
+                    });
+                }
+            });
         };
 
+        // 2. Hamburger & Dropdown Logic
         const hamburger = document.querySelector('.hamburger');
         const icon = hamburger.querySelector('i');
         const navLinks = document.querySelector('.nav-links');
 
         hamburger.addEventListener('click', (e) => {
             navLinks.classList.toggle('active');
-
             if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-                hamburger.classList.add('active-color');
+                icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); hamburger.classList.add('active-color');
             } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-                if (window.scrollY < 50) {
-                    hamburger.classList.remove('active-color');
-                }
+                icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
+                if (window.scrollY < 50) { hamburger.classList.remove('active-color'); }
             }
             e.stopPropagation();
         });
 
+        // Close menu on click outside
         document.addEventListener('click', (e) => {
             if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
                 if (navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
-                    if (window.scrollY < 50) {
-                        hamburger.classList.remove('active-color');
-                    }
+                    if (window.scrollY < 50) { hamburger.classList.remove('active-color'); }
                 }
             }
         });
 
-        // 2. Script Dropdown Mobile
+        // Mobile Dropdown
         const dropdownToggle = document.querySelector('.dropdown-toggle');
         const dropdownContent = document.querySelector('.dropdown-content');
-        const dropdownParent = document.querySelector('.dropdown');
-
         dropdownToggle.addEventListener('click', (e) => {
             if (window.innerWidth <= 768) {
                 e.preventDefault();
                 dropdownContent.classList.toggle('show-mobile');
-                dropdownParent.classList.toggle('active');
             }
         });
     </script>

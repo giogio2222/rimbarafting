@@ -225,7 +225,7 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            background: url('https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=1920&auto=format&fit=crop');
+            background: url('img/destinasi/sampean-1.webp');
             /* Gambar Camping/Outdoor */
             background-size: cover;
             background-position: center;
@@ -431,7 +431,6 @@
             line-height: 1.7;
             margin-bottom: 1.5rem;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -665,13 +664,60 @@
                 transform: translateY(0);
             }
         }
+
+        /* --- FLOATING WHATSAPP --- */
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            /* Warna Hijau WhatsApp */
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            /* Pastikan di atas elemen lain */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .floating-wa:hover {
+            background-color: #1ebc57;
+            /* Warna sedikit lebih gelap saat hover */
+            transform: scale(1.1);
+            /* Efek membesar sedikit */
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Agar ikon pas di tengah */
+        .floating-wa i {
+            margin-top: 2px;
+            /* Sedikit penyesuaian vertikal */
+        }
+
+        /* Responsif untuk Mobile (agar tidak terlalu besar/menutupi konten) */
+        @media (max-width: 768px) {
+            .floating-wa {
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <nav id="navbar">
-        <div class="logo">RIMBA</div>
+        <a href="index.html" class="logo">RIMBA</a>
         <div class="hamburger"><i class="fas fa-bars"></i></div>
         <ul class="nav-links">
             <li><a href="index.html">Beranda</a></li>
@@ -710,8 +756,7 @@
             <div class="blog-card">
                 <div class="blog-img">
                     <span class="blog-category">Tips</span>
-                    <img src="https://images.unsplash.com/photo-1544099858-75feeb57f01e?q=80&w=800&auto=format&fit=crop"
-                        alt="Tips Rafting">
+                    <img src="img/destinasi/bajulmati-2.webp" alt="Tips Rafting">
                 </div>
                 <div class="blog-content">
                     <div class="blog-meta">
@@ -728,8 +773,7 @@
             <div class="blog-card">
                 <div class="blog-img">
                     <span class="blog-category">Peralatan</span>
-                    <img src="https://images.unsplash.com/photo-1625648866164-9b88496464f1?q=80&w=800&auto=format&fit=crop"
-                        alt="Peralatan Rafting">
+                    <img src="img/baru/keselamatan.webp" alt="Peralatan Rafting">
                 </div>
                 <div class="blog-content">
                     <div class="blog-meta">
@@ -746,8 +790,7 @@
             <div class="blog-card">
                 <div class="blog-img">
                     <span class="blog-category">Kesehatan</span>
-                    <img src="https://images.unsplash.com/photo-1530866495561-507c9faab2ed?q=80&w=800&auto=format&fit=crop"
-                        alt="Kesehatan Rafting">
+                    <img src="img/destinasi/pekalen-1.webp" alt="Kesehatan Rafting">
                 </div>
                 <div class="blog-content">
                     <div class="blog-meta">
@@ -764,8 +807,7 @@
             <div class="blog-card">
                 <div class="blog-img">
                     <span class="blog-category">Destinasi</span>
-                    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=800&auto=format&fit=crop"
-                        alt="Sungai Terbaik">
+                    <img src="img/destinasi/kaliwatu-1.webp" alt="Sungai Terbaik">
                 </div>
                 <div class="blog-content">
                     <div class="blog-meta">
@@ -782,8 +824,7 @@
             <div class="blog-card">
                 <div class="blog-img">
                     <span class="blog-category">Cuaca</span>
-                    <img src="https://images.unsplash.com/photo-1520063234250-9884e9d36e2f?q=80&w=800&auto=format&fit=crop"
-                        alt="Rafting Hujan">
+                    <img src="img/destinasi/glidik-1.webp" alt="Rafting Hujan">
                 </div>
                 <div class="blog-content">
                     <div class="blog-meta">
@@ -800,8 +841,7 @@
             <div class="blog-card">
                 <div class="blog-img">
                     <span class="blog-category">Sejarah</span>
-                    <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=800&auto=format&fit=crop"
-                        alt="Sejarah Rafting">
+                    <img src="img/destinasi/sampean-1.webp" alt="Sejarah Rafting">
                 </div>
                 <div class="blog-content">
                     <div class="blog-meta">
@@ -860,6 +900,11 @@
             <p>© 2024 Rimba Rafting Indonesia. Designed with passion.</p>
         </div>
     </footer>
+
+    <a href="https://wa.me/6281299887766?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20tanya%20paket%20rafting."
+        class="floating-wa" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script>
         // --- NAVBAR SCROLL & MOBILE MENU (SAMA DENGAN INDEX) ---
