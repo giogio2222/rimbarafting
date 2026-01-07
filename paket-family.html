@@ -804,13 +804,43 @@
                 right: 20px;
             }
         }
+
+        /* --- Pengaturan Logo Gambar --- */
+
+        .logo {
+            display: flex;
+            /* Memastikan gambar rata tengah vertikal */
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            /* Sesuaikan tinggi ini dengan tinggi navbar Anda */
+            width: auto;
+            /* Menjaga agar logo tidak gepeng/tertarik */
+            object-fit: contain;
+            transition: all 0.3s ease;
+            /* Efek halus saat resize */
+        }
+
+        /* --- Responsif (Tampilan HP) --- */
+        @media screen and (max-width: 768px) {
+            .logo img {
+                height: 40px;
+                /* Ukuran logo sedikit mengecil di HP agar muat */
+                margin-left: 10px;
+                /* Memberi jarak sedikit dari kiri layar */
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <nav id="navbar">
-        <a href="index.html" class="logo">RIMBA</a>
+        <a href="index.html" class="logo">
+            <img src="img/baru/RIMBA.png" alt="Logo Rimba Rafting">
+        </a>
         <div class="hamburger"><i class="fas fa-bars"></i></div>
         <ul class="nav-links">
             <li><a href="index.html">Beranda</a></li>
@@ -829,253 +859,258 @@
             <li><a href="blog.html">Blog</a></li>
             <li><a href="booking.html" class="btn-booking">Booking Sekarang</a></li>
         </ul>
-    </nav>
+        </nav>
 
-    <div class="page-hero">
-        <div class="page-hero-content">
-            <div class="breadcrumb">
-                <a href="index.html">Beranda</a> / Paket Keluarga
-            </div>
-            <h1>Paket Rafting Family</h1>
-        </div>
-    </div>
-
-    <div class="detail-wrapper">
-
-        <div class="detail-content">
-
-            <div class="content-section">
-                <h2>Liburan Keluarga Ceria</h2>
-                <p>Paket Rafting Family adalah pilihan tepat untuk liburan bersama keluarga tercinta, termasuk anak-anak
-                    mulai usia 7 tahun. Rute yang dilalui memiliki arus yang tenang (Grade I-II) namun tetap
-                    menyenangkan.</p>
-                <p>Fokus dari paket ini adalah rekreasi air, permainan seru di sungai (river games), dan menikmati
-                    keindahan alam dengan santai. Keamanan anak-anak adalah prioritas utama kami dengan pengawasan
-                    ekstra dari pemandu berpengalaman.</p>
-            </div>
-
-            <div class="content-section">
-                <h2>Fasilitas Lengkap</h2>
-                <div class="facilities-grid">
-                    <div class="facility-item">
-                        <i class="fas fa-vest"></i>
-                        <span>Pelampung Anak</span>
-                    </div>
-                    <div class="facility-item">
-                        <i class="fas fa-user-shield"></i>
-                        <span>Guide Ramah Anak</span>
-                    </div>
-                    <div class="facility-item">
-                        <i class="fas fa-utensils"></i>
-                        <span>Makan Siang Piknik</span>
-                    </div>
-                    <div class="facility-item">
-                        <i class="fas fa-medkit"></i>
-                        <span>Asuransi Keluarga</span>
-                    </div>
-                    <div class="facility-item">
-                        <i class="fas fa-shuttle-van"></i>
-                        <span>Antar Jemput</span>
-                    </div>
-                    <div class="facility-item">
-                        <i class="fas fa-gamepad"></i>
-                        <span>River Games</span>
-                    </div>
+        <div class="page-hero">
+            <div class="page-hero-content">
+                <div class="breadcrumb">
+                    <a href="index.html">Beranda</a> / Paket Keluarga
                 </div>
+                <h1>Paket Rafting Family</h1>
             </div>
+        </div>
 
-            <div class="content-section">
-                <h2>Rencana Perjalanan</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <span class="timeline-time">09:00 WIB</span>
-                        <div class="timeline-desc">Tiba di Meeting Point. Sambutan hangat & Snack pagi untuk anak-anak.
+        <div class="detail-wrapper">
+
+            <div class="detail-content">
+
+                <div class="content-section">
+                    <h2>Liburan Keluarga Ceria</h2>
+                    <p>Paket Rafting Family adalah pilihan tepat untuk liburan bersama keluarga tercinta, termasuk
+                        anak-anak
+                        mulai usia 7 tahun. Rute yang dilalui memiliki arus yang tenang (Grade I-II) namun tetap
+                        menyenangkan.</p>
+                    <p>Fokus dari paket ini adalah rekreasi air, permainan seru di sungai (river games), dan menikmati
+                        keindahan alam dengan santai. Keamanan anak-anak adalah prioritas utama kami dengan pengawasan
+                        ekstra dari pemandu berpengalaman.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>Fasilitas Lengkap</h2>
+                    <div class="facilities-grid">
+                        <div class="facility-item">
+                            <i class="fas fa-vest"></i>
+                            <span>Pelampung Anak</span>
+                        </div>
+                        <div class="facility-item">
+                            <i class="fas fa-user-shield"></i>
+                            <span>Guide Ramah Anak</span>
+                        </div>
+                        <div class="facility-item">
+                            <i class="fas fa-utensils"></i>
+                            <span>Makan Siang Piknik</span>
+                        </div>
+                        <div class="facility-item">
+                            <i class="fas fa-medkit"></i>
+                            <span>Asuransi Keluarga</span>
+                        </div>
+                        <div class="facility-item">
+                            <i class="fas fa-shuttle-van"></i>
+                            <span>Antar Jemput</span>
+                        </div>
+                        <div class="facility-item">
+                            <i class="fas fa-gamepad"></i>
+                            <span>River Games</span>
                         </div>
                     </div>
-                    <div class="timeline-item">
-                        <span class="timeline-time">09:30 WIB</span>
-                        <div class="timeline-desc">Pemakaian alat keselamatan & Briefing keselamatan dengan bahasa yang
-                            mudah dimengerti anak.</div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Rencana Perjalanan</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <span class="timeline-time">09:00 WIB</span>
+                            <div class="timeline-desc">Tiba di Meeting Point. Sambutan hangat & Snack pagi untuk
+                                anak-anak.
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-time">09:30 WIB</span>
+                            <div class="timeline-desc">Pemakaian alat keselamatan & Briefing keselamatan dengan bahasa
+                                yang
+                                mudah dimengerti anak.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-time">10:00 WIB</span>
+                            <div class="timeline-desc">Mulai pengarungan sungai santai. Banyak berhenti untuk bermain
+                                air di
+                                spot aman.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-time">11:30 WIB</span>
+                            <div class="timeline-desc">Finish rafting.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-time">12:00 WIB</span>
+                            <div class="timeline-desc">Mandi, bersih-bersih, dan makan siang prasmanan dengan menu ramah
+                                keluarga.</div>
+                        </div>
                     </div>
-                    <div class="timeline-item">
-                        <span class="timeline-time">10:00 WIB</span>
-                        <div class="timeline-desc">Mulai pengarungan sungai santai. Banyak berhenti untuk bermain air di
-                            spot aman.</div>
+                </div>
+
+            </div>
+
+            <div class="booking-sidebar">
+                <div class="booking-card">
+                    <div class="price-header">
+                        <span class="price-label">Harga Mulai Dari</span>
+                        <span class="price-amount">Rp 175.000</span>
+                        <span class="price-unit">/ orang (Min. 5 Pax)</span>
                     </div>
-                    <div class="timeline-item">
-                        <span class="timeline-time">11:30 WIB</span>
-                        <div class="timeline-desc">Finish rafting.</div>
+
+                    <ul class="booking-features">
+                        <li><i class="fas fa-check-circle"></i> Aman untuk Anak (7+ Thn)</li>
+                        <li><i class="fas fa-check-circle"></i> Termasuk Foto Keluarga</li>
+                        <li><i class="fas fa-check-circle"></i> Menu Makan Siang Spesial</li>
+                    </ul>
+
+                    <a href="https://wa.me/6281234567890?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20booking%20Paket%20Family"
+                        target="_blank" class="btn-whatsapp-full">
+                        <i class="fab fa-whatsapp"></i> Booking via WhatsApp
+                    </a>
+
+                    <div class="secure-note">
+                        <i class="fas fa-lock"></i> Transaksi Aman & Terpercaya
                     </div>
-                    <div class="timeline-item">
-                        <span class="timeline-time">12:00 WIB</span>
-                        <div class="timeline-desc">Mandi, bersih-bersih, dan makan siang prasmanan dengan menu ramah
-                            keluarga.</div>
+                </div>
+            </div>
+
+        </div>
+
+        <section class="related-packages">
+            <div class="section-header-center">
+                <span class="section-tag"
+                    style="color: var(--accent); font-weight: 700; display: block; margin-bottom: 5px;">Coba Tantangan
+                    Lain</span>
+                <h2 class="section-title"
+                    style="font-family: var(--font-heading); font-size: 2rem; color: var(--text-dark);">Paket Lainnya
+                </h2>
+            </div>
+
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-img-wrap">
+                        <img src="img/baru/Desaintanpajudul29.webp" alt="Pemula">
+                    </div>
+                    <div class="card-content">
+                        <h3>Paket Pemula</h3>
+                        <p style="font-size: 0.9rem; color: #666;">Jalur Grade II-III. Aman untuk pemula, fokus pada
+                            pemandangan dan keseruan santai.</p>
+                        <a href="paket-pemula.html" class="btn-card-link">Lihat Detail <i
+                                class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img-wrap">
+                        <img src="img/baru/Desaintanpajudul33.webp" alt="Extreme">
+                    </div>
+                    <div class="card-content">
+                        <h3>Paket Extrem</h3>
+                        <p style="font-size: 0.9rem; color: #666;">Jalur Grade IV-V. Jeram menantang, butuh stamina dan
+                            nyali besar. Full adrenalin!Jalur Grade IV-V. Jeram menantang, butuh stamina dan nyali
+                            besar.
+                            Full adrenalin!</p>
+                        <a href="paket-extreme.html" class="btn-card-link">Lihat Detail <i
+                                class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
+        </section>
 
-        </div>
-
-        <div class="booking-sidebar">
-            <div class="booking-card">
-                <div class="price-header">
-                    <span class="price-label">Harga Mulai Dari</span>
-                    <span class="price-amount">Rp 175.000</span>
-                    <span class="price-unit">/ orang (Min. 5 Pax)</span>
+        <footer>
+            <div class="footer-content">
+                <div class="footer-col" style="flex: 2; min-width: 300px;">
+                    <a href="#" class="footer-logo">RIMBA RAFTING.</a>
+                    <p style="line-height: 1.6; max-width: 80%;">Operator wisata arung jeram yang memprioritaskan
+                        keselamatan tanpa mengurangi keseruan.</p>
                 </div>
-
-                <ul class="booking-features">
-                    <li><i class="fas fa-check-circle"></i> Aman untuk Anak (7+ Thn)</li>
-                    <li><i class="fas fa-check-circle"></i> Termasuk Foto Keluarga</li>
-                    <li><i class="fas fa-check-circle"></i> Menu Makan Siang Spesial</li>
-                </ul>
-
-                <a href="https://wa.me/6281234567890?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20booking%20Paket%20Family"
-                    target="_blank" class="btn-whatsapp-full">
-                    <i class="fab fa-whatsapp"></i> Booking via WhatsApp
-                </a>
-
-                <div class="secure-note">
-                    <i class="fas fa-lock"></i> Transaksi Aman & Terpercaya
+                <div class="footer-col" style="flex: 1;">
+                    <h4>Navigasi</h4>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="about.html">Tentang</a></li>
+                        <li><a href="galeri.html">Galeri</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
                 </div>
-            </div>
-        </div>
-
-    </div>
-
-    <section class="related-packages">
-        <div class="section-header-center">
-            <span class="section-tag"
-                style="color: var(--accent); font-weight: 700; display: block; margin-bottom: 5px;">Coba Tantangan
-                Lain</span>
-            <h2 class="section-title"
-                style="font-family: var(--font-heading); font-size: 2rem; color: var(--text-dark);">Paket Lainnya
-            </h2>
-        </div>
-
-        <div class="cards-container">
-            <div class="card">
-                <div class="card-img-wrap">
-                    <img src="img/baru/Desaintanpajudul29.webp" alt="Pemula">
-                </div>
-                <div class="card-content">
-                    <h3>Paket Pemula</h3>
-                    <p style="font-size: 0.9rem; color: #666;">Jalur Grade II-III. Aman untuk pemula, fokus pada
-                        pemandangan dan keseruan santai.</p>
-                    <a href="paket-pemula.html" class="btn-card-link">Lihat Detail <i
-                            class="fas fa-arrow-right"></i></a>
+                <div class="footer-col" style="flex: 1.2;">
+                    <h4>Kontak</h4>
+                    <div class="contact-row">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Jl. Raya Hutan Pinus No. 45, Bogor</span>
+                    </div>
+                    <div class="contact-row">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+62 812-9988-7766</span>
+                    </div>
                 </div>
             </div>
+            <div class="footer-bottom">
+                <p>© 2024 Rimba Rafting Indonesia.</p>
+            </div>
+        </footer>
 
-            <div class="card">
-                <div class="card-img-wrap">
-                    <img src="img/baru/Desaintanpajudul33.webp" alt="Extreme">
-                </div>
-                <div class="card-content">
-                    <h3>Paket Extrem</h3>
-                    <p style="font-size: 0.9rem; color: #666;">Jalur Grade IV-V. Jeram menantang, butuh stamina dan
-                        nyali besar. Full adrenalin!Jalur Grade IV-V. Jeram menantang, butuh stamina dan nyali besar.
-                        Full adrenalin!</p>
-                    <a href="paket-extreme.html" class="btn-card-link">Lihat Detail <i
-                            class="fas fa-arrow-right"></i></a>
-                </div>
+        <div class="mobile-bottom-bar">
+            <div class="mobile-price">
+                <span>Harga mulai</span>
+                <strong>Rp 175.000</strong>
             </div>
+            <a href="https://wa.me/6281234567890?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20booking%20Paket%20Family"
+                class="btn-mobile-book">
+                <i class="fab fa-whatsapp"></i> Booking
+            </a>
         </div>
-    </section>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-col" style="flex: 2; min-width: 300px;">
-                <a href="#" class="footer-logo">RIMBA RAFTING.</a>
-                <p style="line-height: 1.6; max-width: 80%;">Operator wisata arung jeram yang memprioritaskan
-                    keselamatan tanpa mengurangi keseruan.</p>
-            </div>
-            <div class="footer-col" style="flex: 1;">
-                <h4>Navigasi</h4>
-                <ul>
-                    <li><a href="index.html">Beranda</a></li>
-                    <li><a href="about.html">Tentang</a></li>
-                    <li><a href="galeri.html">Galeri</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                </ul>
-            </div>
-            <div class="footer-col" style="flex: 1.2;">
-                <h4>Kontak</h4>
-                <div class="contact-row">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Jl. Raya Hutan Pinus No. 45, Bogor</span>
-                </div>
-                <div class="contact-row">
-                    <i class="fas fa-phone-alt"></i>
-                    <span>+62 812-9988-7766</span>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2024 Rimba Rafting Indonesia.</p>
-        </div>
-    </footer>
-
-    <div class="mobile-bottom-bar">
-        <div class="mobile-price">
-            <span>Harga mulai</span>
-            <strong>Rp 175.000</strong>
-        </div>
-        <a href="https://wa.me/6281234567890?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20booking%20Paket%20Family"
-            class="btn-mobile-book">
-            <i class="fab fa-whatsapp"></i> Booking
+        <a href="https://wa.me/6281234567890?text=Halo%20saya%20tertarik%20dengan%20paket%20rafting" class="floating-wa"
+            target="_blank">
+            <i class="fab fa-whatsapp"></i>
         </a>
-    </div>
 
-    <a href="https://wa.me/6281234567890?text=Halo%20saya%20tertarik%20dengan%20paket%20rafting" class="floating-wa"
-        target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+        <script>
+            // Navbar & Mobile Menu Logic (Sama dengan Index)
+            const navbar = document.getElementById('navbar');
+            window.onscroll = () => {
+                if (window.scrollY > 50) navbar.classList.add('scrolled');
+                else navbar.classList.remove('scrolled');
+            };
 
-    <script>
-        // Navbar & Mobile Menu Logic (Sama dengan Index)
-        const navbar = document.getElementById('navbar');
-        window.onscroll = () => {
-            if (window.scrollY > 50) navbar.classList.add('scrolled');
-            else navbar.classList.remove('scrolled');
-        };
+            const hamburger = document.querySelector('.hamburger');
+            const icon = hamburger.querySelector('i');
+            const navLinks = document.querySelector('.nav-links');
 
-        const hamburger = document.querySelector('.hamburger');
-        const icon = hamburger.querySelector('i');
-        const navLinks = document.querySelector('.nav-links');
-
-        hamburger.addEventListener('click', (e) => {
-            navLinks.classList.toggle('active');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars'); icon.classList.add('fa-times');
-                hamburger.classList.add('active-color');
-            } else {
-                icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
-                if (window.scrollY < 50) hamburger.classList.remove('active-color');
-            }
-            e.stopPropagation();
-        });
-
-        const dropdownToggle = document.querySelector('.dropdown-toggle');
-        const dropdownContent = document.querySelector('.dropdown-content');
-        const dropdownParent = document.querySelector('.dropdown');
-
-        dropdownToggle.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                dropdownContent.classList.toggle('show-mobile');
-                dropdownParent.classList.toggle('active');
-            }
-        });
-
-        document.querySelectorAll('.nav-links a:not(.dropdown-toggle)').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
-                if (window.scrollY < 50) hamburger.classList.remove('active-color');
+            hamburger.addEventListener('click', (e) => {
+                navLinks.classList.toggle('active');
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars'); icon.classList.add('fa-times');
+                    hamburger.classList.add('active-color');
+                } else {
+                    icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
+                    if (window.scrollY < 50) hamburger.classList.remove('active-color');
+                }
+                e.stopPropagation();
             });
-        });
-    </script>
+
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownContent = document.querySelector('.dropdown-content');
+            const dropdownParent = document.querySelector('.dropdown');
+
+            dropdownToggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdownContent.classList.toggle('show-mobile');
+                    dropdownParent.classList.toggle('active');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a:not(.dropdown-toggle)').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
+                    if (window.scrollY < 50) hamburger.classList.remove('active-color');
+                });
+            });
+        </script>
 </body>
 
 </html>

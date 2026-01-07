@@ -711,13 +711,43 @@
                 right: 20px;
             }
         }
+
+        /* --- Pengaturan Logo Gambar --- */
+
+        .logo {
+            display: flex;
+            /* Memastikan gambar rata tengah vertikal */
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            /* Sesuaikan tinggi ini dengan tinggi navbar Anda */
+            width: auto;
+            /* Menjaga agar logo tidak gepeng/tertarik */
+            object-fit: contain;
+            transition: all 0.3s ease;
+            /* Efek halus saat resize */
+        }
+
+        /* --- Responsif (Tampilan HP) --- */
+        @media screen and (max-width: 768px) {
+            .logo img {
+                height: 40px;
+                /* Ukuran logo sedikit mengecil di HP agar muat */
+                margin-left: 10px;
+                /* Memberi jarak sedikit dari kiri layar */
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <nav id="navbar">
-        <a href="index.html" class="logo">RIMBA</a>
+        <a href="index.html" class="logo">
+            <img src="img/baru/RIMBA.png" alt="Logo Rimba Rafting">
+        </a>
         <div class="hamburger"><i class="fas fa-bars"></i></div>
         <ul class="nav-links">
             <li><a href="index.html">Beranda</a></li>
