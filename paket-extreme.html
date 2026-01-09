@@ -44,7 +44,12 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </noscript>
 
     <script type="application/ld+json">
     {
@@ -69,7 +74,7 @@
     </script>
 
     <style>
-        /* --- RESET & VARIABLES (SAMA DENGAN FILE SEBELUMNYA) --- */
+        /* --- RESET & VARIABLES --- */
         :root {
             --primary: #00695C;
             --primary-light: #4DB6AC;
@@ -97,7 +102,6 @@
             background-color: var(--off-white);
             overflow-x: hidden;
             padding-bottom: 80px;
-            /* Space for mobile floating bar */
         }
 
         /* --- NAVBAR --- */
@@ -132,10 +136,19 @@
             letter-spacing: 1px;
             z-index: 1002;
             position: relative;
+            display: flex;
+            align-items: center;
         }
 
         nav.scrolled .logo {
             color: var(--primary);
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            transition: all 0.3s ease;
         }
 
         .nav-links {
@@ -272,7 +285,6 @@
             color: var(--text-dark);
         }
 
-
         /* --- DETAIL PAGE HERO --- */
         .page-hero {
             height: 60vh;
@@ -281,7 +293,6 @@
             align-items: flex-end;
             justify-content: flex-start;
             position: relative;
-            /* GAMBAR BACKGROUND EXTREME */
             background: url('img/destinasi/sampean-1.webp');
             background-size: cover;
             background-position: center;
@@ -815,9 +826,7 @@
         .floating-wa {
             position: fixed;
             bottom: 30px;
-            /* Jarak dari bawah normal */
             right: 30px;
-            /* Jarak dari kanan */
             width: 60px;
             height: 60px;
             background-color: #25d366;
@@ -827,7 +836,6 @@
             font-size: 35px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
             z-index: 9999;
-            /* Pastikan selalu paling atas */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -849,41 +857,28 @@
                 width: 50px;
                 height: 50px;
                 font-size: 28px;
-
-                /* KUNCI PERBAIKAN DI SINI: */
-                /* Kita naikkan jarak dari bawah menjadi 100px (atau sesuaikan) */
-                /* agar posisinya berada DI ATAS tombol booking/bar harga */
                 bottom: 100px;
-
                 right: 20px;
             }
         }
 
         /* --- Pengaturan Logo Gambar --- */
-
         .logo {
             display: flex;
-            /* Memastikan gambar rata tengah vertikal */
             align-items: center;
         }
 
         .logo img {
             height: 50px;
-            /* Sesuaikan tinggi ini dengan tinggi navbar Anda */
             width: auto;
-            /* Menjaga agar logo tidak gepeng/tertarik */
             object-fit: contain;
             transition: all 0.3s ease;
-            /* Efek halus saat resize */
         }
 
-        /* --- Responsif (Tampilan HP) --- */
         @media screen and (max-width: 768px) {
             .logo img {
                 height: 40px;
-                /* Ukuran logo sedikit mengecil di HP agar muat */
                 margin-left: 10px;
-                /* Memberi jarak sedikit dari kiri layar */
             }
         }
 
@@ -891,26 +886,19 @@
         .back-to-top {
             position: fixed;
             bottom: 100px;
-            /* Posisi di atas tombol WA (WA biasanya 30px + tinggi tombol) */
             right: 30px;
             width: 50px;
             height: 50px;
             background-color: #ffffff;
-            /* Warna background putih */
             color: #333;
-            /* Warna panah abu-abu gelap */
             border-radius: 50%;
-            /* Membuat bulat */
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-            /* Bayangan halus */
             z-index: 998;
-            /* Di bawah Navbar tapi di atas konten */
             opacity: 0;
-            /* Default sembunyi */
             visibility: hidden;
             transition: all 0.3s ease;
             cursor: pointer;
@@ -920,23 +908,19 @@
         .back-to-top:hover {
             background-color: #f0f0f0;
             transform: translateY(-3px);
-            /* Efek naik dikit saat di-hover */
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         }
 
-        /* Class untuk memunculkan tombol */
         .back-to-top.show {
             opacity: 1;
             visibility: visible;
         }
 
-        /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 768px) {
             .back-to-top {
                 width: 45px;
                 height: 45px;
                 bottom: 160px;
-                /* Menyesuaikan posisi WA di mobile */
                 right: 20px;
                 font-size: 1rem;
             }
@@ -948,15 +932,15 @@
 
     <nav id="navbar">
         <a href="index.html" class="logo">
-            <img src="img/baru/RIMBA.png" alt="Logo Rimba Rafting">
+            <img src="img/baru/RIMBA.png" alt="Logo Rimba Rafting" width="150" height="50">
         </a>
-        <div class="hamburger"><i class="fas fa-bars"></i></div>
+        <div class="hamburger" role="button" aria-label="Menu Navigasi" tabindex="0"><i class="fas fa-bars"></i></div>
         <ul class="nav-links">
             <li><a href="index.html">Beranda</a></li>
             <li><a href="about.html">Tentang</a></li>
             <li><a href="galeri.html">Galeri</a></li>
             <li class="dropdown">
-                <a href="#paket" class="dropdown-toggle">
+                <a href="#paket" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
                     Paket <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
                 </a>
                 <div class="dropdown-content">
@@ -1069,7 +1053,7 @@
                 </ul>
 
                 <a href="https://wa.me/6281234567890?text=Halo%20Rimba%20Rafting,%20saya%20tertantang%20untuk%20booking%20Paket%20Extrem"
-                    target="_blank" class="btn-whatsapp-full">
+                    target="_blank" rel="noopener noreferrer" class="btn-whatsapp-full">
                     <i class="fab fa-whatsapp"></i> Booking via WhatsApp
                 </a>
 
@@ -1094,7 +1078,8 @@
         <div class="cards-container">
             <div class="card">
                 <div class="card-img-wrap">
-                    <img src="img/baru/Desaintanpajudul29.webp" alt="Pemula">
+                    <img src="img/baru/Desaintanpajudul29.webp" alt="Paket Rafting Pemula" width="400" height="300"
+                        loading="lazy" decoding="async">
                 </div>
                 <div class="card-content">
                     <h3>Paket Pemula</h3>
@@ -1107,7 +1092,8 @@
 
             <div class="card">
                 <div class="card-img-wrap">
-                    <img src="img/baru/keluarga.webp" alt="Keluarga">
+                    <img src="img/baru/keluarga.webp" alt="Paket Rafting Keluarga" width="400" height="300"
+                        loading="lazy" decoding="async">
                 </div>
                 <div class="card-content">
                     <h3>Paket Family</h3>
@@ -1160,22 +1146,22 @@
             <strong>Rp 250.000</strong>
         </div>
         <a href="https://wa.me/6281234567890?text=Halo%20Rimba%20Rafting,%20saya%20tertantang%20untuk%20booking%20Paket%20Extreme"
-            class="btn-mobile-book">
+            class="btn-mobile-book" rel="noopener noreferrer">
             <i class="fab fa-whatsapp"></i> Booking
         </a>
     </div>
 
-    <a href="#" id="backToTop" class="back-to-top">
+    <a href="#" id="backToTop" class="back-to-top" aria-label="Kembali ke atas">
         <i class="fas fa-arrow-up"></i>
     </a>
 
     <a href="https://wa.me/6281299887766?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20tanya%20paket%20rafting."
-        class="floating-wa" target="_blank">
+        class="floating-wa" target="_blank" rel="noopener noreferrer" aria-label="Chat WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <script>
-        // Navbar & Mobile Menu Logic (Sama dengan Index)
+        // Navbar & Mobile Menu Logic
         const navbar = document.getElementById('navbar');
         window.onscroll = () => {
             if (window.scrollY > 50) navbar.classList.add('scrolled');
@@ -1186,7 +1172,8 @@
         const icon = hamburger.querySelector('i');
         const navLinks = document.querySelector('.nav-links');
 
-        hamburger.addEventListener('click', (e) => {
+        // Logic Toggle Menu
+        function toggleMenu() {
             navLinks.classList.toggle('active');
             if (navLinks.classList.contains('active')) {
                 icon.classList.remove('fa-bars'); icon.classList.add('fa-times');
@@ -1195,7 +1182,19 @@
                 icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
                 if (window.scrollY < 50) hamburger.classList.remove('active-color');
             }
+        }
+
+        hamburger.addEventListener('click', (e) => {
+            toggleMenu();
             e.stopPropagation();
+        });
+
+        // Accessibility: Keyboard support for Hamburger
+        hamburger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMenu();
+            }
         });
 
         const dropdownToggle = document.querySelector('.dropdown-toggle');
@@ -1222,7 +1221,6 @@
         const backToTopBtn = document.getElementById('backToTop');
 
         window.addEventListener('scroll', () => {
-            // Munculkan tombol jika scroll lebih dari 300px
             if (window.scrollY > 300) {
                 backToTopBtn.classList.add('show');
             } else {
@@ -1231,14 +1229,13 @@
         });
 
         backToTopBtn.addEventListener('click', (e) => {
-            e.preventDefault(); // Mencegah loncat kasar (default anchor behavior)
+            e.preventDefault();
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth' // Scroll halus ke atas
+                behavior: 'smooth'
             });
         });
     </script>
 </body>
 
 </html>
-}

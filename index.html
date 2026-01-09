@@ -11,6 +11,8 @@
     <meta name="author" content="Rimba Rafting">
     <meta name="robots" content="index, follow">
 
+    <link rel="preload" as="image" href="img/destinasi/glidik-2.webp">
+
     <link rel="canonical" href="https://www.rimbarafting.com/" />
 
     <meta property="og:type" content="website">
@@ -37,12 +39,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="preload" as="image" href="img/destinasi/glidik-2.webp">
-
-    <link
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap">
+    <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap">
+    </noscript>
+
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </noscript>
 
     <script type="application/ld+json">
     {
@@ -118,7 +130,8 @@
         :root {
             --primary: #00695C;
             --primary-light: #4DB6AC;
-            --accent: #FF8F00;
+            /* Optimized Contrast for Accessibility */
+            --accent: #D97700;
             --text-dark: #1F2937;
             --text-gray: #4B5563;
             --white: #ffffff;
@@ -157,6 +170,8 @@
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(5px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            will-change: background, padding;
+            /* Performance Hint */
         }
 
         nav.scrolled {
@@ -301,7 +316,7 @@
             padding: 10px 28px !important;
             border-radius: 50px;
             color: var(--white) !important;
-            box-shadow: 0 4px 15px rgba(255, 111, 0, 0.4);
+            box-shadow: 0 4px 15px rgba(217, 119, 0, 0.4);
             font-weight: 600;
         }
 
@@ -311,7 +326,7 @@
 
         .btn-booking:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 111, 0, 0.5);
+            box-shadow: 0 8px 20px rgba(217, 119, 0, 0.5);
         }
 
         /* --- HAMBURGER MENU --- */
@@ -323,6 +338,8 @@
             z-index: 2000;
             position: relative;
             transition: color 0.3s;
+            background: transparent;
+            border: none;
         }
 
         nav.scrolled .hamburger,
@@ -344,6 +361,8 @@
             background-position: center;
             background-attachment: fixed;
             z-index: 1;
+            /* Performance: Create new layer */
+            will-change: transform;
         }
 
         .hero::before {
@@ -422,6 +441,7 @@
 
         .about-img img {
             width: 100%;
+            height: auto;
             border-radius: 20px;
             box-shadow: 20px 20px 0 var(--off-white), 20px 20px 0 2px var(--primary);
         }
@@ -1127,13 +1147,13 @@
 <body>
 
     <nav id="navbar">
-        <a href="index.html" class="logo">
-            <img src="img/baru/RIMBA.png" alt="Logo Rimba Rafting">
+        <a href="index.html" class="logo" aria-label="Rimba Rafting Home">
+            <img src="img/baru/RIMBA.png" alt="Logo Rimba Rafting" width="150" height="50">
         </a>
 
-        <div class="hamburger">
+        <button class="hamburger" aria-label="Buka Menu">
             <i class="fas fa-bars"></i>
-        </div>
+        </button>
 
         <ul class="nav-links">
             <li><a href="#beranda">Beranda</a></li>
@@ -1280,7 +1300,7 @@
                         <h2>Masih Ada<br>Pertanyaan?</h2>
                         <p>Kami telah merangkum hal-hal yang paling sering ditanyakan oleh petualang baru. Jangan ragu
                             untuk menghubungi kami jika butuh info lebih lanjut.</p>
-                        <a href="https://wa.me/6281299887766" class="faq-btn-contact">
+                        <a href="https://wa.me/6281299887766" class="faq-btn-contact" aria-label="Chat WhatsApp">
                             Chat via WhatsApp <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -1351,7 +1371,7 @@
         </section>
         <div class="map-wrapper">
             <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.297920456258!2d106.7972753!3d-6.6098484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c5e5c7d0e5c9%3A0x6b7b5b5b5b5b5b5b!2sBogor%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1620000000000!5m2!1sid!2sid"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.297424458882!2d106.803816!3d-6.5971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMzUnNDkuNiJTIDEwNsKwNDgnMTMuNyJF!5e0!3m2!1sid!2sid!4v1600000000000!5m2!1sid!2sid"
                 allowfullscreen="" loading="lazy" title="Peta Lokasi Rimba Rafting"></iframe>
         </div>
 
@@ -1394,25 +1414,38 @@
         </div>
     </footer>
 
-    <a href="#" id="backToTop" class="back-to-top">
+    <a href="#" id="backToTop" class="back-to-top" aria-label="Kembali ke Atas">
         <i class="fas fa-arrow-up"></i>
     </a>
 
     <a href="https://wa.me/6281299887766?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20tanya%20paket%20rafting."
-        class="floating-wa" target="_blank">
+        class="floating-wa" target="_blank" aria-label="Chat WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <script>
-        // Navbar Scrolled Effect
+        // --- OPTIMIZED JS FOR PERFORMANCE ---
+
+        // Navbar Scrolled Effect (Using Passive Listener)
         const navbar = document.getElementById('navbar');
-        window.onscroll = () => {
+        const handleScroll = () => {
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
+
+            // Back to Top Logic combined here to reduce listeners
+            const backToTopBtn = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
         };
+
+        // Passive listener improves scroll performance
+        window.addEventListener('scroll', handleScroll, { passive: true });
 
         // --- HAMBURGER MENU & CLOSE LOGIC ---
         const hamburger = document.querySelector('.hamburger');
@@ -1472,7 +1505,7 @@
             }
         });
 
-        // --- FAQ ACCORDION LOGIC (NEW) ---
+        // --- FAQ ACCORDION LOGIC ---
         const faqItems = document.querySelectorAll('.faq-item');
 
         faqItems.forEach(item => {
@@ -1482,7 +1515,7 @@
             question.addEventListener('click', () => {
                 const isActive = item.classList.contains('active');
 
-                // Opsional: Tutup item lain jika ingin hanya satu yang terbuka
+                // Opsional: Tutup item lain
                 faqItems.forEach(otherItem => {
                     if (otherItem !== item) {
                         otherItem.classList.remove('active');
@@ -1490,7 +1523,7 @@
                     }
                 });
 
-                // Toggle item yang diklik
+                // Toggle item
                 item.classList.toggle('active');
 
                 if (!isActive) {
@@ -1501,23 +1534,13 @@
             });
         });
 
-        // --- BACK TO TOP LOGIC ---
+        // --- BACK TO TOP CLICK ---
         const backToTopBtn = document.getElementById('backToTop');
-
-        window.addEventListener('scroll', () => {
-            // Munculkan tombol jika scroll lebih dari 300px
-            if (window.scrollY > 300) {
-                backToTopBtn.classList.add('show');
-            } else {
-                backToTopBtn.classList.remove('show');
-            }
-        });
-
         backToTopBtn.addEventListener('click', (e) => {
-            e.preventDefault(); // Mencegah loncat kasar (default anchor behavior)
+            e.preventDefault();
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth' // Scroll halus ke atas
+                behavior: 'smooth'
             });
         });
     </script>

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#00695C">
 
     <title>Blog & Artikel - Rimba Rafting | Tips & Panduan Arung Jeram</title>
     <meta name="description"
@@ -27,6 +28,8 @@
     <link rel="icon" type="image/png" href="img/baru/RIMBA.png">
     <link rel="apple-touch-icon" href="img/baru/RIMBA.png">
 
+    <link rel="preload" as="image" href="img/destinasi/sampean-1.webp">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -35,7 +38,11 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </noscript>
 
     <script type="application/ld+json">
     {
@@ -106,6 +113,19 @@
             color: var(--text-dark);
             background-color: var(--off-white);
             overflow-x: hidden;
+        }
+
+        /* Utility untuk Aksesibilitas (Screen Reader Only) */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
         }
 
         /* --- NAVBAR (SAMA PERSIS DENGAN INDEX) --- */
@@ -291,6 +311,13 @@
             cursor: pointer;
             z-index: 2000;
             position: relative;
+            min-width: 48px;
+            /* Accessibility: Minimum touch target */
+            min-height: 48px;
+            display: flex;
+            /* Hidden by default via CSS above on Desktop, overrides below */
+            align-items: center;
+            justify-content: center;
         }
 
         nav.scrolled .hamburger,
@@ -433,6 +460,9 @@
             display: flex;
             flex-direction: column;
             border: 1px solid rgba(0, 0, 0, 0.03);
+            /* Optimasi Render */
+            content-visibility: auto;
+            contain-intrinsic-size: 0 500px;
         }
 
         .blog-card:hover {
@@ -526,6 +556,8 @@
             font-weight: 700;
             color: var(--primary);
             transition: 0.3s;
+            padding: 10px 0;
+            /* Touch Target Optimization */
         }
 
         .read-more-btn:hover {
@@ -555,6 +587,9 @@
             color: #ccc;
             padding-top: 5rem;
             padding-bottom: 2rem;
+            content-visibility: auto;
+            /* Performance boost */
+            contain-intrinsic-size: 0 400px;
         }
 
         .footer-content {
@@ -587,6 +622,9 @@
         .footer-col ul a {
             color: #999;
             transition: 0.3s;
+            padding: 5px 0;
+            /* Accessibility Touch Target */
+            display: block;
         }
 
         .footer-col ul a:hover {
@@ -630,7 +668,8 @@
 
         @media (max-width: 768px) {
             .hamburger {
-                display: block;
+                display: flex;
+                /* Ensure displayed as flex for centering */
             }
 
             /* Navbar Mobile */
@@ -703,6 +742,8 @@
                 font-size: 0.95rem;
                 color: #555 !important;
                 border-bottom: 1px solid #e0e0e0;
+                padding-top: 15px;
+                padding-bottom: 15px;
             }
 
             .dropdown.active>a i {
@@ -867,11 +908,12 @@
     <div class="content-wrapper">
 
         <div class="search-container">
-            <div class="search-box">
+            <form action="#" method="get" class="search-box">
+                <label for="searchInput" class="sr-only">Cari Artikel</label>
                 <input type="text" id="searchInput" placeholder="Cari artikel (misal: Tips, Lokasi, Peralatan)..."
                     aria-label="Cari Artikel">
-                <button class="search-btn" aria-label="Tombol Cari"><i class="fas fa-search"></i></button>
-            </div>
+                <button type="submit" class="search-btn" aria-label="Tombol Cari"><i class="fas fa-search"></i></button>
+            </form>
         </div>
 
         <div class="blog-grid" id="blogGrid">
@@ -1100,6 +1142,11 @@
         const searchInput = document.getElementById('searchInput');
         const blogCards = document.querySelectorAll('.blog-card');
         const noResults = document.getElementById('noResults');
+
+        // Prevent form submit if user hits enter
+        document.querySelector('.search-box').addEventListener('submit', (e) => {
+            e.preventDefault();
+        });
 
         searchInput.addEventListener('keyup', (e) => {
             const term = e.target.value.toLowerCase();

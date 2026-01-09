@@ -16,6 +16,8 @@
 
     <link rel="canonical" href="https://www.rimbarafting.com/booking.html">
 
+    <link rel="preload" as="image" href="img/destinasi/sampean-1.webp">
+
     <meta property="og:type" content="website">
     <meta property="og:title" content="Booking Petualangan - Rimba Rafting">
     <meta property="og:description"
@@ -40,7 +42,12 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </noscript>
 
     <script type="application/ld+json">
     {
@@ -65,7 +72,7 @@
     </script>
 
     <style>
-        /* --- 1. VARIABLES & RESET (SAMA PERSIS) --- */
+        /* --- 1. VARIABLES & RESET --- */
         :root {
             --primary: #00695C;
             --primary-light: #4DB6AC;
@@ -95,7 +102,7 @@
             line-height: 1.6;
         }
 
-        /* --- 2. NAVBAR (SAMA PERSIS) --- */
+        /* --- 2. NAVBAR --- */
         nav {
             position: fixed;
             top: 0;
@@ -127,10 +134,19 @@
             letter-spacing: 1px;
             z-index: 1002;
             position: relative;
+            display: flex;
+            align-items: center;
         }
 
         nav.scrolled .logo {
             color: var(--primary);
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            transition: all 0.3s ease;
         }
 
         .nav-links {
@@ -235,7 +251,6 @@
             display: none;
         }
 
-        /* Button Booking (Hidden on this page since we are already here) */
         .btn-booking {
             background: linear-gradient(45deg, var(--accent), #FF6F00);
             padding: 10px 28px !important;
@@ -244,7 +259,6 @@
             box-shadow: 0 4px 15px rgba(255, 111, 0, 0.4);
             font-weight: 600;
             display: none;
-            /* Disembunyikan di halaman ini */
         }
 
         /* Hamburger */
@@ -263,7 +277,7 @@
             color: var(--text-dark);
         }
 
-        /* --- 3. HERO SECTION (Small) --- */
+        /* --- 3. HERO SECTION (LCP Optimized via CSS & Preload) --- */
         .page-hero {
             height: 50vh;
             width: 100%;
@@ -318,7 +332,6 @@
             gap: 40px;
         }
 
-        /* Form Card Styling */
         .form-card {
             background: var(--white);
             border-radius: 20px;
@@ -344,7 +357,6 @@
             margin-top: 5px;
         }
 
-        /* Form Elements */
         .form-group {
             margin-bottom: 20px;
         }
@@ -385,7 +397,6 @@
             box-shadow: 0 0 0 4px rgba(0, 105, 92, 0.1);
         }
 
-        /* Radio Package Selection (Visual) */
         .package-options {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -426,7 +437,6 @@
             display: block;
         }
 
-        /* State Aktif Radio */
         .radio-label input:checked+div {
             color: var(--primary);
         }
@@ -447,7 +457,6 @@
             font-size: 0.8rem;
         }
 
-        /* Summary Card (Sticky) */
         .summary-card {
             background: var(--primary);
             color: var(--white);
@@ -515,7 +524,7 @@
             background: #ffa000;
         }
 
-        /* --- 5. FOOTER (SAMA PERSIS) --- */
+        /* --- 5. FOOTER --- */
         footer {
             background-color: #111;
             color: #ccc;
@@ -592,15 +601,12 @@
                 order: -1;
             }
 
-            /* Summary pindah ke atas di tablet */
             .form-row {
                 grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 768px) {
-
-            /* Mobile Nav Logic */
             .hamburger {
                 display: block;
             }
@@ -646,7 +652,6 @@
                 display: none;
             }
 
-            /* Dropdown Mobile */
             .dropdown-content {
                 position: relative;
                 top: 0;
@@ -676,7 +681,6 @@
                 border-bottom: 1px solid #e0e0e0;
             }
 
-            /* Page Specific */
             .page-hero {
                 height: 40vh;
             }
@@ -689,10 +693,14 @@
                 grid-template-columns: 1fr;
             }
 
-            /* Radio jadi vertikal di HP */
             .footer-content {
                 flex-direction: column;
                 gap: 2rem;
+            }
+
+            .logo img {
+                height: 40px;
+                margin-left: 10px;
             }
         }
 
@@ -716,14 +724,12 @@
             width: 60px;
             height: 60px;
             background-color: #25d366;
-            /* Warna Hijau WhatsApp */
             color: #fff;
             border-radius: 50%;
             text-align: center;
             font-size: 35px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
             z-index: 9999;
-            /* Pastikan di atas elemen lain */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -732,19 +738,14 @@
 
         .floating-wa:hover {
             background-color: #1ebc57;
-            /* Warna sedikit lebih gelap saat hover */
             transform: scale(1.1);
-            /* Efek membesar sedikit */
             box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.4);
         }
 
-        /* Agar ikon pas di tengah */
         .floating-wa i {
             margin-top: 2px;
-            /* Sedikit penyesuaian vertikal */
         }
 
-        /* Responsif untuk Mobile (agar tidak terlalu besar/menutupi konten) */
         @media (max-width: 768px) {
             .floating-wa {
                 width: 50px;
@@ -755,58 +756,23 @@
             }
         }
 
-        /* --- Pengaturan Logo Gambar --- */
-
-        .logo {
-            display: flex;
-            /* Memastikan gambar rata tengah vertikal */
-            align-items: center;
-        }
-
-        .logo img {
-            height: 50px;
-            /* Sesuaikan tinggi ini dengan tinggi navbar Anda */
-            width: auto;
-            /* Menjaga agar logo tidak gepeng/tertarik */
-            object-fit: contain;
-            transition: all 0.3s ease;
-            /* Efek halus saat resize */
-        }
-
-        /* --- Responsif (Tampilan HP) --- */
-        @media screen and (max-width: 768px) {
-            .logo img {
-                height: 40px;
-                /* Ukuran logo sedikit mengecil di HP agar muat */
-                margin-left: 10px;
-                /* Memberi jarak sedikit dari kiri layar */
-            }
-        }
-
         /* --- BACK TO TOP BUTTON --- */
         .back-to-top {
             position: fixed;
             bottom: 100px;
-            /* Posisi di atas tombol WA (WA biasanya 30px + tinggi tombol) */
             right: 30px;
             width: 50px;
             height: 50px;
             background-color: #ffffff;
-            /* Warna background putih */
             color: #333;
-            /* Warna panah abu-abu gelap */
             border-radius: 50%;
-            /* Membuat bulat */
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-            /* Bayangan halus */
             z-index: 998;
-            /* Di bawah Navbar tapi di atas konten */
             opacity: 0;
-            /* Default sembunyi */
             visibility: hidden;
             transition: all 0.3s ease;
             cursor: pointer;
@@ -816,23 +782,19 @@
         .back-to-top:hover {
             background-color: #f0f0f0;
             transform: translateY(-3px);
-            /* Efek naik dikit saat di-hover */
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         }
 
-        /* Class untuk memunculkan tombol */
         .back-to-top.show {
             opacity: 1;
             visibility: visible;
         }
 
-        /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 768px) {
             .back-to-top {
                 width: 45px;
                 height: 45px;
                 bottom: 85px;
-                /* Menyesuaikan posisi WA di mobile */
                 right: 20px;
                 font-size: 1rem;
             }
@@ -846,13 +808,13 @@
         <a href="index.html" class="logo">
             <img src="img/baru/RIMBA.png" alt="Logo Rimba Rafting" width="150" height="50" loading="eager">
         </a>
-        <div class="hamburger"><i class="fas fa-bars"></i></div>
+        <div class="hamburger" role="button" aria-label="Menu Navigasi" tabindex="0"><i class="fas fa-bars"></i></div>
         <ul class="nav-links">
             <li><a href="index.html#beranda">Beranda</a></li>
             <li><a href="about.html">Tentang</a></li>
             <li><a href="galeri.html">Galeri</a></li>
             <li class="dropdown">
-                <a href="index.html#paket" class="dropdown-toggle">
+                <a href="index.html#paket" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
                     Paket <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
                 </a>
                 <div class="dropdown-content">
@@ -884,17 +846,19 @@
             <form id="waForm">
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Nama Lengkap</label>
+                        <label for="nama">Nama Lengkap</label>
                         <input type="text" id="nama" placeholder="Contoh: Budi Santoso" required>
                     </div>
                     <div class="form-group">
-                        <label>Nomor WhatsApp</label>
+                        <label for="whatsapp">Nomor WhatsApp</label>
                         <input type="number" id="whatsapp" placeholder="Contoh: 08123456789" required>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>Pilih Paket Rafting</label>
+                    <span
+                        style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: var(--text-dark);">Pilih
+                        Paket Rafting</span>
                     <div class="package-options">
                         <label class="radio-label">
                             <input type="radio" name="paket" value="Pemula" data-price="125000" onclick="updatePrice()"
@@ -924,17 +888,17 @@
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Tanggal Booking</label>
+                        <label for="tanggal">Tanggal Booking</label>
                         <input type="date" id="tanggal" required>
                     </div>
                     <div class="form-group">
-                        <label>Jumlah Peserta (Pax)</label>
+                        <label for="jumlah">Jumlah Peserta (Pax)</label>
                         <input type="number" id="jumlah" min="1" value="1" oninput="updatePrice()" required>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>Catatan Tambahan (Opsional)</label>
+                    <label for="catatan">Catatan Tambahan (Opsional)</label>
                     <textarea id="catatan" rows="3"
                         placeholder="Contoh: Request makan siang vegetarian, dll."></textarea>
                 </div>
@@ -1011,17 +975,17 @@
         </div>
     </footer>
 
-    <a href="#" id="backToTop" class="back-to-top">
+    <a href="#" id="backToTop" class="back-to-top" aria-label="Kembali ke atas">
         <i class="fas fa-arrow-up"></i>
     </a>
 
     <a href="https://wa.me/6281299887766?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20tanya%20paket%20rafting."
-        class="floating-wa" target="_blank" rel="noopener noreferrer">
+        class="floating-wa" target="_blank" rel="noopener noreferrer" aria-label="Chat WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <script>
-        // 1. Script Navbar & Hamburger (Sama dengan Index)
+        // 1. Script Navbar & Hamburger
         const navbar = document.getElementById('navbar');
         window.onscroll = () => {
             if (window.scrollY > 50) { navbar.classList.add('scrolled'); }
@@ -1049,6 +1013,14 @@
                     navLinks.classList.remove('active'); icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
                     if (window.scrollY < 50) { hamburger.classList.remove('active-color'); }
                 }
+            }
+        });
+
+        // Add Enter key support for Hamburger accessibility
+        hamburger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                hamburger.click();
             }
         });
 
@@ -1115,7 +1087,7 @@ Catatan: ${catatan ? catatan : '-'}
 
 Mohon info ketersediaan slot. Terima kasih!`;
 
-            // Nomor Tujuan (Ganti dengan nomor admin asli)
+            // Nomor Tujuan
             const adminNumber = "6281299887766";
 
             // Redirect ke API WhatsApp
@@ -1136,10 +1108,10 @@ Mohon info ketersediaan slot. Terima kasih!`;
         });
 
         backToTopBtn.addEventListener('click', (e) => {
-            e.preventDefault(); // Mencegah loncat kasar (default anchor behavior)
+            e.preventDefault();
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth' // Scroll halus ke atas
+                behavior: 'smooth'
             });
         });
     </script>

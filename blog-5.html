@@ -37,10 +37,20 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+
+    <link rel="preload" as="image"
+        href="https://images.unsplash.com/photo-1504280509247-268a2ae3864a?q=60&w=1200&auto=format&fit=crop">
+
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </noscript>
 
     <script type="application/ld+json">
     {
@@ -62,7 +72,7 @@
         "name": "Rimba Rafting",
         "logo": {
           "@type": "ImageObject",
-          "url": "img/baru/RIMBA.png"
+          "url": "https://rimbarafting.com/img/baru/RIMBA.png"
         }
       },
       "datePublished": "2024-12-10",
@@ -99,12 +109,15 @@
             background-color: var(--off-white);
             overflow-x: hidden;
             line-height: 1.8;
+            text-rendering: optimizeLegibility;
         }
 
         /* --- UTILS --- */
         img {
             max-width: 100%;
             height: auto;
+            display: block;
+            /* Fix layout shifts */
         }
 
         /* --- READING PROGRESS BAR --- */
@@ -136,12 +149,16 @@
             transition: all 0.4s ease;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            will-change: background, padding;
+            /* Perf hint */
         }
 
         nav.scrolled {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             padding: 1rem 5%;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
@@ -304,7 +321,7 @@
             color: var(--text-dark);
         }
 
-        /* --- 3. HERO BLOG DETAIL --- */
+        /* --- 3. HERO BLOG DETAIL (OPTIMIZED) --- */
         .blog-hero {
             height: 60vh;
             width: 100%;
@@ -313,13 +330,15 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            /* Background image khusus Blog 5 (Hujan/Air Deras) */
-            background: url('https://images.unsplash.com/photo-1504280509247-268a2ae3864a?q=80&w=2070&auto=format&fit=crop');
+            /* Optimized URL matches Preload: q=60, w=1200 */
+            background: url('https://images.unsplash.com/photo-1504280509247-268a2ae3864a?q=60&w=1200&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             padding-bottom: 4rem;
             padding-top: 100px;
+            background-color: var(--primary);
+            /* Fallback */
         }
 
         .blog-hero::before {
@@ -525,6 +544,7 @@
         figure img {
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
         }
 
         figcaption {
@@ -742,6 +762,7 @@
         .r-img {
             height: 200px;
             overflow: hidden;
+            background-color: #eee;
         }
 
         .r-img img {
@@ -1079,7 +1100,7 @@
 
     <nav id="navbar">
         <a href="index.html" class="logo">
-            <img src="img/baru/RIMBA.png" alt="Logo Rimba Rafting">
+            <img src="img/baru/RIMBA.png" alt="Logo Rimba Rafting" width="150" height="50" loading="eager">
         </a>
         <div class="hamburger"><i class="fas fa-bars"></i></div>
         <ul class="nav-links">
@@ -1104,8 +1125,8 @@
         <div class="blog-hero-content">
             <h1>Rafting Saat Hujan? Aman Gak Sih?</h1>
             <div class="author-meta">
-                <img src="https://images.unsplash.com/photo-1541577141970-eebc83ebe30e?q=80&w=100&auto=format&fit=crop"
-                    alt="Rescue Team" width="40" height="40">
+                <img src="https://images.unsplash.com/photo-1541577141970-eebc83ebe30e?q=60&w=100&auto=format&fit=crop"
+                    alt="Rescue Team" width="40" height="40" loading="lazy">
                 <div>
                     <strong>Rescue Team</strong><br>
                     <span style="opacity: 0.8;">10 Des 2024 • 5 Menit Baca</span>
@@ -1120,14 +1141,16 @@
             <div class="article-content" id="main-content">
 
                 <figure>
-                    <img src="img/destinasi/glidik-1.webp" alt="Rafting Saat Hujan" loading="lazy" decoding="async">
+                    <img src="img/destinasi/glidik-1.webp" alt="Rafting Saat Hujan" loading="lazy" width="800"
+                        height="500">
                     <figcaption>Rafting saat hujan menawarkan sensasi debit air yang maksimal.</figcaption>
                 </figure>
 
                 <div class="auto-toc-container">
                     <div class="toc-header" onclick="toggleToc()">
                         <h3>Daftar Isi</h3>
-                        <button class="toc-toggle-btn" id="tocIcon"><i class="fas fa-chevron-up"></i></button>
+                        <button class="toc-toggle-btn" id="tocIcon" aria-label="Toggle Daftar Isi"><i
+                                class="fas fa-chevron-up"></i></button>
                     </div>
                     <ul class="toc-list" id="auto-toc-list">
                     </ul>
@@ -1160,7 +1183,7 @@
                 <div class="promo-gif">
                     <a href="booking.html">
                         <img src="https://placehold.co/800x200/FF8F00/ffffff/GIF?text=PROMO+HUJAN+DISKON+20%25+-+KLIK+DISINI!&font=montserrat"
-                            alt="Promo Hujan GIF" loading="lazy" decoding="async">
+                            alt="Promo Hujan GIF" loading="lazy" width="800" height="200">
                     </a>
                 </div>
 
@@ -1194,7 +1217,8 @@
                 </ul>
 
                 <figure>
-                    <img src="img/destinasi/glidik-2.webp" alt="Rafting Ekstrem" loading="lazy" decoding="async">
+                    <img src="img/destinasi/glidik-2.webp" alt="Rafting Ekstrem" loading="lazy" width="800"
+                        height="500">
                     <figcaption>Kekompakan tim sangat diuji saat kondisi cuaca menantang.</figcaption>
                 </figure>
 
@@ -1257,14 +1281,14 @@
                 <div class="promo-gif">
                     <a href="booking.html">
                         <img src="https://placehold.co/800x200/00695C/ffffff/GIF?text=WEEKEND+SALE!+BOOKING+NOW&font=montserrat"
-                            alt="Promo Weekend" loading="lazy" decoding="async">
+                            alt="Promo Weekend" loading="lazy" width="800" height="200">
                     </a>
                 </div>
 
                 <div class="post-footer">
                     <div class="author-box">
-                        <img src="https://images.unsplash.com/photo-1541577141970-eebc83ebe30e?q=80&w=100&auto=format&fit=crop"
-                            alt="Rescue Team" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1541577141970-eebc83ebe30e?q=60&w=100&auto=format&fit=crop"
+                            alt="Rescue Team" width="80" height="80" loading="lazy">
                         <div class="author-info">
                             <h4>Rescue Team Rimba</h4>
                             <span>Safety & Evacuation Div.</span>
@@ -1275,13 +1299,13 @@
 
                     <div class="share-box">
                         <h5>Bagikan Artikel Ini:</h5>
-                        <button class="social-share-btn fb-share" onclick="shareSocial('fb')"><i
-                                class="fab fa-facebook-f"></i></button>
-                        <button class="social-share-btn tw-share" onclick="shareSocial('tw')"><i
-                                class="fab fa-twitter"></i></button>
-                        <button class="social-share-btn wa-share" onclick="shareSocial('wa')"><i
-                                class="fab fa-whatsapp"></i></button>
-                        <button class="social-share-btn" onclick="shareSocial('li')"><i
+                        <button class="social-share-btn fb-share" onclick="shareSocial('fb')"
+                            aria-label="Share ke Facebook"><i class="fab fa-facebook-f"></i></button>
+                        <button class="social-share-btn tw-share" onclick="shareSocial('tw')"
+                            aria-label="Share ke Twitter"><i class="fab fa-twitter"></i></button>
+                        <button class="social-share-btn wa-share" onclick="shareSocial('wa')"
+                            aria-label="Share ke WhatsApp"><i class="fab fa-whatsapp"></i></button>
+                        <button class="social-share-btn" onclick="shareSocial('li')" aria-label="Share ke LinkedIn"><i
                                 class="fab fa-linkedin-in"></i></button>
                     </div>
                 </div>
@@ -1296,8 +1320,8 @@
             </div>
             <div class="related-grid">
                 <div class="r-card">
-                    <div class="r-img"><img src="img/destinasi/kaliwatu-1.webp" alt="Sungai" loading="lazy"
-                            decoding="async"></div>
+                    <div class="r-img"><img src="img/destinasi/kaliwatu-1.webp" alt="Sungai" loading="lazy" width="400"
+                            height="200"></div>
                     <div class="r-content">
                         <h4>Sungai Terbaik di Jawa Barat untuk Rafting</h4>
                         <p>Rekomendasi spot rafting paling menantang dan indah di wilayah Jawa Barat.</p>
@@ -1306,7 +1330,7 @@
                 </div>
                 <div class="r-card">
                     <div class="r-img"><img src="img/destinasi/sampean-1.webp" alt="Peralatan" loading="lazy"
-                            decoding="async"></div>
+                            width="400" height="200"></div>
                     <div class="r-content">
                         <h4>Sejarah Perkembangan Arung Jeram di Indonesia</h4>
                         <p>Menelusuri jejak awal mula olahraga arus deras masuk ke nusantara.</p>
@@ -1314,8 +1338,8 @@
                     </div>
                 </div>
                 <div class="r-card">
-                    <div class="r-img"><img src="img/destinasi/bajulmati-1.webp" alt="Tips" loading="lazy"
-                            decoding="async"></div>
+                    <div class="r-img"><img src="img/destinasi/bajulmati-1.webp" alt="Tips" loading="lazy" width="400"
+                            height="200"></div>
                     <div class="r-content">
                         <h4>5 Tips Keselamatan Rafting untuk Pemula</h4>
                         <p>Panduan lengkap agar pengalaman rafting pertama Anda tetap aman dan menyenangkan.</p>
@@ -1338,7 +1362,7 @@
                 <h4>Navigasi</h4>
                 <ul>
                     <li><a href="index.html#beranda">Beranda</a></li>
-                    <li><a href="about.html">Tentang</a></li>
+                    <li><a href="index.html#tentang">Tentang</a></li>
                     <li><a href="galeri.html">Galeri</a></li>
                     <li><a href="blog.html">Blog</a></li>
                 </ul>
@@ -1364,12 +1388,12 @@
         </div>
     </footer>
 
-    <a href="#" id="backToTop" class="back-to-top">
+    <a href="#" id="backToTop" class="back-to-top" aria-label="Kembali ke Atas">
         <i class="fas fa-arrow-up"></i>
     </a>
 
     <a href="https://wa.me/6281299887766?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20tanya%20paket%20rafting."
-        class="floating-wa" target="_blank" rel="noopener noreferrer">
+        class="floating-wa" target="_blank" aria-label="Chat WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -1428,7 +1452,6 @@
 
             if (headers.length > 0) {
                 headers.forEach((header, index) => {
-                    // Buat ID unik jika belum ada
                     if (!header.id) {
                         header.id = 'section-' + index;
                     }
@@ -1438,7 +1461,6 @@
                     a.href = '#' + header.id;
                     a.textContent = header.textContent;
 
-                    // Indentasi untuk H3
                     if (header.tagName === 'H3') {
                         li.style.marginLeft = '20px';
                         li.style.listStyleType = 'circle';
@@ -1495,7 +1517,6 @@
         const backToTopBtn = document.getElementById('backToTop');
 
         window.addEventListener('scroll', () => {
-            // Munculkan tombol jika scroll lebih dari 300px
             if (window.scrollY > 300) {
                 backToTopBtn.classList.add('show');
             } else {
@@ -1504,10 +1525,10 @@
         });
 
         backToTopBtn.addEventListener('click', (e) => {
-            e.preventDefault(); // Mencegah loncat kasar (default anchor behavior)
+            e.preventDefault();
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth' // Scroll halus ke atas
+                behavior: 'smooth'
             });
         });
     </script>

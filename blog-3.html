@@ -28,13 +28,20 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://images.unsplash.com">
+
+    <link rel="preload" as="image"
+        href="https://images.unsplash.com/photo-1470246973918-29a53295c561?q=60&w=1200&auto=format&fit=crop">
 
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </noscript>
 
     <script type="application/ld+json">
     {
@@ -94,12 +101,15 @@
             background-color: var(--off-white);
             overflow-x: hidden;
             line-height: 1.8;
+            text-rendering: optimizeLegibility;
         }
 
         /* --- UTILS --- */
         img {
             max-width: 100%;
             height: auto;
+            display: block;
+            /* Fix layout shifts */
         }
 
         /* --- READING PROGRESS BAR --- */
@@ -131,12 +141,16 @@
             transition: all 0.4s ease;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            will-change: background, padding;
+            /* Perf hint */
         }
 
         nav.scrolled {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             padding: 1rem 5%;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
@@ -299,7 +313,7 @@
             color: var(--text-dark);
         }
 
-        /* --- 3. HERO BLOG DETAIL --- */
+        /* --- 3. HERO BLOG DETAIL (OPTIMIZED) --- */
         .blog-hero {
             height: 60vh;
             width: 100%;
@@ -308,13 +322,15 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            /* Background Image Khusus Blog 3 (Alam/Healing) */
-            background: url('https://images.unsplash.com/photo-1470246973918-29a53295c561?q=80&w=2069&auto=format&fit=crop');
+            /* Optimized URL matches Preload: q=60, w=1200 */
+            background: url('https://images.unsplash.com/photo-1470246973918-29a53295c561?q=60&w=1200&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             padding-bottom: 4rem;
             padding-top: 100px;
+            background-color: var(--primary);
+            /* Fallback LCP */
         }
 
         .blog-hero::before {
@@ -520,6 +536,7 @@
         figure img {
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
         }
 
         figcaption {
@@ -737,6 +754,7 @@
         .r-img {
             height: 200px;
             overflow: hidden;
+            background-color: #eee;
         }
 
         .r-img img {
@@ -1074,7 +1092,7 @@
 
     <nav id="navbar">
         <a href="index.html" class="logo">
-            <img src="img/baru/RIMBA.png" alt="Logo Rimba Rafting" width="150" height="50">
+            <img src="img/baru/RIMBA.png" alt="Logo Rimba Rafting" width="150" height="50" loading="eager">
         </a>
         <div class="hamburger"><i class="fas fa-bars"></i></div>
         <ul class="nav-links">
@@ -1099,8 +1117,8 @@
         <div class="blog-hero-content">
             <h1>Manfaat Kesehatan Mental dari Rafting</h1>
             <div class="author-meta">
-                <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=100&auto=format&fit=crop"
-                    alt="Dr. Tirta" width="40" height="40">
+                <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=60&w=100&auto=format&fit=crop"
+                    alt="Dr. Tirta" width="40" height="40" loading="lazy">
                 <div>
                     <strong>Dr. Tirta</strong><br>
                     <span style="opacity: 0.8;">20 Nov 2024 • 7 Menit Baca</span>
@@ -1256,8 +1274,8 @@
 
                 <div class="post-footer">
                     <div class="author-box">
-                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=100&auto=format&fit=crop"
-                            alt="Dr. Tirta" width="80" height="80">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=60&w=100&auto=format&fit=crop"
+                            alt="Dr. Tirta" width="80" height="80" loading="lazy">
                         <div class="author-info">
                             <h4>Dr. Tirta</h4>
                             <span>Medical Influencer & Sport Enthusiast</span>
