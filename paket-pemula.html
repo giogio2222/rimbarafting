@@ -4,15 +4,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paket Pemula - Rimba Rafting</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Paket Rafting Pemula - Fun & Safe untuk Newbie | Rimba Rafting</title>
+    <meta name="description"
+        content="Baru pertama kali rafting? Pilih Paket Rafting Pemula Rimba Rafting. Rute 8KM Grade II-III yang aman, santai, dan penuh pemandangan indah. Fasilitas lengkap & harga hemat.">
+    <meta name="keywords"
+        content="rafting pemula, fun rafting, arung jeram santai, paket rafting murah, rafting keluarga, rimba rafting pemula, wisata air batu">
+    <meta name="author" content="Rimba Rafting">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://www.rimbarafting.com/paket-pemula.html">
+
+    <meta property="og:type" content="product">
+    <meta property="og:title" content="Paket Rafting Pemula - Fun & Safe">
+    <meta property="og:description"
+        content="Pengalaman arung jeram pertama yang aman dan tak terlupakan. Harga hemat mulai Rp 150.000.">
+    <meta property="og:url" content="https://www.rimbarafting.com/paket-pemula.html">
+    <meta property="og:image" content="img/destinasi/sampean-1.webp">
+    <meta property="og:site_name" content="Rimba Rafting">
+    <meta property="product:price:amount" content="150000">
+    <meta property="product:price:currency" content="IDR">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Paket Rafting Pemula - Rimba Rafting">
+    <meta name="twitter:description" content="Wisata arung jeram santai, aman untuk pemula dan non-perenang.">
+    <meta name="twitter:image" content="img/destinasi/sampean-1.webp">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="img/favicon/site.webmanifest">
+    <meta name="theme-color" content="#00695C">
+
+    <link rel="preload" as="image" href="img/destinasi/sampean-1.webp">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap"
         rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Paket Rafting Pemula",
+      "image": "img/destinasi/sampean-1.webp",
+      "description": "Paket Fun Rafting jarak 8KM (Grade II-III). Aman untuk pemula dan corporate gathering. Termasuk makan siang dan dokumentasi.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Rimba Rafting"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.rimbarafting.com/paket-pemula.html",
+        "priceCurrency": "IDR",
+        "price": "150000",
+        "availability": "https://schema.org/InStock",
+        "itemCondition": "https://schema.org/NewCondition"
+      }
+    }
+    </script>
 
     <style>
         /* --- RESET & VARIABLES (SAMA DENGAN INDEX) --- */
@@ -824,13 +878,12 @@
         }
 
         .logo img {
+            /* CLS Optimization: Added explicit Width/Height & Eager Loading */
             height: 50px;
-            /* Sesuaikan tinggi ini dengan tinggi navbar Anda */
-            width: auto;
-            /* Menjaga agar logo tidak gepeng/tertarik */
+            width: 150px;
+            /* Explicit width to prevent layout shift */
             object-fit: contain;
             transition: all 0.3s ease;
-            /* Efek halus saat resize */
         }
 
         /* --- Responsif (Tampilan HP) --- */
@@ -842,6 +895,61 @@
                 /* Memberi jarak sedikit dari kiri layar */
             }
         }
+
+        /* --- BACK TO TOP BUTTON --- */
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            /* Posisi di atas tombol WA (WA biasanya 30px + tinggi tombol) */
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #ffffff;
+            /* Warna background putih */
+            color: #333;
+            /* Warna panah abu-abu gelap */
+            border-radius: 50%;
+            /* Membuat bulat */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            /* Bayangan halus */
+            z-index: 998;
+            /* Di bawah Navbar tapi di atas konten */
+            opacity: 0;
+            /* Default sembunyi */
+            visibility: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .back-to-top:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-3px);
+            /* Efek naik dikit saat di-hover */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Class untuk memunculkan tombol */
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 768px) {
+            .back-to-top {
+                width: 45px;
+                height: 45px;
+                bottom: 160px;
+                /* Menyesuaikan posisi WA di mobile */
+                right: 20px;
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 
@@ -849,7 +957,7 @@
 
     <nav id="navbar">
         <a href="index.html" class="logo">
-            <img src="img/baru/RIMBA.png" alt="Logo Rimba Rafting">
+            <img src="img/baru/RIMBA.png" alt="Logo Rimba Rafting" width="150" height="50" loading="eager">
         </a>
         <div class="hamburger"><i class="fas fa-bars"></i></div>
         <ul class="nav-links">
@@ -857,7 +965,7 @@
             <li><a href="about.html">Tentang</a></li>
             <li><a href="galeri.html">Galeri</a></li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle">
+                <a href="#paket" class="dropdown-toggle">
                     Paket <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
                 </a>
                 <div class="dropdown-content">
@@ -971,7 +1079,7 @@
                 </ul>
 
                 <a href="https://wa.me/6281234567890?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20booking%20Paket%20Pemula"
-                    target="_blank" class="btn-whatsapp-full">
+                    target="_blank" class="btn-whatsapp-full" rel="noopener noreferrer">
                     <i class="fab fa-whatsapp"></i> Booking via WhatsApp
                 </a>
 
@@ -995,7 +1103,7 @@
         <div class="cards-container">
             <div class="card">
                 <div class="card-img-wrap">
-                    <img src="img/baru/Desaintanpajudul33.webp" alt="Extreme">
+                    <img src="img/baru/Desaintanpajudul33.webp" alt="Extreme" loading="lazy" decoding="async">
                 </div>
                 <div class="card-content">
                     <h3>Paket Extrem</h3>
@@ -1008,7 +1116,7 @@
 
             <div class="card">
                 <div class="card-img-wrap">
-                    <img src="img/baru/keluarga.webp" alt="Keluarga">
+                    <img src="img/baru/keluarga.webp" alt="Keluarga" loading="lazy" decoding="async">
                 </div>
                 <div class="card-content">
                     <h3>Paket Family</h3>
@@ -1060,13 +1168,17 @@
             <strong>Rp 150.000</strong>
         </div>
         <a href="https://wa.me/6281234567890?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20booking%20Paket%20Pemula"
-            class="btn-mobile-book">
+            class="btn-mobile-book" rel="noopener noreferrer">
             <i class="fab fa-whatsapp"></i> Booking
         </a>
     </div>
 
-    <a href="https://wa.me/6281234567890?text=Halo%20saya%20tertarik%20dengan%20paket%20rafting" class="floating-wa"
-        target="_blank">
+    <a href="#" id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <a href="https://wa.me/6281299887766?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20tanya%20paket%20rafting."
+        class="floating-wa" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -1111,6 +1223,26 @@
                 navLinks.classList.remove('active');
                 icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
                 if (window.scrollY < 50) hamburger.classList.remove('active-color');
+            });
+        });
+
+        // --- BACK TO TOP LOGIC ---
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            // Munculkan tombol jika scroll lebih dari 300px
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // Mencegah loncat kasar (default anchor behavior)
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Scroll halus ke atas
             });
         });
     </script>

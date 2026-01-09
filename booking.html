@@ -4,15 +4,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking Petualangan - Rimba Rafting</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Booking Petualangan Rafting Hemat & Aman - Rimba Rafting</title>
+    <meta name="description"
+        content="Formulir reservasi online Rimba Rafting. Pilih paket Pemula, Family, atau Extreme. Harga mulai Rp 125.000/pax. Booking mudah via WhatsApp sekarang!">
+    <meta name="keywords"
+        content="booking rafting, harga rafting bogor, paket rafting murah, reservasi arung jeram, rimba rafting booking">
+    <meta name="author" content="Rimba Rafting">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://www.rimbarafting.com/booking.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Booking Petualangan - Rimba Rafting">
+    <meta property="og:description"
+        content="Siap memacu adrenalin? Reservasi slot rafting Anda sekarang. Harga transparan mulai Rp 125K.">
+    <meta property="og:url" content="https://www.rimbarafting.com/booking.html">
+    <meta property="og:image" content="img/destinasi/sampean-1.webp">
+    <meta property="og:site_name" content="Rimba Rafting">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Booking Rafting - Rimba Rafting">
+    <meta name="twitter:description" content="Reservasi paket rafting terbaik untuk keluarga dan pemula.">
+    <meta name="twitter:image" content="img/destinasi/sampean-1.webp">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="img/favicon/site.webmanifest">
+    <meta name="theme-color" content="#00695C">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap"
         rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Paket Rimba Rafting",
+      "description": "Pilihan paket arung jeram mulai dari Pemula, Family, hingga Extreme dengan standar keamanan tinggi.",
+      "image": "img/destinasi/sampean-1.webp",
+      "brand": {
+        "@type": "Brand",
+        "name": "Rimba Rafting"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "url": "https://www.rimbarafting.com/booking.html",
+        "priceCurrency": "IDR",
+        "lowPrice": "125000",
+        "highPrice": "250000",
+        "offerCount": "3"
+      }
+    }
+    </script>
 
     <style>
         /* --- 1. VARIABLES & RESET (SAMA PERSIS) --- */
@@ -732,6 +782,61 @@
                 /* Memberi jarak sedikit dari kiri layar */
             }
         }
+
+        /* --- BACK TO TOP BUTTON --- */
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            /* Posisi di atas tombol WA (WA biasanya 30px + tinggi tombol) */
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #ffffff;
+            /* Warna background putih */
+            color: #333;
+            /* Warna panah abu-abu gelap */
+            border-radius: 50%;
+            /* Membuat bulat */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            /* Bayangan halus */
+            z-index: 998;
+            /* Di bawah Navbar tapi di atas konten */
+            opacity: 0;
+            /* Default sembunyi */
+            visibility: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .back-to-top:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-3px);
+            /* Efek naik dikit saat di-hover */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Class untuk memunculkan tombol */
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 768px) {
+            .back-to-top {
+                width: 45px;
+                height: 45px;
+                bottom: 85px;
+                /* Menyesuaikan posisi WA di mobile */
+                right: 20px;
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 
@@ -739,7 +844,7 @@
 
     <nav id="navbar">
         <a href="index.html" class="logo">
-            <img src="img/baru/RIMBA.png" alt="Logo Rimba Rafting">
+            <img src="img/baru/RIMBA.png" alt="Logo Rimba Rafting" width="150" height="50" loading="eager">
         </a>
         <div class="hamburger"><i class="fas fa-bars"></i></div>
         <ul class="nav-links">
@@ -906,8 +1011,12 @@
         </div>
     </footer>
 
+    <a href="#" id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
     <a href="https://wa.me/6281299887766?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20tanya%20paket%20rafting."
-        class="floating-wa" target="_blank">
+        class="floating-wa" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -1012,6 +1121,26 @@ Mohon info ketersediaan slot. Terima kasih!`;
             // Redirect ke API WhatsApp
             const url = `https://wa.me/${adminNumber}?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
+        });
+
+        // --- BACK TO TOP LOGIC ---
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            // Munculkan tombol jika scroll lebih dari 300px
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // Mencegah loncat kasar (default anchor behavior)
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Scroll halus ke atas
+            });
         });
     </script>
 

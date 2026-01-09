@@ -4,15 +4,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog & Artikel - Rimba Rafting</title>
+
+    <title>Blog & Artikel - Rimba Rafting | Tips & Panduan Arung Jeram</title>
+    <meta name="description"
+        content="Jurnal Petualang Rimba Rafting: Temukan tips keselamatan rafting, panduan peralatan, rekomendasi sungai terbaik di Indonesia, dan informasi kesehatan arung jeram.">
+    <meta name="keywords"
+        content="Blog Rafting, Tips Arung Jeram, Keselamatan Rafting, Peralatan Rafting, Wisata Sungai Bogor, Rimba Rafting News">
+    <meta name="author" content="Rimba Rafting Content Team">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Jurnal Petualang - Blog Rimba Rafting">
+    <meta property="og:description"
+        content="Kumpulan artikel menarik seputar dunia arung jeram, tips keselamatan, dan destinasi wisata sungai terbaik.">
+    <meta property="og:url" content="https://rimbarafting.com/blog.html">
+    <meta property="og:image" content="img/destinasi/sampean-1.webp">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog Rimba Rafting - Jurnal Petualang">
+    <meta name="twitter:description" content="Baca tips dan trik terbaru seputar arung jeram di blog kami.">
+
+    <link rel="icon" type="image/png" href="img/baru/RIMBA.png">
+    <link rel="apple-touch-icon" href="img/baru/RIMBA.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Jurnal Petualang Rimba Rafting",
+      "description": "Kumpulan artikel tips, panduan, dan berita seputar arung jeram.",
+      "url": "https://rimbarafting.com/blog.html",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Rimba Rafting",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rimbarafting.com/img/baru/RIMBA.png"
+        }
+      },
+      "blogPost": [
+        {
+          "@type": "BlogPosting",
+          "headline": "5 Tips Keselamatan Rafting untuk Pemula",
+          "description": "Panduan lengkap keselamatan agar petualangan Anda tetap aman.",
+          "datePublished": "2024-10-12",
+          "author": { "@type": "Person", "name": "Admin" }
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Mengenal Peralatan Wajib Arung Jeram",
+          "description": "Kenali fungsi helm, pelampung, dan jenis dayung standar internasional.",
+          "datePublished": "2024-11-05",
+          "author": { "@type": "Person", "name": "Guide Budi" }
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Manfaat Kesehatan Mental dari Rafting",
+          "description": "Melawan arus sungai bisa mengurangi stres dan meningkatkan hormon kebahagiaan.",
+          "datePublished": "2024-11-20",
+          "author": { "@type": "Person", "name": "Dr. Tirta" }
+        }
+      ]
+    }
+    </script>
 
     <style>
         /* --- RESET & VARIABLES --- */
@@ -57,12 +121,14 @@
             transition: all 0.4s ease;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         nav.scrolled {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             padding: 1rem 5%;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
@@ -76,6 +142,22 @@
             letter-spacing: 1px;
             z-index: 1002;
             position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+
+        @media screen and (max-width: 768px) {
+            .logo img {
+                height: 40px;
+                margin-left: 10px;
+            }
         }
 
         nav.scrolled .logo {
@@ -226,7 +308,6 @@
             text-align: center;
             position: relative;
             background: url('img/destinasi/sampean-1.webp');
-            /* Gambar Camping/Outdoor */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -364,6 +445,8 @@
             width: 100%;
             position: relative;
             overflow: hidden;
+            background-color: #eee;
+            /* Placeholder saat lazy load */
         }
 
         .blog-img img {
@@ -673,14 +756,12 @@
             width: 60px;
             height: 60px;
             background-color: #25d366;
-            /* Warna Hijau WhatsApp */
             color: #fff;
             border-radius: 50%;
             text-align: center;
             font-size: 35px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
             z-index: 9999;
-            /* Pastikan di atas elemen lain */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -689,19 +770,14 @@
 
         .floating-wa:hover {
             background-color: #1ebc57;
-            /* Warna sedikit lebih gelap saat hover */
             transform: scale(1.1);
-            /* Efek membesar sedikit */
             box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.4);
         }
 
-        /* Agar ikon pas di tengah */
         .floating-wa i {
             margin-top: 2px;
-            /* Sedikit penyesuaian vertikal */
         }
 
-        /* Responsif untuk Mobile (agar tidak terlalu besar/menutupi konten) */
         @media (max-width: 768px) {
             .floating-wa {
                 width: 50px;
@@ -712,31 +788,47 @@
             }
         }
 
-        /* --- Pengaturan Logo Gambar --- */
-
-        .logo {
-            display: flex;
-            /* Memastikan gambar rata tengah vertikal */
-            align-items: center;
-        }
-
-        .logo img {
+        /* --- BACK TO TOP BUTTON --- */
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 50px;
             height: 50px;
-            /* Sesuaikan tinggi ini dengan tinggi navbar Anda */
-            width: auto;
-            /* Menjaga agar logo tidak gepeng/tertarik */
-            object-fit: contain;
+            background-color: #ffffff;
+            color: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
             transition: all 0.3s ease;
-            /* Efek halus saat resize */
+            cursor: pointer;
+            font-size: 1.2rem;
         }
 
-        /* --- Responsif (Tampilan HP) --- */
-        @media screen and (max-width: 768px) {
-            .logo img {
-                height: 40px;
-                /* Ukuran logo sedikit mengecil di HP agar muat */
-                margin-left: 10px;
-                /* Memberi jarak sedikit dari kiri layar */
+        .back-to-top:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 768px) {
+            .back-to-top {
+                width: 45px;
+                height: 45px;
+                bottom: 85px;
+                right: 20px;
+                font-size: 1rem;
             }
         }
     </style>
@@ -746,7 +838,7 @@
 
     <nav id="navbar">
         <a href="index.html" class="logo">
-            <img src="img/baru/RIMBA.png" alt="Logo Rimba Rafting">
+            <img src="img/baru/RIMBA.png" alt="Logo Rimba Rafting - Wisata Petualangan" width="150" height="50">
         </a>
         <div class="hamburger"><i class="fas fa-bars"></i></div>
         <ul class="nav-links">
@@ -776,8 +868,9 @@
 
         <div class="search-container">
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Cari artikel (misal: Tips, Lokasi, Peralatan)...">
-                <button class="search-btn"><i class="fas fa-search"></i></button>
+                <input type="text" id="searchInput" placeholder="Cari artikel (misal: Tips, Lokasi, Peralatan)..."
+                    aria-label="Cari Artikel">
+                <button class="search-btn" aria-label="Tombol Cari"><i class="fas fa-search"></i></button>
             </div>
         </div>
 
@@ -786,7 +879,8 @@
             <div class="blog-card">
                 <div class="blog-img">
                     <span class="blog-category">Tips</span>
-                    <img src="img/destinasi/bajulmati-2.webp" alt="Tips Rafting">
+                    <img src="img/destinasi/bajulmati-2.webp" alt="Panduan Tips Keselamatan Rafting untuk Pemula"
+                        loading="lazy" width="400" height="240">
                 </div>
                 <div class="blog-content">
                     <div class="blog-meta">
@@ -796,14 +890,17 @@
                     <h3 class="blog-title">5 Tips Keselamatan Rafting untuk Pemula</h3>
                     <p class="blog-excerpt">Ingin mencoba arung jeram untuk pertama kalinya? Simak panduan lengkap
                         keselamatan agar petualangan Anda tetap aman dan menyenangkan.</p>
-                    <a href="blog-1.html" class="read-more-btn">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    <a href="blog-1.html" class="read-more-btn"
+                        aria-label="Baca selengkapnya tentang 5 Tips Keselamatan">Baca Selengkapnya <i
+                            class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
 
             <div class="blog-card">
                 <div class="blog-img">
                     <span class="blog-category">Peralatan</span>
-                    <img src="img/baru/keselamatan.webp" alt="Peralatan Rafting">
+                    <img src="img/baru/keselamatan.webp" alt="Peralatan Wajib Arung Jeram dan Fungsinya" loading="lazy"
+                        width="400" height="240">
                 </div>
                 <div class="blog-content">
                     <div class="blog-meta">
@@ -813,14 +910,17 @@
                     <h3 class="blog-title">Mengenal Peralatan Wajib Arung Jeram</h3>
                     <p class="blog-excerpt">Jangan asal dayung! Kenali fungsi helm, pelampung, dan jenis dayung yang
                         digunakan dalam rafting standar internasional.</p>
-                    <a href="blog-2.html" class="read-more-btn">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    <a href="blog-2.html" class="read-more-btn"
+                        aria-label="Baca selengkapnya tentang Peralatan Wajib">Baca Selengkapnya <i
+                            class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
 
             <div class="blog-card">
                 <div class="blog-img">
                     <span class="blog-category">Kesehatan</span>
-                    <img src="img/destinasi/pekalen-1.webp" alt="Kesehatan Rafting">
+                    <img src="img/destinasi/pekalen-1.webp" alt="Manfaat Kesehatan Mental dari Olahraga Rafting"
+                        loading="lazy" width="400" height="240">
                 </div>
                 <div class="blog-content">
                     <div class="blog-meta">
@@ -830,14 +930,17 @@
                     <h3 class="blog-title">Manfaat Kesehatan Mental dari Rafting</h3>
                     <p class="blog-excerpt">Ternyata melawan arus sungai bisa mengurangi stres dan meningkatkan hormon
                         kebahagiaan. Simak penjelasan medisnya.</p>
-                    <a href="blog-3.html" class="read-more-btn">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    <a href="blog-3.html" class="read-more-btn"
+                        aria-label="Baca selengkapnya tentang Manfaat Kesehatan">Baca Selengkapnya <i
+                            class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
 
             <div class="blog-card">
                 <div class="blog-img">
                     <span class="blog-category">Destinasi</span>
-                    <img src="img/destinasi/kaliwatu-1.webp" alt="Sungai Terbaik">
+                    <img src="img/destinasi/kaliwatu-1.webp" alt="Rekomendasi Sungai Terbaik di Jawa Barat"
+                        loading="lazy" width="400" height="240">
                 </div>
                 <div class="blog-content">
                     <div class="blog-meta">
@@ -847,14 +950,17 @@
                     <h3 class="blog-title">Sungai Terbaik di Jawa Barat untuk Rafting</h3>
                     <p class="blog-excerpt">Jawa Barat adalah surga arung jeram. Berikut adalah daftar sungai dengan
                         grade jeram paling menantang.</p>
-                    <a href="blog-4.html" class="read-more-btn">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    <a href="blog-4.html" class="read-more-btn"
+                        aria-label="Baca selengkapnya tentang Sungai Terbaik">Baca Selengkapnya <i
+                            class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
 
             <div class="blog-card">
                 <div class="blog-img">
                     <span class="blog-category">Cuaca</span>
-                    <img src="img/destinasi/glidik-1.webp" alt="Rafting Hujan">
+                    <img src="img/destinasi/glidik-1.webp" alt="Aman tidak Rafting saat Hujan" loading="lazy"
+                        width="400" height="240">
                 </div>
                 <div class="blog-content">
                     <div class="blog-meta">
@@ -864,14 +970,17 @@
                     <h3 class="blog-title">Rafting Saat Hujan? Aman Gak Sih?</h3>
                     <p class="blog-excerpt">Banyak yang takut rafting saat hujan turun. Padahal, justru saat itulah
                         debit air sedang seru-serunya. Ini prosedurnya.</p>
-                    <a href="blog-5.html" class="read-more-btn">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    <a href="blog-5.html" class="read-more-btn"
+                        aria-label="Baca selengkapnya tentang Rafting Saat Hujan">Baca Selengkapnya <i
+                            class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
 
             <div class="blog-card">
                 <div class="blog-img">
                     <span class="blog-category">Sejarah</span>
-                    <img src="img/destinasi/sampean-1.webp" alt="Sejarah Rafting">
+                    <img src="img/destinasi/sampean-1.webp" alt="Sejarah Perkembangan Arung Jeram Indonesia"
+                        loading="lazy" width="400" height="240">
                 </div>
                 <div class="blog-content">
                     <div class="blog-meta">
@@ -881,7 +990,9 @@
                     <h3 class="blog-title">Sejarah Perkembangan Arung Jeram di Indonesia</h3>
                     <p class="blog-excerpt">Dari ekspedisi militer hingga menjadi olahraga wisata populer. Inilah
                         perjalanan panjang arung jeram di tanah air.</p>
-                    <a href="blog-6.html" class="read-more-btn">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    <a href="blog-6.html" class="read-more-btn"
+                        aria-label="Baca selengkapnya tentang Sejarah Rafting">Baca Selengkapnya <i
+                            class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
 
@@ -931,8 +1042,12 @@
         </div>
     </footer>
 
+    <a href="#" id="backToTop" class="back-to-top" aria-label="Kembali ke Atas">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
     <a href="https://wa.me/6281299887766?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20tanya%20paket%20rafting."
-        class="floating-wa" target="_blank">
+        class="floating-wa" target="_blank" aria-label="Chat WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -1009,6 +1124,26 @@
             } else {
                 noResults.style.display = 'none';
             }
+        });
+
+        // --- BACK TO TOP LOGIC ---
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            // Munculkan tombol jika scroll lebih dari 300px
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // Mencegah loncat kasar (default anchor behavior)
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Scroll halus ke atas
+            });
         });
     </script>
 </body>

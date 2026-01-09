@@ -4,15 +4,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeri - Rimba Rafting</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Galeri Dokumentasi Rimba Rafting - Foto Petualangan Terbaik</title>
+    <meta name="description"
+        content="Lihat keseruan aksi rafting di galeri Rimba Rafting. Kumpulan foto dokumentasi terbaik dari sungai Pekalen, Glidik, hingga Kaliwatu. Bukti nyata petualangan seru!">
+    <meta name="keywords"
+        content="galeri rafting, foto arung jeram, dokumentasi rafting malang, foto wisata rafting, rimba rafting gallery">
+    <meta name="author" content="Rimba Rafting">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://www.rimbarafting.com/galeri.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Galeri Dokumentasi - Rimba Rafting">
+    <meta property="og:description"
+        content="Intip keseruan petualangan arung jeram kami. Jangan cuma dibayangkan, lihat buktinya di sini!">
+    <meta property="og:url" content="https://www.rimbarafting.com/galeri.html">
+    <meta property="og:image" content="img/destinasi/sampean-1.webp">
+    <meta property="og:site_name" content="Rimba Rafting">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Galeri Rimba Rafting">
+    <meta name="twitter:description" content="Koleksi foto aksi arung jeram paling menantang di Jawa Timur.">
+    <meta name="twitter:image" content="img/destinasi/sampean-1.webp">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="img/favicon/site.webmanifest">
+    <meta name="theme-color" content="#00695C">
+
+    <link rel="preload" as="image" href="img/destinasi/sampean-1.webp">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap"
         rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ImageGallery",
+      "name": "Galeri Rimba Rafting",
+      "description": "Koleksi foto dokumentasi kegiatan arung jeram di berbagai sungai Jawa Timur.",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "img/destinasi/sampean-1.webp",
+        "caption": "Pemandangan Rafting Sungai Sampean"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "Rimba Rafting",
+        "logo": "img/baru/RIMBA.png"
+      }
+    }
+    </script>
 
     <style>
         /* --- RESET & VARIABLES --- */
@@ -841,6 +890,61 @@
                 /* Memberi jarak sedikit dari kiri layar */
             }
         }
+
+        /* --- BACK TO TOP BUTTON --- */
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            /* Posisi di atas tombol WA (WA biasanya 30px + tinggi tombol) */
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #ffffff;
+            /* Warna background putih */
+            color: #333;
+            /* Warna panah abu-abu gelap */
+            border-radius: 50%;
+            /* Membuat bulat */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            /* Bayangan halus */
+            z-index: 998;
+            /* Di bawah Navbar tapi di atas konten */
+            opacity: 0;
+            /* Default sembunyi */
+            visibility: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .back-to-top:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-3px);
+            /* Efek naik dikit saat di-hover */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Class untuk memunculkan tombol */
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 768px) {
+            .back-to-top {
+                width: 45px;
+                height: 45px;
+                bottom: 85px;
+                /* Menyesuaikan posisi WA di mobile */
+                right: 20px;
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 
@@ -848,7 +952,7 @@
 
     <nav id="navbar">
         <a href="index.html" class="logo">
-            <img src="img/baru/RIMBA.png" alt="Logo Rimba Rafting">
+            <img src="img/baru/RIMBA.png" alt="Logo Rimba Rafting" width="150" height="50" loading="eager">
         </a>
         <div class="hamburger"><i class="fas fa-bars"></i></div>
         <ul class="nav-links">
@@ -888,7 +992,7 @@
         <div class="gallery-container">
 
             <div class="gallery-item" data-category="lumba">
-                <img src="img/destinasi/bajulmati-1.webp" alt="Arus Deras">
+                <img src="img/destinasi/bajulmati-1.webp" alt="Arus Deras" loading="lazy" decoding="async">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
                         <h4>Sungai Bajulmati</h4>
@@ -898,7 +1002,7 @@
             </div>
 
             <div class="gallery-item" data-category="maba">
-                <img src="img/destinasi/bango-1.webp" alt="Rafting Santai">
+                <img src="img/destinasi/bango-1.webp" alt="Rafting Santai" loading="lazy" decoding="async">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
                         <h4>Sungai Bango</h4>
@@ -908,7 +1012,7 @@
             </div>
 
             <div class="gallery-item" data-category="lumba">
-                <img src="img/destinasi/glidik-2.webp" alt="Hutan Pinus">
+                <img src="img/destinasi/glidik-2.webp" alt="Hutan Pinus" loading="lazy" decoding="async">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
                         <h4>Sungai Glidik</h4>
@@ -918,7 +1022,7 @@
             </div>
 
             <div class="gallery-item" data-category="maba">
-                <img src="img/destinasi/kaliwatu-1.webp" alt="Tim Pro">
+                <img src="img/destinasi/kaliwatu-1.webp" alt="Tim Pro" loading="lazy" decoding="async">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
                         <h4>Sungai Kaliwatu</h4>
@@ -928,7 +1032,7 @@
             </div>
 
             <div class="gallery-item" data-category="proje">
-                <img src="img/destinasi/pekalen-1.webp" alt="Api Unggun">
+                <img src="img/destinasi/pekalen-1.webp" alt="Api Unggun" loading="lazy" decoding="async">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
                         <h4>Sungai Pekalen</h4>
@@ -938,7 +1042,7 @@
             </div>
 
             <div class="gallery-item" data-category="proje">
-                <img src="img/destinasi/sampean-1.webp" alt="Foto Tim">
+                <img src="img/destinasi/sampean-1.webp" alt="Foto Tim" loading="lazy" decoding="async">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
                         <h4>Sungai Sampean</h4>
@@ -948,7 +1052,7 @@
             </div>
 
             <div class="gallery-item" data-category="proje">
-                <img src="img/destinasi/tanggul-1.webp" alt="Air Terjun">
+                <img src="img/destinasi/tanggul-1.webp" alt="Air Terjun" loading="lazy" decoding="async">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
                         <h4>Sungai Tanggul</h4>
@@ -958,7 +1062,7 @@
             </div>
 
             <div class="gallery-item" data-category="maba">
-                <img src="img/destinasi/bango-2.webp" alt="Big Wave">
+                <img src="img/destinasi/bango-2.webp" alt="Big Wave" loading="lazy" decoding="async">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
                         <h4>Sungai Bango</h4>
@@ -968,7 +1072,7 @@
             </div>
 
             <div class="gallery-item" data-category="maba">
-                <img src="img/destinasi/kaliwatu-2.webp" alt="Tenda">
+                <img src="img/destinasi/kaliwatu-2.webp" alt="Tenda" loading="lazy" decoding="async">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
                         <h4>Sungai Kaliwatu</h4>
@@ -978,7 +1082,7 @@
             </div>
 
             <div class="gallery-item" data-category="proje">
-                <img src="img/destinasi/pekalen-2.webp" alt="Tenda">
+                <img src="img/destinasi/pekalen-2.webp" alt="Tenda" loading="lazy" decoding="async">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
                         <h4>Sungai Pekalen</h4>
@@ -988,7 +1092,7 @@
             </div>
 
             <div class="gallery-item" data-category="proje">
-                <img src="img/destinasi/sampean-2.webp" alt="Tenda">
+                <img src="img/destinasi/sampean-2.webp" alt="Tenda" loading="lazy" decoding="async">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
                         <h4>Sungai Sampean</h4>
@@ -998,7 +1102,7 @@
             </div>
 
             <div class="gallery-item" data-category="lumba">
-                <img src="img/destinasi/bajulmati-2.webp" alt="Tenda">
+                <img src="img/destinasi/bajulmati-2.webp" alt="Tenda" loading="lazy" decoding="async">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
                         <h4>Sungai Bajulmati</h4>
@@ -1008,7 +1112,7 @@
             </div>
 
             <div class="gallery-item" data-category="lumba">
-                <img src="img/destinasi/glidik-1.webp" alt="Tenda">
+                <img src="img/destinasi/glidik-1.webp" alt="Tenda" loading="lazy" decoding="async">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
                         <h4>Sungai Glidik</h4>
@@ -1018,7 +1122,7 @@
             </div>
 
             <div class="gallery-item" data-category="lumba">
-                <img src="img/destinasi/klatak-2.webp" alt="Tenda">
+                <img src="img/destinasi/klatak-2.webp" alt="Tenda" loading="lazy" decoding="async">
                 <div class="gallery-overlay">
                     <div class="overlay-text">
                         <h4>Sungai Klatak</h4>
@@ -1083,8 +1187,12 @@
         </div>
     </footer>
 
+    <a href="#" id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
     <a href="https://wa.me/6281299887766?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20tanya%20paket%20rafting."
-        class="floating-wa" target="_blank">
+        class="floating-wa" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -1188,6 +1296,26 @@
             if (e.target === lightbox) {
                 lightbox.classList.remove('active');
             }
+        });
+
+        // --- BACK TO TOP LOGIC ---
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            // Munculkan tombol jika scroll lebih dari 300px
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // Mencegah loncat kasar (default anchor behavior)
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Scroll halus ke atas
+            });
         });
     </script>
 </body>

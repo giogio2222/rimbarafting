@@ -4,15 +4,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tentang Kami - Rimba Rafting</title>
+
+    <title>Tentang Kami - Rimba Rafting | Operator Arung Jeram Terpercaya</title>
+    <meta name="description"
+        content="Tentang Rimba Rafting: Operator wisata arung jeram (rafting) profesional di Bogor. Prioritas keselamatan standar internasional, pelayanan prima, dan pemberdayaan lokal sejak 2015.">
+    <meta name="keywords"
+        content="Rimba Rafting, Rafting Bogor, Arung Jeram Pemula, Operator Rafting Terbaik, Wisata Petualangan Sungai">
+    <meta name="author" content="Rimba Rafting Team">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Tentang Rimba Rafting - Partner Petualangan Anda">
+    <meta property="og:description"
+        content="Kami menyediakan pengalaman rafting aman dan seru dengan standar keselamatan Grade A Internasional.">
+    <meta property="og:url" content="https://rimbarafting.com/about.html">
+    <meta property="og:image" content="img/destinasi/sampean-1.webp">
+
+    <link rel="icon" type="image/png" href="img/baru/RIMBA.png">
+    <link rel="apple-touch-icon" href="img/baru/RIMBA.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://images.unsplash.com">
+
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "Rimba Rafting",
+      "image": "img/baru/RIMBA.png",
+      "@id": "https://rimbarafting.com",
+      "url": "https://rimbarafting.com",
+      "telephone": "+6281299887766",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Jl. Raya Hutan Pinus No. 45",
+        "addressLocality": "Bogor Selatan",
+        "addressRegion": "Jawa Barat",
+        "postalCode": "16123",
+        "addressCountry": "ID"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -6.5971469,
+        "longitude": 106.799569
+      },
+      "description": "Operator wisata arung jeram yang memprioritaskan keselamatan tanpa mengurangi keseruan.",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "17:00"
+      },
+      "sameAs": [
+        "https://www.facebook.com/rimbarafting",
+        "https://www.instagram.com/rimbarafting"
+      ]
+    }
+    </script>
 
     <style>
         /* --- 1. VARIABLES & RESET --- */
@@ -58,12 +122,15 @@
             transition: all 0.4s ease;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            /* Safari support */
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         nav.scrolled {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             padding: 1rem 5%;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
@@ -77,6 +144,22 @@
             letter-spacing: 1px;
             z-index: 1002;
             position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+
+        @media screen and (max-width: 768px) {
+            .logo img {
+                height: 40px;
+                margin-left: 10px;
+            }
         }
 
         nav.scrolled .logo {
@@ -228,7 +311,6 @@
         .hero-section {
             position: relative;
             height: 60vh;
-            /* Pastikan path gambar benar */
             background-image: url('img/destinasi/sampean-1.webp');
             background-size: cover;
             background-position: center;
@@ -238,12 +320,8 @@
             justify-content: center;
             text-align: center;
             color: var(--white);
-
-            /* REVISI PADDING DI SINI */
             padding-bottom: 8rem;
-            /* Untuk efek lengkungan bawah */
             padding-top: 8rem;
-            /* Tambahan agar teks turun dan tidak kena navbar */
         }
 
         .hero-overlay {
@@ -387,7 +465,6 @@
             gap: 3rem;
         }
 
-        /* Zigzag Logic Desktop */
         .vm-row.reverse {
             flex-direction: row-reverse;
         }
@@ -448,6 +525,8 @@
         .team-img {
             height: 300px;
             overflow: hidden;
+            background-color: #eee;
+            /* Placeholder color saat lazy load */
         }
 
         .team-img img {
@@ -479,7 +558,6 @@
             display: block;
             margin-bottom: 15px;
         }
-
 
         /* --- 7. CTA SECTION --- */
         .cta-section {
@@ -585,8 +663,6 @@
         }
 
         @media (max-width: 768px) {
-
-            /* Mobile Nav Logic */
             .hamburger {
                 display: block;
             }
@@ -632,7 +708,6 @@
                 display: none;
             }
 
-            /* Dropdown Mobile */
             .dropdown-content {
                 position: relative;
                 top: 0;
@@ -669,7 +744,6 @@
                 width: calc(100% - 60px);
             }
 
-            /* Hero & Content Responsive */
             .hero-title {
                 font-size: 2.5rem;
             }
@@ -688,14 +762,12 @@
                 padding: 0 5% 3rem;
             }
 
-            /* --- FIX: VM Row Mobile Centering --- */
             .vm-row,
             .vm-row.reverse {
                 flex-direction: column;
                 text-align: center;
             }
 
-            /* Memaksa text-align center pada konten di mobile */
             .vm-content,
             .vm-row.reverse .vm-content {
                 text-align: center;
@@ -731,14 +803,12 @@
             width: 60px;
             height: 60px;
             background-color: #25d366;
-            /* Warna Hijau WhatsApp */
             color: #fff;
             border-radius: 50%;
             text-align: center;
             font-size: 35px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
             z-index: 9999;
-            /* Pastikan di atas elemen lain */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -747,19 +817,14 @@
 
         .floating-wa:hover {
             background-color: #1ebc57;
-            /* Warna sedikit lebih gelap saat hover */
             transform: scale(1.1);
-            /* Efek membesar sedikit */
             box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.4);
         }
 
-        /* Agar ikon pas di tengah */
         .floating-wa i {
             margin-top: 2px;
-            /* Sedikit penyesuaian vertikal */
         }
 
-        /* Responsif untuk Mobile (agar tidak terlalu besar/menutupi konten) */
         @media (max-width: 768px) {
             .floating-wa {
                 width: 50px;
@@ -770,31 +835,47 @@
             }
         }
 
-        /* --- Pengaturan Logo Gambar --- */
-
-        .logo {
-            display: flex;
-            /* Memastikan gambar rata tengah vertikal */
-            align-items: center;
-        }
-
-        .logo img {
+        /* --- BACK TO TOP BUTTON --- */
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 50px;
             height: 50px;
-            /* Sesuaikan tinggi ini dengan tinggi navbar Anda */
-            width: auto;
-            /* Menjaga agar logo tidak gepeng/tertarik */
-            object-fit: contain;
+            background-color: #ffffff;
+            color: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
             transition: all 0.3s ease;
-            /* Efek halus saat resize */
+            cursor: pointer;
+            font-size: 1.2rem;
         }
 
-        /* --- Responsif (Tampilan HP) --- */
-        @media screen and (max-width: 768px) {
-            .logo img {
-                height: 40px;
-                /* Ukuran logo sedikit mengecil di HP agar muat */
-                margin-left: 10px;
-                /* Memberi jarak sedikit dari kiri layar */
+        .back-to-top:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 768px) {
+            .back-to-top {
+                width: 45px;
+                height: 45px;
+                bottom: 85px;
+                right: 20px;
+                font-size: 1rem;
             }
         }
     </style>
@@ -804,7 +885,7 @@
 
     <nav id="navbar">
         <a href="index.html" class="logo">
-            <img src="img/baru/RIMBA.png" alt="Logo Rimba Rafting">
+            <img src="img/baru/RIMBA.png" alt="Logo Rimba Rafting - Wisata Arung Jeram" width="150" height="50">
         </a>
 
         <div class="hamburger">
@@ -914,7 +995,7 @@
                 <div class="team-card">
                     <div class="team-img">
                         <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop"
-                            alt="Budi Santoso">
+                            alt="Budi Santoso - Founder & Lead Guide Rimba Rafting" loading="lazy">
                     </div>
                     <div class="team-info">
                         <h4>Budi Santoso</h4>
@@ -926,7 +1007,7 @@
                 <div class="team-card">
                     <div class="team-img">
                         <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop"
-                            alt="Siti Aminah">
+                            alt="Siti Aminah - Operasional Manager Rimba Rafting" loading="lazy">
                     </div>
                     <div class="team-info">
                         <h4>Siti Aminah</h4>
@@ -938,7 +1019,7 @@
                 <div class="team-card">
                     <div class="team-img">
                         <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=2080&auto=format&fit=crop"
-                            alt="Asep Sunandar">
+                            alt="Asep Sunandar - Senior River Guide Rimba Rafting" loading="lazy">
                     </div>
                     <div class="team-info">
                         <h4>Asep Sunandar</h4>
@@ -998,8 +1079,12 @@
         </div>
     </footer>
 
+    <a href="#" id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
     <a href="https://wa.me/6281299887766?text=Halo%20Rimba%20Rafting,%20saya%20ingin%20tanya%20paket%20rafting."
-        class="floating-wa" target="_blank">
+        class="floating-wa" target="_blank" aria-label="Chat WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -1059,6 +1144,25 @@
                 dropdownContent.classList.toggle('show-mobile');
                 dropdownParent.classList.toggle('active');
             }
+        });
+
+        // --- BACK TO TOP LOGIC ---
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     </script>
 
